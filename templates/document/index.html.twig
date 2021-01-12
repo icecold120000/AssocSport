@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de documents téléchargables{% endblock %}
+
+{% block body %}
+    <h1>Liste de Documents téléchargables</h1>
+
+    <form class="d-flex" id="search">
+        <input class="form-control me-2" type="search"
+         placeholder="Rechercher Document" aria-label="Search">
+        <button class="btn btn-light"
+         type="submit">Rechercher</button>
+    </form>
+    <table class="table" id="docs">
+        <thead>
+            <tr>
+                <th scope="col">NomDocument</th>
+                <th scope="col">Description du document</th>
+                <th scope="col">Lien pour télécahrger le document</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td scope="row">{{ document.nomDocument }}</td>
+                 <td scope="row">{{ document.descriptionDocument }}</td>
+                <td>
+                    <button class="btn btn-primary">
+                        <a href="{{ document.lienDocument }}" 
+                        download="{{ document.lienDocument }}">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategorieEleve{% endblock %}
+
+{% block body %}
+    <h1>CategorieEleve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_eleve.id }}</td>
+            </tr>
+            <tr>
+                <th>LibelleCategorie</th>
+                <td>{{ categorie_eleve.libelleCategorie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_eleve_index') }}">back to list</a>
+
+    <a href="{{ path('categorie_eleve_edit', {'id': categorie_eleve.id}) }}">edit</a>
+
+    {{ include('categorie_eleve/_delete_form.html.twig') }}
+{% endblock %}

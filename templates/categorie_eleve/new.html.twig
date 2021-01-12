@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategorieEleve{% endblock %}
+
+{% block body %}
+    <h1>Create new CategorieEleve</h1>
+
+    {{ include('categorie_eleve/_form.html.twig') }}
+
+    <a href="{{ path('categorie_eleve_index') }}">back to list</a>
+{% endblock %}

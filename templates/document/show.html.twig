@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Document{% endblock %}
+
+{% block body %}
+    <h1>{{ document.nomDocument }}</h1>
+    <h2>
+        <i class="far fa-clock">{{ document.dateAjout ?
+        document.dateAjout|date('Y-m-d H:i:s') : '' }}</i>
+     </h2>
+
+        <th>Description du document</th>
+        <td>{{ document.descriptionDocument }}</td>
+
+
+    <btn href="{{ document.lienDocument }}" 
+    download="document.lienDocument">Téléchargé le document</btn>
+
+    <a href="{{ path('document_index') }}">back to list</a>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+   {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger"
+         role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="container">
+        <div id="part1">
+            <h1 class="title">Connectez-vous</h1>
+            <form id="form" action="
+            {{ path('app_login') }} method="POST">
+                <label class="labels">Email</label>
+                <div>
+                    <input type="text" name=
+                    "email" class="form-control">
+                </div>
+                {% if error %}
+                    <div class="erreur">{{ error.messageKey|trans
+                    (error.messageData, 'Saisie') }}</div>
+                {% endif %}
+                <label class="labels">
+                Mot de passe</label>
+                <div>
+                    <input type="password" name=
+                    "password" class="form-control">
+                </div>
+                    {% if error %}
+                    <div class="erreur">{{ error.messageKey|trans
+                    (error.messageData, 'Saisie') }}</div>
+                {% endif %}
+                <div class="buttonconnexion">
+                    <button type="button" 
+                    class="btn btn-success">
+                    Se connecter</button><a href=
+                    "{{path('oubli_mdp_new')}}" 
+                    target="_blank"> Mot de passe oublié ?</a>
+                </div>
+            </form>
+        </div>
+        <div id="part2">
+            <h1 class="title">Pas encore de compte ?</h1>
+            <h6>Vous êtes étudiant et 
+            vous n'avez pas encore de 
+            compte sur la plateforme ?</h6>
+            <button class="buttoninscription">
+             <a href={{path('app_register')}} 
+             target="_blank">Accéder au formulaire
+              d'inscription</a></button>
+        </div>
+    </div>
+
+{% endblock %}

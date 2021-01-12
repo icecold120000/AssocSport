@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue Admin{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>Bienvenue dans l'espace d'administration</h1>
+	</div>
+
+	<a href="{{path('document_admin')}}">liste de document</a>
+{% endblock %}

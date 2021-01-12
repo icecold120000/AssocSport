@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de documents téléchargables{% endblock %}
+
+{% block body %}
+    <h1>Liste de Documents téléchargables</h1>
+
+    <form class="d-flex" id="search">
+        <input class="form-control me-2" type="search"
+         placeholder="Rechercher Document" aria-label="Search">
+        <button class="btn btn-light"
+         type="submit">Rechercher</button>
+    </form>
+    <a href="{{ path('document_new') }}">
+        <button class="btn btn-primary"> 
+            Ajouter un nouveau document
+        </button>
+     </a>    
+    <table class="table" id="docs">
+        <thead>
+            <tr>
+                <th scope="col">NomDocument</th>
+                <th scope="col">LienDocument</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td scope="row">{{ document.nomDocument }}</td>
+                <td>{{ document.lienDocument }}</td>
+                <td>
+                    <button class="btn btn-primary">
+                        <a href="{{ path('document_edit',
+                        {'id': document.id}) }}">
+                        <i class="far fa-edit"></i></a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger">
+                        <a href="{{ path('document_delete',
+                         {'id': document.id}) }}">
+                         <i class="fas fa-trash"></i></a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
