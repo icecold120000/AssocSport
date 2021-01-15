@@ -1,4 +1,9 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <div class="container-fluid">
+        <form id="form" method="POST">
+            <label class="labels" >Libellé de la categorie d'élève</label>
+            <div>
+                <input type="text" name="nomCateg" id="inputNom" class="form-control"
+                placeholder="Saisissez un libellé de categorie d'élève">
+            </div>
+
+

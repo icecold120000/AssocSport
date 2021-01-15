@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Eleve{% endblock %}
+{% block title %}Ajouter un nouveau élève{% endblock %}
 
 {% block body %}
-    <h1>Create new Eleve</h1>
+    <h1>Ajouter un nouveau élève</h1>
 
     {{ include('eleve/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">Ajouter votre eleve</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('eleve_index') }}">back to list</a>
+    <a href="{{ path('eleve_index') }}">
+    	<button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button>
+   </a>
+    
 {% endblock %}

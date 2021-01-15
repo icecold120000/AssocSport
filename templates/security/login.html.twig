@@ -15,7 +15,7 @@
             {{ path('app_login') }} method="POST">
                 <label class="labels">Email</label>
                 <div>
-                    <input type="text" name=
+                    <input type="email" name=
                     "email" class="form-control">
                 </div>
                 {% if error %}
@@ -28,7 +28,7 @@
                     <input type="password" name=
                     "password" class="form-control">
                 </div>
-                    {% if error %}
+                {% if error %}
                     <div class="erreur">{{ error.messageKey|trans
                     (error.messageData, 'Saisie') }}</div>
                 {% endif %}

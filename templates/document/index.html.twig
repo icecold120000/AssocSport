@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de documents téléchargables{% endblock %}
+{% block title %}Liste de documents téléchargeables{% endblock %}
 
 {% block body %}
-    <h1>Liste de Documents téléchargables</h1>
+    <h1>Liste de Documents téléchargeables</h1>
 
     <form class="d-flex" id="search">
         <input class="form-control me-2" type="search"
@@ -16,7 +16,7 @@
             <tr>
                 <th scope="col">NomDocument</th>
                 <th scope="col">Description du document</th>
-                <th scope="col">Lien pour télécahrger le document</th>
+                <th scope="col">Lien de téléchargement</th>
             </tr>
         </thead>
         <tbody>
@@ -25,17 +25,17 @@
                 <td scope="row">{{ document.nomDocument }}</td>
                  <td scope="row">{{ document.descriptionDocument }}</td>
                 <td>
-                    <button class="btn btn-primary">
-                        <a href="{{ document.lienDocument }}" 
-                        download="{{ document.lienDocument }}">
+                    <a href="{{ document.lienDocument }}"
+                     download="{{ document.lienDocument }}">
+                        <button class="btn btn-primary">
                             <i class="fas fa-download"></i>
-                        </a>
-                    </button>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6" class="erreur">Aucune donnée n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>

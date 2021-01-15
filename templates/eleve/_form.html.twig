@@ -1,4 +1,65 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+  <div class="container-fluid">
+        <form id="form" method="POST">
+            <label class="labels" >Nom de l'élève</label>
+            <div>
+                <input type="text" name="nomEleve" id="inputNom" class="form-control"
+                placeholder="Saisissez un nom de l'élève">
+            </div>
+            <label class="labels">Prénom de l'élève</label>
+            <div>
+                <input type="text" name="prenomEleve"
+                 id="inputPrenom" class="form-control"
+                 placeholder="Saisissez le prénom de l'élève">
+            </div>
+            <label class="labels" >Photo de l'élève</label>
+            <div>
+                <input type="file" name="imgEleve" id="inputImg">
+            </div>
+            <label class="labels">La date de naissance
+             de l'élève</label>
+            <div>
+                <input type="date" name="dateNaissance"
+                id="inputDateNaissance" class="form-control">
+            </div>
+            <div>
+            	<span>Genre: </span>
+                <select class="form-select">
+                    <option selected>Aucun</option>
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </div>
+            <label class="labels">Le numéro de téléphone 
+            de l'élève</label>
+            <div>
+            	<input type="text" name="numTelEleve"
+            	 id="inputNumTel" class="form-control"
+            	 placeholder="Saisissez le numéro de téléphone de l'élève">
+            </div>
+            <label class="labels">Le numéro de téléphone d'un parent de l'élève</label>
+            <div>
+            	<input type="text" name="numParentEleve"
+            	 id="inputNumParent" class="form-control"
+            	 placeholder="Saisissez un nombre de place de l'élève">
+            </div>
+            <label class="labels" >La classe de l'élève</label>
+            <div>
+                <select class="form-select">
+                    <option selected>Aucune</option>
+            	   {% for classe in classes %}
+                        <option value="{{ classe.id }}">{{classe.libelle}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label class="labels" >la categorie
+            auquel l'élève appartient</label>
+            <div>
+                <select class="form-select">
+                    <option selected>Aucune</option>
+                    {% for categ in categories %}
+                        <option value="{{ categ.id }}">
+                        {{categ.libelleCategorie}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+

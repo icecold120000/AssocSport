@@ -7,33 +7,38 @@
 		 initial-scale=1">	
 		<link href="https://fonts.googleapis.com
 		/css?family=Open+Sans&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn
-		.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/b33430525b.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css"
 		 href="{{asset('static/css/styleprojet.css')}}">
 		{% block stylesheets %}{% endblock %}
 	</head>
 	<body data-spy="scroll" data-target=".navbar" data-offset="80">
-		<nav class="navbar navbar-inverse"
-		 style="background-color: #0F1B2C;">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <img src="{{asset('/static/Images/StVincent.png')}}">
-		    </div>
-		    <ul class="nav navbar-nav">
-		      <li class="active">
-		      <a href="{{ path('homepage') }}">ACCUEIL</a></li>
-		      <li><a href="{{ path('evenement_index') }}">
-		      EVENEMENTS</a></li>
-		    </ul>
-		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="{{ path('profile') }}">
-		      	<i class="fas fa-user-circle">
-		      </i></a><a href="{{ path('app_login') }}">
-		       S'IDENTIFIER </a></li>
-		    </ul>
-		  </div>
+		<nav class="navbar">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+			      <img src="{{asset('/static/Images/StVincent.png')}}">
+			    </div>
+			    <ul class="nav navbar-nav">
+			      	<li>
+			      		<a href="{{ path('homepage') }}">ACCUEIL</a>
+			      	</li>
+			      	<li>
+			      		<a href="{{ path
+			      		('evenement_index') }}">EVENEMENTS</a>
+			      	</li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right" id="connexion">
+			    	<li>
+			      		<a href="{{ path('profile') }}">
+			      		<i class="fas fa-user-circle"></i>
+			      		</a><a href="{{ path('app_login') }}">
+			      		Se connecter </a>
+			      	</li>
+			    </ul>
+		  	</div>
 		</nav>
 		{% block body %}{% endblock %}
 	</body>
@@ -55,17 +60,17 @@
 					<p>Fax : 04 28 73 25 64</p>
 					<p>Email : <a href="mailto:assocstvincent@gmail.com">
 					assocstvincent@gmail.com</a></p>
-					<p>Web :<a href="https://www.lycee-stvincent.fr/" target="_blank">https://www.lycee.stvincent.fr/</a></p>
+					<p>Web : <a href="https://www.lycee-stvincent.fr/" target="_blank">https://www.lycee.stvincent.fr/</a></p>
 				</li>
 			</div>
 
 			<div class="access">
 				<h3>Accès rapide</h3>
 				<li>
-					<p>Accueil</p>
-					<p>Actualites</p>
-					<p>Evenements</p>
-					<p>Contact</p>
+					<p><a href="{{path('homepage')}}">Accueil</a></p>
+					<p>Actualités</p>
+					<p><a href="{{path('evenement_index')}}">Evénements</a></p>
+					<p><a href="{{path('document_index')}}">Documents</a></p>
 				</li>
 			</div>
 

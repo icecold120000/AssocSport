@@ -1,35 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CategorieEleve index{% endblock %}
+{% block title %}Liste des Catégories d'élèves{% endblock %}
 
 {% block body %}
-    <h1>CategorieEleve index</h1>
+    <h1>Liste des Catégories d'élèves</h1>
 
-    <table class="table">
+    
+    <a href="{{ path('categorie_eleve_new') }}">
+        <button class="btn btn-info" id="btnAjout">
+            Ajouter une nouvelle catégorie d'événement
+        </button>
+    </a>
+
+    <table class="table tableAdmin">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>LibelleCategorie</th>
-                <th>actions</th>
+                <th>Libelle d'une catégorie</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
         {% for categorie_eleve in categorie_eleves %}
             <tr>
-                <td>{{ categorie_eleve.id }}</td>
                 <td>{{ categorie_eleve.libelleCategorie }}</td>
                 <td>
-                    <a href="{{ path('categorie_eleve_show', {'id': categorie_eleve.id}) }}">show</a>
-                    <a href="{{ path('categorie_eleve_edit', {'id': categorie_eleve.id}) }}">edit</a>
+                    <a href="{{ path('categorie_eleve_edit',
+                    {'id': categorie_eleve.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('categorie_eleve_delete',
+                     {'id': categorie_eleve.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3" class="erreur">Aucune donnée n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('categorie_eleve_new') }}">Create new</a>
 {% endblock %}

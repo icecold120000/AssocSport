@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Sport{% endblock %}
+{% block title %}Ajouter un nouveau sport{% endblock %}
 
 {% block body %}
-    <h1>Create new Sport</h1>
+    <h1>Ajouter un nouveau sport</h1>
 
     {{ include('sport/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">
+                Ajouter votre sport</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('sport_index') }}">back to list</a>
+    <button class="btn btn-default" id="btnRetour">
+    	<a href="{{ path('sport_index') }}">
+        Revenir dans la liste</a>
+    </button>
+    
 {% endblock %}

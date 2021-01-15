@@ -6,6 +6,135 @@
 	<div>
 		<h1>Bienvenue dans l'espace d'administration</h1>
 	</div>
+	<div>
+		<h2>Présentation</h2>
+		<p>Vous pouvez gérer ici les nombreuses fonctionnalité du site</p>
+	</div>
 
-	<a href="{{path('document_admin')}}">liste de document</a>
+	<div>
+		<p>Voici la liste des fonctionnalité liée aux événements</p>
+		<table class="table tableAdmin">
+			<thead>
+				<tr>
+					<th scope="col">Nom de la fonctionnalité</th>
+					<th scope="col">Lien pour gérer les fonctionnalités</th>
+				</tr>
+			</thead>
+		    <tbody>
+			    <tr>
+				    <td>Evénement</td>
+				    <td>
+				    	<a href="{{path('evenement_admin')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des événements
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Type d'événement</td>
+				    <td>
+				    	<a href="{{path('type_evenement_index')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des types d'événements
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Sport</td>
+				    <td>
+				    	<a href="{{path('sport_index')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des sports
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Catégorie d'élèves</td>
+				    <td>
+				    	<a href="{{path('categorie_eleve_index')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des catégories d'élèves
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Document</td>
+				    <td>
+				    	<a href="{{path('document_admin')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des documents
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			</tbody>
+		</table>		
+	</div>
+	<div>	
+		<p>Voici les autres fonctionnalités de l'application</p>
+		<table class="table tableAdmin">
+			<thead>
+				<tr>
+					<th scope="col">Nom de la fonctionnalité</th>
+					<th scope="col">Lien pour gérer les fonctionnalités</th>
+				</tr>
+			</thead>
+		    <tbody>
+			    <tr>
+				    <td>Elève</td>
+				    <td>
+				    	<a href="{{path('eleve_index')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des élèves
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Finance</td>
+				    <td>
+				    	<a>
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des finances
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Budget</td>
+				    <td>
+				    	<a>
+				    		<button type="button" class="btn btn-info">
+				    			Gestion des budgets
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Statistique</td>
+				    <td>
+				    	<a href="{{path('statistique')}}">
+				    		<button type="button" class="btn btn-info">
+				    			Espace de statistiques
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Actualité</td>
+				    <td>
+				    	<a>
+							<button type="button" class="btn btn-info">
+				    			Gestion des actualités
+				    		</button>
+				    	</a>
+				    </td>
+			    </tr>
+			</tbody>
+		</table>		
+	</div>
 {% endblock %}

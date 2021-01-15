@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New TypeEvenement{% endblock %}
+{% block title %}Ajouter un nouveau type d'événement{% endblock %}
 
 {% block body %}
-    <h1>Create new TypeEvenement</h1>
+    <h1>Ajouter un nouveau type d'événement</h1>
 
-    {{ include('type_evenement/_form.html.twig') }}
+    {{ include('sport/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">
+                Ajouter votre sport</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('type_evenement_index') }}">back to list</a>
+    <a href="{{ path('type_evenement_index') }}">
+    	<button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+         </button>
+   </a>
+    
 {% endblock %}

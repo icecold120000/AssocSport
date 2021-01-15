@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sport index{% endblock %}
+{% block title %}Liste des sports{% endblock %}
 
 {% block body %}
-    <h1>Sport index</h1>
+    <h1>Liste des sports</h1>
 
-    <table class="table">
+    <a href="{{ path('sport_new') }}">
+        <button class="btn btn-primary" id="btnAjout">
+            Ajouter un nouveau sport
+        </button>
+    </a>
+
+    <table class="table tableAdmin">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomSport</th>
-                <th>actions</th>
+                <th>Nom du sport</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
         {% for sport in sports %}
             <tr>
-                <td>{{ sport.id }}</td>
                 <td>{{ sport.nomSport }}</td>
                 <td>
-                    <a href="{{ path('sport_show', {'id': sport.id}) }}">show</a>
-                    <a href="{{ path('sport_edit', {'id': sport.id}) }}">edit</a>
+                    <a href="{{ path('sport_edit',
+                    {'id': sport.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('sport_delete',
+                     {'id': sport.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune donnée n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('sport_new') }}">Create new</a>
 {% endblock %}

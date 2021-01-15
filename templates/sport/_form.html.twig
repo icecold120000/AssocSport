@@ -1,4 +1,8 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <div class="container-fluid">
+        <form id="form" method="POST">
+            <label class="labels" >Nom du Sport</label>
+            <div>
+                <input type="text" name="nomSport" id="inputNom" class="form-control"
+                placeholder="Saisissez un sport">
+            </div>
+

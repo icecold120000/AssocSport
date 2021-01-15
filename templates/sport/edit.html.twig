@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Sport{% endblock %}
+{% block title %}Modifier un sport{% endblock %}
 
 {% block body %}
-    <h1>Edit Sport</h1>
+    <h1>Modifier un sport</h1>
 
-    {{ include('sport/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('categorie_eleve/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">
+                Modifier votre sport</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('sport_index') }}">back to list</a>
-
-    {{ include('sport/_delete_form.html.twig') }}
+    <a href="{{ path('sport_index') }}">
+    	<button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button>
+    </a>
+    
 {% endblock %}

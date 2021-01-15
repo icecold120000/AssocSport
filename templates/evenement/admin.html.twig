@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste d'événement{% endblock %}
+
+{% block body %}
+    <h1>Liste d'événement</h1>
+
+    <a href="{{ path('evenement_new') }}">
+        <button class="btn btn-primary" id="btnAjout">
+            Ajouter un nouveau événement
+        </button>
+    </a>
+
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de fin</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Coût</th>
+                <th scope="col">Description</th>
+                <th scope="col">Nombre de place maximum</th>
+                <th scope="col">Image</th>
+                <th scope="col">Vignette</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td scope="row">{{ evenement.nomEvenement }}</td>
+                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ evenement.dateFin ? evenement.dateFin|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ evenement.lieuEvenement }}</td>
+                <td>{{ evenement.coutEvenement }} €</td>
+                <td>{{ evenement.descripEvenement }}</td>
+                <td>{{ evenement.nbPlace }}</td>
+                <td><img href="{{ evenement.imageEvenement }}" placeholder="image"></td>
+                <td><img href="{{ evenement.vignetteEvenement }} placeholder="vignette"></td>
+                <td>
+                    <a href="{{ path('evenement_edit',
+                    {'id': evenement.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('evenement_delete',
+                     {'id': evenement.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

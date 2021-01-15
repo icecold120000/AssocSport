@@ -1,4 +1,75 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <div class="container-fluid">
+        <form id="form" method="POST">
+            <label class="labels" >Nom de l'événement</label>
+            <div>
+                <input type="text" name="nomEvent" id="inputNom" class="form-control"
+                placeholder="Saisissez un nom de l'événement">
+            </div>
+                <label class="labels" >Image de l'événement</label>
+            <div>
+                <input type="file" name="imgEvent" id="inputImg">
+            </div>
+                <label class="labels" >Vignette de l'événement</label>
+            <div>
+                <input type="file" name="vigEvent" id="inputImg">
+            </div>
+            <label class="labels" >Description de l'événement</label>
+            <div>
+                <input type="text" name="descripEvent"
+                 id="inputDescrip" class="form-control"
+                 placeholder="Saisissez une description de l'événement">
+            </div>
+            <label class="labels">Lieu de l'événement</label>
+            <div>
+            	<input type="text" name="lieuEvent"
+            	 id="inputLieu" class="form-control"
+            	 placeholder="Saisissez un lieu où se situe l'événement">
+            </div>
+            <label class="labels">Le cout d'inscription 
+            de l'événement</label>
+            <div>
+            	<input type="number" name="coutEvent"
+            	 id="inputCout" class="form-control"
+            	 placeholder="Saisissez un cout pour l'inscription de l'événement">
+            </div>
+            <label class="labels">Le nombre de place
+             maximum de l'événement</label>
+            <div>
+            	<input type="number" name="nbPlaceEvent"
+            	 id="inputNbPlace" class="form-control"
+            	 placeholder="Saisissez un nombre de place de l'événement">
+            </div>
+            <label class="labels">La date de début
+             de l'événement</label>
+            <div>
+            	<input type="date" name="dateDebutEvent"
+            	 id="inputDateDebut" class="form-control">
+            </div>
+            <label class="labels">La date de fin
+             de l'événement</label>
+            <div>
+            	<input type="date" name="dateFinEvent"
+            	 id="inputDateFin" class="form-control">
+            </div>
+            <label class="labels" >Le sport pratiqué</label>
+            <div>
+                <select class="form-select">
+                    <option selected>Aucun</option>
+            	    {% for sport in sports %}
+                        <option value="{{ sport.id }}">{{sport.nomSport}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label class="labels" >Categorie d'élève qui
+             va participer à l'événement</label>
+            <div>
+                <select class="form-select">
+                    <option selected>Aucune</option>
+                    {% for categ in categories %}
+                        <option value="{{ categ.id }}">
+                            {{categ.libelleCategorie}}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+

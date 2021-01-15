@@ -1,51 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Eleve index{% endblock %}
+{% block title %}Liste des élèves{% endblock %}
 
 {% block body %}
-    <h1>Eleve index</h1>
-
-    <table class="table">
+    <h1>Liste des élèves</h1>
+    <div id="filtre">
+            <div id="left">
+                <span>Classe : </span>
+                <select class="form-select">
+                    <option selected>Toutes</option>
+                    {% for classe in classes %}
+                        <option value="{{ classe.id }}">{{classe.Libelle}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <span>Genre : </span>
+                <select class="form-select">
+                    <option selected>Tous</option>
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-info">
+                    Afficher
+                </button>
+            </div>
+        </div>
+    </div>
+    <a href="{{ path('eleve_new') }}">
+        <button class="btn btn-primary" id="btnAjout">
+            Ajouter un nouveau élève
+        </button>
+    </a>
+ 
+    <table class="table tableAdmin">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NomEleve</th>
-                <th>PrenomEleve</th>
-                <th>DateNaissance</th>
-                <th>GenreEleve</th>
-                <th>DateCreation</th>
-                <th>DateMaj</th>
-                <th>ArchiveEleve</th>
-                <th>NumTelEleve</th>
-                <th>NumTelParent</th>
-                <th>actions</th>
+                <th>Photo de l'élève</th>
+                <th>Nom de l'élève</th>
+                <th>Prénom de l'élève</th>
+                <th>Date de naissance</th>
+                <th>Genre de l'élève</th>
+                <th>Numéro de Téléphone</th>
+                <th>Numéro de téléphone d'un parent</th>
+                <th>Archivage de l'élève</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
         {% for eleve in eleves %}
             <tr>
-                <td>{{ eleve.id }}</td>
+                <td><img href="{{ eleve.photoEleve }}"></td>
                 <td>{{ eleve.nomEleve }}</td>
                 <td>{{ eleve.prenomEleve }}</td>
-                <td>{{ eleve.dateNaissance }}</td>
+                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d-m-Y') : '' }}</td>
                 <td>{{ eleve.genreEleve }}</td>
-                <td>{{ eleve.dateCreation ? eleve.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ eleve.dateMaj ? eleve.dateMaj|date('Y-m-d H:i:s') : '' }}</td>
+                <td>+33 (0){{ eleve.numTelEleve }}</td>
+                <td>+33 (0){{ eleve.numTelParent }}</td>
                 <td>{{ eleve.archiveEleve }}</td>
-                <td>{{ eleve.numTelEleve }}</td>
-                <td>{{ eleve.numTelParent }}</td>
                 <td>
-                    <a href="{{ path('eleve_show', {'id': eleve.id}) }}">show</a>
-                    <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+                    <a href="{{ path('eleve_edit',
+                    {'id': eleve.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('eleve_delete',
+                     {'id': eleve.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('eleve_new') }}">Create new</a>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de documents téléchargables{% endblock %}
+{% block title %}Liste de documents téléchargeables{% endblock %}
 
 {% block body %}
     <h1>Liste de Documents téléchargables</h1>
@@ -11,16 +11,16 @@
         <button class="btn btn-light"
          type="submit">Rechercher</button>
     </form>
-    <a href="{{ path('document_new') }}">
-        <button class="btn btn-primary"> 
+    <button class="btn btn-primary" id="btnAjout">
+        <a href="{{ path('document_new') }}"> 
             Ajouter un nouveau document
-        </button>
-     </a>    
-    <table class="table" id="docs">
+        </a>
+     </button>    
+    <table class="table tableAdmin">
         <thead>
             <tr>
-                <th scope="col">NomDocument</th>
-                <th scope="col">LienDocument</th>
+                <th scope="col">Nom du document</th>
+                <th scope="col">Lien de téléchargement</th>
                 <th scope="col">Editer</th>
                 <th scope="col">Supprimer</th>
             </tr>
@@ -29,25 +29,30 @@
         {% for document in documents %}
             <tr>
                 <td scope="row">{{ document.nomDocument }}</td>
-                <td>{{ document.lienDocument }}</td>
-                <td>
-                    <button class="btn btn-primary">
-                        <a href="{{ path('document_edit',
-                        {'id': document.id}) }}">
-                        <i class="far fa-edit"></i></a>
-                    </button>
+                <td> <a href="{{ document.lienDocument }}" 
+                        download="{{ document.lienDocument }}"
+                    {{ document.lienDocument }}</a>
                 </td>
                 <td>
-                    <button class="btn btn-danger">
-                        <a href="{{ path('document_delete',
-                         {'id': document.id}) }}">
-                         <i class="fas fa-trash"></i></a>
-                    </button>
+                    <a href="{{ path('document_edit',
+                    {'id': document.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('document_delete',
+                     {'id': document.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6" class="erreur">Aucune donnée n'a été trouvée</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Document{% endblock %}
+{% block title %}Ajouter un nouveau document{% endblock %}
 
 {% block body %}
-    <h1>Create new Document</h1>
+    <h1>Ajouter un nouveau document</h1>
 
     {{ include('document/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">Ajouter votre document</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('document_index') }}">back to list</a>
+    <button class="btn btn-default" id="btnRetour">
+    	<a href="{{ path('document_admin') }}">
+            Revenir dans la liste
+        </a>
+    </button>
 {% endblock %}

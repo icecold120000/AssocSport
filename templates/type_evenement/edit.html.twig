@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit TypeEvenement{% endblock %}
+{% block title %}Modifier un nouveau type d'événement{% endblock %}
 
 {% block body %}
-    <h1>Edit TypeEvenement</h1>
+    <h1>Modifier un nouveau type d'événement</h1>
 
-    {{ include('type_evenement/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('sport/_form.html.twig') }}
+            <div>
+                <button type="submit" class="btn btn-success">
+                Modifier votre sport</button>
+            </div>
+        </form>
+    </div>
 
-    <a href="{{ path('type_evenement_index') }}">back to list</a>
-
-    {{ include('type_evenement/_delete_form.html.twig') }}
+    <a href="{{ path('type_evenement_index') }}">
+    	<button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button>
+    </a>
+    
 {% endblock %}

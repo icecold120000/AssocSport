@@ -9,13 +9,21 @@
         document.dateAjout|date('Y-m-d H:i:s') : '' }}</i>
      </h2>
 
-        <th>Description du document</th>
-        <td>{{ document.descriptionDocument }}</td>
+    <h3>Description du document</h3>
+    <p>{{ document.descriptionDocument }}</p>
 
 
-    <btn href="{{ document.lienDocument }}" 
-    download="document.lienDocument">Téléchargé le document</btn>
+    <button class="btn btn-primary">
+        <a href="{{ document.lienDocument }}" 
+        download="{{ document.lienDocument }}">
+            <i class="fas fa-download"></i>
+            Télécharger le document
+        </a>
+    </button>
 
-    <a href="{{ path('document_index') }}">back to list</a>
+    <button class="btn btn-primary">
+        <a href="{{ path('categorie_eleve_admin') }}">
+        Revenir dans la liste</a>
+    </button>
 
 {% endblock %}

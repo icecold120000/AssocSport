@@ -1,51 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement index{% endblock %}
+{% block title %}Liste d'événement{% endblock %}
 
 {% block body %}
-    <h1>Evenement index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomEvenement</th>
-                <th>DateDebut</th>
-                <th>DateFin</th>
-                <th>LieuEvenement</th>
-                <th>CoutEvenement</th>
-                <th>DescripEvenement</th>
-                <th>NbPlace</th>
-                <th>ImageEvenement</th>
-                <th>VignetteEvenement</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Liste d'événements</h1>
+        <div id="filtre">
+            <div id="left">
+                <span>Sport : </span>
+                <select class="form-select">
+                    <option selected>Tous</option>
+                    {% for sport in sports %}
+                          <option value="{{ sport.id }}">{{sport.nomSport}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <span>Categorie : </span>
+                <select class="form-select">
+                    <option selected>Toutes</option>
+                    {% for categorie in categories %}
+                        <option value="{{ categorie.id }}">{{categorie.libelleCategorie}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="switch">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <span>Actif</span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-info">
+                    Afficher
+                </button>
+            </div>
+        </div>
         {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.id }}</td>
-                <td>{{ evenement.nomEvenement }}</td>
-                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.lieuEvenement }}</td>
-                <td>{{ evenement.coutEvenement }}</td>
-                <td>{{ evenement.descripEvenement }}</td>
-                <td>{{ evenement.nbPlace }}</td>
-                <td>{{ evenement.imageEvenement }}</td>
-                <td>{{ evenement.vignetteEvenement }}</td>
-                <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
+            <section id="evenement">
+                <div class="container-fluid">
+                    <img src="{{ evenement.vignetteEvenement }}" id="vignette">
+                    <div id="event">
+                        <div>
+                            <h3>{{ evenement.nomEvenement }}</h3>
+                        </div>
+                        <div>
+                            <div id="dateInscrip">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>
+                                    début d'inscription le
+                                    {{ evenement.dateDebut ? evenement.
+                                    dateDebut|date('d-m-Y') : '' }}
+                                </span>
+                                <span> jusqu'à la </span>
+                                <span>
+                                    fin d'inscription le
+                                    {{ evenement.dateFin ? evenement.
+                                    dateFin|date('d-m-Y H:i:s') : '' }}
+                                </span>
+                            </div>
+                            <div id="place">
+                                <p>
+                                    nombre de place restant :
+                                    {{ evenement.nbPlace }}
+                                </p>
+                            </div>
+                        </div>
+                        <div id="descrip">
+                            <p>{{ evenement.descripEvenement }}</p>
+                        </div>
+                        <div>
+                            <a href="{{ path('evenement_show', {'id': evenement.id}) }}">>Voir évenement</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('evenement_new') }}">Create new</a>
 {% endblock %}
+
