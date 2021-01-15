@@ -1,8 +1,8 @@
-/**Barre de navigation**/
+/**Tout les pages**/
 *
 {
-	 margin: auto;
-	 text-align: center;
+	margin: auto;
+	text-align: center;
 
 }
 
@@ -20,6 +20,40 @@ h6
 nav
 {
 	padding: 8px;
+	background-color: #0F1B2C;
+}
+
+a{
+	color: white;
+}
+
+form
+{
+	text-align: center;
+	font-size: 40px;
+	padding: 40px;
+}
+
+#form div{
+	width: 60%;
+	padding-bottom: 30px;
+}
+
+label{
+	font-size: 30px;
+}
+
+img
+{
+	width: 50px;
+	height: 50px;
+}
+
+footer
+{
+    background-color: #0F1B2C;
+    color: white;
+    list-style: none;
 }
 
 footer i
@@ -28,10 +62,43 @@ footer i
 	font-size: 26px;
 }
 
+
+button a:hover{
+	text-decoration: none;
+}
+
+p{
+	font-size: 30px;
+}
+
+button.btn.btn-success
+{
+	padding: 45px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.title
+{
+	font-weight: bold;
+	font-size: 50px;
+}
+
+
+/*Page de connexion*/
+
+#connexion a{
+	margin: 0;
+	padding: 0;
+}
+
+#connexion i{
+	font-size: 30px;
+}
+
 .profil
 {
 	color: #fff;
-
 }
 
 .erreur
@@ -40,18 +107,20 @@ footer i
 	font-size: 30px;
 }
 
+/** Footer  **/
+
 .coordonnees, .contact, .access, .networks 
 {
 	display: inline-block;
 	padding: 55px;
-	
-
 }
+
 
 .coordonnees p, .contact p, .access p
 {
 	
 	text-align: left;
+	font-size: 24px;
 
 }
 
@@ -59,34 +128,8 @@ footer i
 {
 	
 	text-align: left;
+	font-size: 34px;
 
-}
-
-button.btn.btn-success
-{
-	padding: 45px;
-	font-size: 20px;
-
-}
-
-form
-{
-	text-align: left;
-	font-size: 40px;
-	padding: 40px;
-}
-
-
-.title
-{
-	font-weight: bold;
-	font-size: 50px;
-}
-
-img
-{
-	width: 50px;
-	height: 50px;
 }
 
 
@@ -110,6 +153,14 @@ img
 
 }
 
+
+/** Partie de l'inscription **/
+#part2
+{
+	margin-bottom: 15px;	
+}
+
+
 .buttoninscription
 {
 	background-color: #235024;
@@ -120,52 +171,206 @@ img
 	padding: 15px;
 }
 
-
-/** Partie de l'inscription **/
-#part2
-{
-	margin-bottom: 15px;	
-}
-
-#part2 a
-{
-	color: white;
-}
-
-
-#search{
-	text-align: center;
-}
-
-#docs{
-	margin-top: 40px; 
-}
-
-#docs a{
-	color: white;
-	font-size: 30px;
-}
-
-#docs th, #docs td{
-	text-align: center;
-	font-size: 25px;
-}
-
-
-
-/** Footer  **/
-footer
-{
- 	
-    background-color: #0F1B2C;
-    color: white;
-    list-style: none;
-
-}
+/*Page d'oubli de mot de passe*/
 
 .buttonreinitialisation
 {
 	margin-top: 50px;
 	padding-bottom: 50px;
+}
+
+/*Page de gestion des documents*/
+
+#search{
+	text-align: center;
+}
+
+#search input{
+	width: 20%;
+	display: inline-block;
+}
+
+#search button{
+	margin-top: 10px;
+}
+
+
+
+/*la page des événements*/
+
+#vignette{
+	height: 150px;
+	width: 150px;
+	float: left;
+}
+
+#event{
+	font-size: 20px;
+}
+
+#event i{
+	font-size: 20px;
+}
+
+#event #dateInscrip{
+	float: left;
+}
+
+#event #place{
+	position: relative;
+	left: 10%;
+}
+
+#event #descrip{
+	display: inline-block;
+	position: relative;
+	right: 70px;
+}
+
+#evenement{
+	padding: 0;
+	margin: 35px 20px;
+	border: solid 1px black;
+}
+
+#evenement p{
+	font-size: 20px;
+}
+
+#evenement h3{
+	margin-top:0;
+}
+
+#evenement div.container-fluid{
+	padding: 0;
+	margin: 0;
+}
+
+i.fas.fa-calendar-alt{
+	padding: 0 5px;
+	font-size: 13px;
+	color: black;
+}
+
+#filtre{
+	display: flex;
+}
+
+#filtre span{
+	font-size: 30px;
+}
+
+#filtre select{
+	height: 40px;
+	font-size: 20px;
+}
+
+#filtre button{
+	padding: 10px;
+	font-size: 20px;
+}
+
+#filtre div{
+	margin: 20px;
+}
+
+#filtre #switch{
+	margin-top: 28px;
+}
+
+#filtre #left{
+	margin-left: 25%;
+}
+
+/*Switch*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*Espace d'admin*/
+
+.tableAdmin{
+	margin: 40px 0; 
+	border: solid black;
+}
+
+.tableAdmin button a{
+	font-size: 30px;
+}
+
+.tableAdmin th, .tableAdmin td{
+	text-align: center;
+	font-size: 25px;
+	padding: 20px;
+}
+
+#btnAjout, #btnRetour{
+	padding: 30px;
+    font-size: 20px;
+}
+
+#btnRetour{
+	background-color: grey;
+}
+
+i.far.fa-edit, i.fas.fa-trash{
+	font-size: 20px;
+	padding: 15px;
 }
 
