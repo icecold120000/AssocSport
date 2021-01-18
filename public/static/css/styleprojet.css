@@ -39,15 +39,14 @@ form
 	padding-bottom: 30px;
 }
 
+#form input{
+	margin-top: 30px;
+}
+
 label{
 	font-size: 30px;
 }
 
-img
-{
-	width: 50px;
-	height: 50px;
-}
 
 footer
 {
@@ -73,10 +72,12 @@ p{
 
 button.btn.btn-success
 {
-	padding: 45px;
-	font-size: 20px;
 	margin-top: 20px;
+	padding: 25px;
+	font-size: 20px;
 }
+
+
 
 .title
 {
@@ -133,7 +134,7 @@ button.btn.btn-success
 }
 
 
-/** Bouton de connexion et bouton d'inscription**/
+/** Bouton de connexion **/
 .buttonconnexion
 {
 	margin-top: 10px;
@@ -144,13 +145,6 @@ button.btn.btn-success
 .buttonconnexion a
 {
 	font-size: 20px;
-}
-
-.buttonconnexion button.btn.btn-success
-{
-	padding: 25px;
-	font-size: 20px;
-
 }
 
 
@@ -196,7 +190,7 @@ button.btn.btn-success
 
 
 
-/*la page des événements*/
+/*la page liste des événements*/
 
 #vignette{
 	height: 150px;
@@ -360,6 +354,24 @@ input:checked + .slider:before {
 	padding: 20px;
 }
 
+i.far.fa-edit, i.fas.fa-trash{
+	font-size: 20px;
+	padding: 15px;
+}
+
+table img
+{
+	width: 100px;
+	height: 100px;
+}
+
+table button.btn.btn-info
+{
+	margin: 12px 0;
+	padding: 25px;
+	font-size: 20px;
+}
+
 #btnAjout, #btnRetour{
 	padding: 30px;
     font-size: 20px;
@@ -369,8 +381,14 @@ input:checked + .slider:before {
 	background-color: grey;
 }
 
-i.far.fa-edit, i.fas.fa-trash{
-	font-size: 20px;
-	padding: 15px;
+#btnSuppr{
+	padding: 40px;
+	font-size: 30px;
 }
 
+#warning{
+	color: red;
+	font-size: 40px;
+	border: solid;
+	width: 65%;
+}
