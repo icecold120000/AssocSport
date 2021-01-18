@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une nouvelle catégorie d'élève{% endblock %}
+{% block title %}Ajouter une nouvelle catégorie de document{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une nouvelle catégorie d'élève</h1>
+    <h1>Ajouter une nouvelle catégorie de document</h1>
 
-    {{ include('categorie_eleve/_form.html.twig') }}
+    {{ include('categorie_document/_form.html.twig') }}
             <div>
                 <button type="submit" class="btn btn-success">
-                Ajouter votre catégorie d'élève</button>
+                Ajouter votre catégorie de document</button>
             </div>
         </form>
     </div>
 
-    <a href="{{ path('categorie_eleve_index') }}">
+    <a href="{{ path('categorie_document_index') }}">
     	<button class="btn btn-default" id="btnRetour">
             Revenir dans la liste
         </button> 

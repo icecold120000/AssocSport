@@ -33,23 +33,27 @@
                     (error.messageData, 'Saisie') }}</div>
                 {% endif %}
                 <div class="buttonconnexion">
-                    <button type="button" 
+                    <button type="submit" 
                     class="btn btn-success">
-                    Se connecter</button><a href=
-                    "{{path('oubli_mdp_new')}}" 
-                    target="_blank"> Mot de passe oublié ?</a>
+                    Se connecter</button>
                 </div>
             </form>
+            <a href="{{path('oubli_mdp_new')}}" target="_blank">
+                <button class="btn btn-info">
+                    Mot de passe oublié ?
+                </button>
+            </a>
         </div>
         <div id="part2">
             <h1 class="title">Pas encore de compte ?</h1>
             <h6>Vous êtes étudiant et 
             vous n'avez pas encore de 
             compte sur la plateforme ?</h6>
-            <button class="buttoninscription">
-             <a href={{path('app_register')}} 
-             target="_blank">Accéder au formulaire
-              d'inscription</a></button>
+            <a href={{path('app_register')}} target="_blank">
+                <button class="buttoninscription">
+                    Accéder au formulaire d'inscription
+                </button>
+            </a>
         </div>
     </div>
 

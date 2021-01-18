@@ -1,50 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Eleve{% endblock %}
+{% block title %}Elève{% endblock %}
 
 {% block body %}
-    <h1>{{ eleve.prenomEleve }} {{ eleve.nomEleve }}</h1>
+    <h1>Suppression d'un élève</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ eleve.id }}</td>
-            </tr>
-            <tr>
-                <th>DateNaissance</th>
-                <td>{{ eleve.dateNaissance }}</td>
-            </tr>
-            <tr>
-                <th>GenreEleve</th>
-                <td>{{ eleve.genreEleve }}</td>
-            </tr>
-            <tr>
-                <th>DateCreation</th>
-                <td>{{ eleve.dateCreation ? eleve.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DateMaj</th>
-                <td>{{ eleve.dateMaj ? eleve.dateMaj|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ArchiveEleve</th>
-                <td>{{ eleve.archiveEleve }}</td>
-            </tr>
-            <tr>
-                <th>NumTelEleve</th>
-                <td>{{ eleve.numTelEleve }}</td>
-            </tr>
-            <tr>
-                <th>NumTelParent</th>
-                <td>{{ eleve.numTelParent }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>Appuyer sur ce bouton pour supprimer l'élève choisi</p>
 
-    <a href="{{ path('eleve_index') }}">back to list</a>
+    <p>L'élément que vous voulez supprimer : {{ eleve.prenomEleve }} {{ eleve.nomEleve }}</p>
 
-    <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+    <div id="warning">
+        <p><i class="fas fa-exclamation-triangle"></i> Attention : tous les inscriptions et flux  qui utilisent cette élève</p>
+        <p>vont être supprimé de la base de donnée</p>
+    </div>
 
     {{ include('eleve/_delete_form.html.twig') }}
+
+    <a href="{{ path('eleve_index') }}">
+        <button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button>
+    </a>
+
 {% endblock %}

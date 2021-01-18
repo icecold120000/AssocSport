@@ -1,26 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CategorieEleve{% endblock %}
-
+{% block title %}Categorie d'élève{% endblock %}
 {% block body %}
-    <h1>CategorieEleve</h1>
+	<h1>Suppression d'une catégorie d'élève</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categorie_eleve.id }}</td>
-            </tr>
-            <tr>
-                <th>LibelleCategorie</th>
-                <td>{{ categorie_eleve.libelleCategorie }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<p>Appuyer sur ce bouton pour supprimer la catégorie d'élève choisie</p>
 
-    <a href="{{ path('categorie_eleve_index') }}">back to list</a>
+	<p>L'élément que vous voulez supprimer : {{categorie_eleve.libelleCategorie}}</p>
 
-    <a href="{{ path('categorie_eleve_edit', {'id': categorie_eleve.id}) }}">edit</a>
+	<div id="warning">
+		<p><i class="fas fa-exclamation-triangle"></i> Attention : tous les évènements et élèves qui utilisent cette catégorie</p>
+		<p>vont être changé à la catégorie dont la valeur "aucune"</p>
+	</div>
 
     {{ include('categorie_eleve/_delete_form.html.twig') }}
+
+    <a href="{{ path('categorie_eleve_index') }}">
+    	<button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button> 
+    </a>
 {% endblock %}

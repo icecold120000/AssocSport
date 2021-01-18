@@ -1,26 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de documents téléchargeables{% endblock %}
+{% block title %}Liste de catégories de document{% endblock %}
 
 {% block body %}
-    <h1>Liste de documents téléchargeables</h1>
-
-    <form class="d-flex" id="search">
-        <input class="form-control me-2" type="search"
-         placeholder="Rechercher Document" aria-label="Search">
-        <button class="btn btn-light"
-         type="submit">Rechercher</button>
-    </form>
+    <h1>Liste de catégories de document</h1>
     <button class="btn btn-primary" id="btnAjout">
-        <a href="{{ path('document_new') }}"> 
-            Ajouter un nouveau document
+        <a href="{{ path('categorie_document_new') }}"> 
+            Ajouter une nouvelle catégorie de document
         </a>
      </button>    
     <table class="table tableAdmin">
         <thead>
             <tr>
-                <th scope="col">Nom du document</th>
-                <th scope="col">Lien de téléchargement</th>
+                <th scope="col">Libellé de la catégorie de document</th>
                 <th scope="col">Editer</th>
                 <th scope="col">Supprimer</th>
             </tr>
@@ -28,13 +20,9 @@
         <tbody>
         {% for document in documents %}
             <tr>
-                <td scope="row">{{ document.nomDocument }}</td>
-                <td> <a href="{{ document.lienDocument }}" 
-                        download="{{ document.lienDocument }}">
-                    <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
-                </td>
+                <td scope="row">{{ document.libelleCategorieDoc }}</td>
                 <td>
-                    <a href="{{ path('document_edit',
+                    <a href="{{ path('categorie_document_edit',
                     {'id': document.id}) }}">
                         <button class="btn btn-primary">
                             <i class="far fa-edit"></i>
@@ -42,7 +30,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{ path('document_delete_view',
+                    <a href="{{ path('categorie_document_delete',
                      {'id': document.id}) }}">
                         <button class="btn btn-danger">
                             <i class="fas fa-trash"></i>
@@ -60,3 +48,4 @@
 
     
 {% endblock %}
+

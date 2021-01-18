@@ -3,24 +3,23 @@
 {% block title %}Sport{% endblock %}
 
 {% block body %}
-    <h1>Sport</h1>
+    <h1>Suppression d'un sport</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sport.id }}</td>
-            </tr>
-            <tr>
-                <th>NomSport</th>
-                <td>{{ sport.nomSport }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p>Appuyer sur ce bouton pour supprimer le sport choisi</p>
 
-    <a href="{{ path('sport_index') }}">back to list</a>
+    <p>L'élément que vous voulez supprimer : {{sport.nomSport}}</p>
 
-    <a href="{{ path('sport_edit', {'id': sport.id}) }}">edit</a>
+    <div id="warning">
+        <p><i class="fas fa-exclamation-triangle"></i> Attention : tous les événements qui utilisent ce sport</p>
+        <p>vont être changé à la valeur "aucun"</p>
+    </div>
 
     {{ include('sport/_delete_form.html.twig') }}
+
+    <a href="{{ path('sport_index') }}">
+        <button class="btn btn-default" id="btnRetour">
+            Revenir dans la liste
+        </button>
+    </a>
+
 {% endblock %}
