@@ -5,9 +5,7 @@
 {% block body %}
     <h1>Suppression d'un document</h1>
 
-    <p>Appuyer sur ce bouton pour supprimer le document choisi</p>
-
-    <p>L'élément que vous voulez supprimer : {{document.nomDocument}}</p>
+	<p>Cliquez sur le bouton Supprimer pour supprimer le document choisi : {{document.nomDocument}}</p>
 
 
     {{ include('document/_delete_form.html.twig') }}

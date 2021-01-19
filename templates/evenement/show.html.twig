@@ -1,58 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement{% endblock %}
+{% block title %}{{ evenement.nomEvenement }}{% endblock %}
 
 {% block body %}
-    <h1>Evenement</h1>
+    <h1>{{ evenement.nomEvenement }}</h1>
 
-    <table class="table">
+    <p><i class="fas fa-calendar-alt"></i>{{ evenement.dateDebut ? evenement.dateDebut|date('d-m-Y') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d-m-Y') : '' }}</p>
+
+    <p><i class="fas fa-exclamation-circle"></i> inscriptions sur {{ evenement.nbPlace }}</p>
+
+    <p>Type d'événement : </p>
+
+    <p>Sport : </p>
+
+    <p>Lieu : {{ evenement.lieuEvenement }}</p>
+
+    <img href="{{ evenement.imageEvenement }}" id="imgEvent">
+
+    <h2>Description de l'événement</h2>
+
+    <p>{{ evenement.descripEvenement }}</p>
+
+    <h2>Condition d'inscription</h2>
+
+    <p><p>
+
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">Nom du document</th>
+                <th scope="col">Date d'ajout</th>
+                <th scope="col">Description du document</th>
+                <th scope="col">Lien de téléchargement</th>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
-                <th>NomEvenement</th>
-                <td>{{ evenement.nomEvenement }}</td>
-            </tr>
-            <tr>
-                <th>DateDebut</th>
-                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DateFin</th>
-                <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>LieuEvenement</th>
-                <td>{{ evenement.lieuEvenement }}</td>
-            </tr>
-            <tr>
-                <th>CoutEvenement</th>
-                <td>{{ evenement.coutEvenement }}</td>
-            </tr>
-            <tr>
-                <th>DescripEvenement</th>
-                <td>{{ evenement.descripEvenement }}</td>
-            </tr>
-            <tr>
-                <th>NbPlace</th>
-                <td>{{ evenement.nbPlace }}</td>
-            </tr>
-            <tr>
-                <th>ImageEvenement</th>
-                <td>{{ evenement.imageEvenement }}</td>
-            </tr>
-            <tr>
-                <th>VignetteEvenement</th>
-                <td>{{ evenement.vignetteEvenement }}</td>
+                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
+                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
+                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
+                <td>
+                    <a href=""
+                     download="">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>
+        
 
-    <a href="{{ path('evenement_index') }}">back to list</a>
+    <div>
+        <a href="{{ path('evenement_admin') }}">
+            <button class="btn btn-default" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+        <a href="{{ path('evenement_admin') }}">
+            <button class="btn btn-success" >
+                S'inscrire
+            </button>
+        </a>
+    </div>
 
-    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
-
-    {{ include('evenement/_delete_form.html.twig') }}
+    
 {% endblock %}

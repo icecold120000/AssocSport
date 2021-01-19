@@ -37,11 +37,18 @@
             </div>
         </div>
     </div>
-    <a href="{{ path('eleve_new') }}">
-        <button class="btn btn-primary" id="btnAjout">
-            Ajouter un nouveau élève
-        </button>
-    </a>
+    <div>
+        <a href="{{ path('eleve_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter un nouveau élève
+            </button>
+        </a>
+        <a href="{{ path('eleve_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter une liste d'élève
+            </button>
+        </a>
+    </div>
  
     <table class="table tableAdmin">
         <thead>
@@ -51,7 +58,7 @@
                 <th>Prénom de l'élève</th>
                 <th>Date de naissance</th>
                 <th>Genre de l'élève</th>
-                <th>Numéro de Téléphone</th>
+                <th>Numéro de téléphone</th>
                 <th>Numéro de téléphone d'un parent</th>
                 <th>Archivage de l'élève</th>
                 <th>Editer</th>

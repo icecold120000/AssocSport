@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de catégories de document{% endblock %}
+{% block title %}Liste des catégories de document{% endblock %}
 
 {% block body %}
-    <h1>Liste de catégories de document</h1>
-    <button class="btn btn-primary" id="btnAjout">
-        <a href="{{ path('categorie_document_new') }}"> 
+    <h1>Liste des catégories de document</h1>
+    <a href="{{ path('categorie_document_new') }}">
+        <button class="btn btn-primary" id="btnAjout">
             Ajouter une nouvelle catégorie de document
-        </a>
-     </button>    
+        </button>
+    </a>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -18,12 +18,12 @@
             </tr>
         </thead>
         <tbody>
-        {% for document in documents %}
+        {% for categorie in categorie_documents %}
             <tr>
-                <td scope="row">{{ document.libelleCategorieDoc }}</td>
+                <td scope="row">{{ categorie.libelleCategorieDoc }}</td>
                 <td>
                     <a href="{{ path('categorie_document_edit',
-                    {'id': document.id}) }}">
+                    {'id': categorie.id}) }}">
                         <button class="btn btn-primary">
                             <i class="far fa-edit"></i>
                         </button>
@@ -31,7 +31,7 @@
                 </td>
                 <td>
                     <a href="{{ path('categorie_document_delete',
-                     {'id': document.id}) }}">
+                     {'id': categorie.id}) }}">
                         <button class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </button>
