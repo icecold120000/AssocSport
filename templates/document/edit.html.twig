@@ -5,9 +5,13 @@
 {% block body %}
     <h1>Editer un document</h1>
 
-        {{ include('document/_form.html.twig') }}
-                <div id="divAjout">
-                    <button type="submit" class="btn btn-success">Editer votre document</button>
+    <div class="container-fluid">
+        <form id="formDoc" method="POST" action="{{
+         path('document_edit',{'id': document.id}) }}">
+            {{ include('document/_form.html.twig') }}
+                <div id="divAjout" class="form-actions">
+                    <input type="submit" value="Editer votre
+                     document" class="btn btn-success">
                 </div>
             </div>
         </form>

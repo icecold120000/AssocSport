@@ -5,9 +5,12 @@
 {% block body %}
     <h1>Ajouter un nouveau élève</h1>
 
+    <div class="container-fluid">
+        <form id="formEleve" method="POST" action="{{path('eleve_new')}}">
             {{ include('eleve/_form.html.twig') }}
-                <div id="divAjout">
-                    <button type="submit" class="btn btn-success">Ajouter votre eleve</button>
+                <div id="divAjout" class="form-actions">
+                    <input type="submit" value="Ajouter
+                     votre eleve" class="btn btn-success">
                 </div>
             </div>
         </form>

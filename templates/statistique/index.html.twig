@@ -1,20 +1,278 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StatistiqueController!{% endblock %}
+{% block title %}Bienvenue dans l'espace de statistique{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<h1>Bienvenue dans l'espace de statistique</h1>
+	<div id="filtre">
+		<div id="left">
+			<span>Année : </span>
+			<select class="form-select">
+	            <option selected>Tous</option>
+	            <option>2020/2021</option>
+	            <option>2021/2022</option>
+	            <option>2022/2023</option>
+			</select>
+		</div>
+		<div>
+			<span>Classe : </span>
+            <select class="form-select">
+                <option selected>Toutes</option>
+                {% for classe in classes %}
+                    <option value="{{ classe.id }}">{{classe.Libelle}}</option>
+                {% endfor %}
+            </select>
+		</div>
+		<div>
+            <button type="submit" class="btn btn-info">
+                Afficher
+            </button>
+        </div>
+	</div>
+	<div id="canvas1">
+		<p>Nombre d'élèves licencés</p>
+		<div id="canvas-holder">
+			<canvas id="nbLicence"></canvas>
+		</div>
+		<script>
+			var ctx = document.getElementById('nbLicence').getContext('2d');
+			var chart1 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'doughnut',
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/pham_/BTSannee2/Stage/AssocSportive/src/Controller/StatistiqueController.php'|file_link(0) }}">src/Controller/StatistiqueController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/pham_/BTSannee2/Stage/AssocSportive/templates/statistique/index.html.twig'|file_link(0) }}">templates/statistique/index.html.twig</a></code></li>
-    </ul>
+			    // The data for our dataset
+			    data: {
+			        labels: ['25 €', '10 €', 'Pas Licence'],
+			        datasets: [{
+			            backgroundColor: ['Red','Yellow','Blue'],
+			            borderColor: 'White',
+			            data: [20, 35, 40]
+			        }]
+			    },
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas2">
+		<p>Nombre d'élèves inscrits à chaque événement</p>
+		<div id="canvas-holder">
+			<canvas id="nbInscrit"></canvas>
+		</div>
+		<script>
+			var ctx = document.getElementById('nbInscrit').getContext('2d');
+			var chart2 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'bar',
+
+			    // The data for our dataset
+			    data: {
+			        labels: [
+			        	{% for event in events %}
+                			'{{event.nomEvenement}}',
+            			{% endfor %}
+			        ],
+			        datasets: [{
+			        	label : 'Nombre d\'élèves',
+			            backgroundColor: ['Orange','Red','Yellow','Blue','Green'],
+			            data: [
+			            	{% for event in events %}
+                				{{event.nbPlace}},
+            				{% endfor %}
+			            ]
+			        }]
+			    },
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas3">
+		<p>Répartition par événement</p>
+		<div id="canvas-holder">
+			<canvas id="reparEvent"></canvas>
+		</div>
+		<script>
+			var barChartData = {
+		        labels: [
+		        	{% for event in events %}
+            			'{{event.nomEvenement}}',
+        			{% endfor %}
+		        ],
+				datasets: [{
+					label: 'Homme',
+					backgroundColor: 'Blue',
+					borderColor:'Blue',
+					borderWidth: 1,
+					data: [28,0]
+				}, {
+					label: 'Femme',
+					backgroundColor: 'Pink',
+					borderColor: 'Pink',
+					borderWidth: 1,
+					data: [12, 0]
+				}]
+			};
+			var ctx = document.getElementById('reparEvent').getContext('2d');
+			var chart3 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'bar',
+
+			    // The data for our dataset
+			    data: barChartData,
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas4">
+		<p>Répartition par type d'événement</p>
+		<div id="canvas-holder">
+			<canvas id="nbType"></canvas>
+		</div>
+		<script>
+			var TypeData = {
+		        labels: [
+		        	{% for typeEvent in types %}
+            			'{{typeEvent.nom}}',
+        			{% endfor %}
+		        ],
+				datasets: [{
+					label: 'Homme',
+					backgroundColor: 'Blue',
+					borderColor:'Blue',
+					borderWidth: 1,
+					data: [18,0]
+				}, {
+					label: 'Femme',
+					backgroundColor: 'Pink',
+					borderColor: 'Pink',
+					borderWidth: 1,
+					data: [22, 0]
+				}]
+			};
+			var ctx = document.getElementById('nbType').getContext('2d');
+			var chart4 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'bar',
+
+			    // The data for our dataset
+			    data: TypeData,
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas5">
+		<p>Répartiton par genre</p>
+		<div id="canvas-holder">
+			<canvas id="nbGenre"></canvas>
+		</div>
+		<script>
+			var ctx = document.getElementById('nbGenre').getContext('2d');
+			var chart5 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'doughnut',
+
+			    // The data for our dataset
+			    data: {
+			        labels: [
+			        	'Homme',
+			        	'Femme',
+			        ],
+			        datasets: [{
+			            backgroundColor: ['Blue','Pink'],
+			            borderColor: 'White',
+			            data: [40,60]
+			        }]
+			    },
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas6">
+		<p>Répartiton par date de naissance</p>
+		<div id="canvas-holder">
+			<canvas id="nbDdn"></canvas>
+		</div>
+		<script>
+			var AnneeData = {
+		        labels: [
+		        	2000,
+		        	2001,
+		        	2002,
+		        	2003,
+		        ],
+				datasets: [{
+					label: 'Homme',
+					backgroundColor: 'Blue',
+					borderColor:'Blue',
+					borderWidth: 1,
+					data: [28,15,27,21,0]
+				}, {
+					label: 'Femme',
+					backgroundColor: 'Pink',
+					borderColor: 'Pink',
+					borderWidth: 1,
+					data: [12,25,13,19,0]
+				}]
+			};
+			var ctx = document.getElementById('nbDdn').getContext('2d');
+			var chart6 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'line',
+			    type: 'bar',
+
+			    // The data for our dataset
+			    data: AnneeData,
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
+	<div id="canvas7">
+		<p>Nombre d'événements par élève</p>
+		<div id="canvas-holder">
+			<canvas id="nbEvent"></canvas>
+		</div>
+		<script>
+			var ctx = document.getElementById('nbEvent').getContext('2d');
+			var chart7 = new Chart(ctx, {
+			    // The type of chart we want to create
+			    type: 'line',
+
+			    // The data for our dataset
+			    data: {
+			        labels: [ 
+		            	{% for eleve in eleves %}
+            				'{{eleve.nomEleve}}',
+        				{% endfor %}
+			        ],
+			        datasets: [{
+			        	label: 'nombre d\'événement',
+			            backgroundColor: ['Green','Red','Cyan',
+			            'Black','Pink','Brown','Lime','Purple','Grey','Magenta'],
+			            borderColor: 'Green',
+			            fill: false,
+			            data: [5,12,8,10,30,12,7,8,3,5]
+			        }]
+			    },
+
+			    // Configuration options go here
+			    options: {}
+			});
+		</script>
+	</div>
 </div>
+
 {% endblock %}
+
+
+

@@ -5,17 +5,20 @@
 {% block body %}
     <h1>Ajouter un nouveau document</h1>
 
-        {{ include('document/_form.html.twig') }}
-                <div id="divAjout">
-                    <button type="submit" class="btn btn-success">Ajouter votre document</button>
+    <div class="container-fluid">
+        <form id="formDoc" method="POST" action="{{path('document_new')}}">
+            {{ include('document/_form.html.twig') }}
+                <div id="divAjout" class="form-actions">
+                    <input type="submit" value="Ajouter votre
+                     document" class="btn btn-success">
                 </div>
             </div>
         </form>
     </div>
 
-    <button class="btn btn-default" id="btnRetour">
-    	<a href="{{ path('document_admin') }}">
+    <a href="{{ path('document_admin') }}">
+    	<button class="btn btn-default" id="btnRetour">
             Revenir dans la liste
-        </a>
-    </button>
+        </button>
+    </a>
 {% endblock %}

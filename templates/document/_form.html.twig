@@ -1,36 +1,34 @@
-    <div class="container-fluid">
-        <form id="formDoc" method="POST">
-            <div id="part1">
-                <label class="labels" >Nom du document</label>
-                <div>
-                    <input type="text" name="nomDoc" id="inputNom" class="form-control"
-                    placeholder="Saisissez un nom du document">
-                </div>
-                    <label class="labels" >Fichier du document : </label>
-                <div>
-                    <input type="file" name="fileDoc" class="inputFile">
-                </div>
-                <label class="labels" >Description du document</label>
-                <div>
-                    <input type="text" name="descripDoc" id="inputDescrip" class="form-control" placeholder="Saisissez une description du document">
-                </div>
+        <div id="part1">
+            <label class="labels" >Nom du document</label>
+            <div>
+                <input type="text" name="nomDoc" id="inputNom" class="form-control"
+                placeholder="Saisissez un nom du document">
             </div>
-            <div id="part2">
-                <div>
-                    <span>l'événement auquel il appartient</span>
-                    <select class="form-select">
-                        <option selected>Aucun</option>
-                	    {% for event in events %}
-                            <option value="{{ event.id }}">{{event.nomEvenement}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <span >La categorie de document auquel il appartient</span>
-                    <select class="form-select">
-                        <option selected>Aucune</option>
-                        {% for categ in categories %}
-                            <option value="{{ categ.id }}">{{categ.libelleCategorieDoc}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <label class="labels" >Fichier du document : </label>
+            <div>
+                <input type="file" name="fileDoc" class="inputFile">
+            </div>
+            <label class="labels" >Description du document</label>
+            <div>
+                <input type="text" name="descripDoc" id="inputDescrip" class="form-control" placeholder="Saisissez une description du document">
+            </div>
+        </div>
+        <div id="part2">
+            <div>
+                <span>l'événement auquel il appartient</span>
+                <select class="form-select">
+                    <option selected>Aucun</option>
+            	    {% for event in events %}
+                        <option value="{{ event.id }}">{{event.nomEvenement}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <span >La categorie de document auquel il appartient</span>
+                <select class="form-select">
+                    <option selected>Aucune</option>
+                    {% for categ in categories %}
+                        <option value="{{ categ.id }}">{{categ.libelleCategorieDoc}}</option>
+                    {% endfor %}
+                </select>
+            </div>

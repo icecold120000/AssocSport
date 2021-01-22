@@ -5,10 +5,12 @@
 {% block body %}
     <h1>Ajouter une nouvelle catégorie de document</h1>
 
-    {{ include('categorie_document/_form.html.twig') }}
-            <div id="divAjout">
-                <button type="submit" class="btn btn-success" >
-                Ajouter votre catégorie de document</button>
+    <div class="container-fluid">
+        <form id="formCategDoc" method="POST" action="{{path('categorie_document_new')}}">
+            {{ include('categorie_document/_form.html.twig') }}
+            <div id="divAjout" class="form-actions">
+                <input type="submit" value="Ajouter votre catégorie
+                 de document" class="btn btn-success" >
             </div>
         </form>
     </div>

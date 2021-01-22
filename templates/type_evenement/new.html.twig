@@ -5,10 +5,12 @@
 {% block body %}
     <h1>Ajouter un nouveau type d'événement</h1>
 
-    {{ include('type_evenement/_form.html.twig') }}
-            <div id="divAjout">
-                <button type="submit" class="btn btn-success">
-                Ajouter votre type d'événement</button>
+    <div class="container-fluid">
+        <form id="formType" method="POST" action="{{path('type_evenement_new')}}">
+            {{ include('type_evenement/_form.html.twig') }}
+            <div id="divAjout" class="form-actions">
+                <input type="submit" value="Ajouter
+                 votre type d'événement" class="btn btn-success">
             </div>
         </form>
     </div>
