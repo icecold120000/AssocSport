@@ -1,25 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste d'événement{% endblock %}
+{% block title %}Liste des événements{% endblock %}
 
 {% block body %}
-    <h1>Liste d'événements</h1>
+    <h1>Liste des événements</h1>
         <div id="filtre">
             <div id="left">
-                <span>Sport : </span>
-                <select class="form-select">
-                    <option selected>Tous</option>
-                    {% for sport in sports %}
-                          <option value="{{ sport.id }}">{{sport.nomSport}}</option>
-                    {% endfor %}
-                </select>
+                <p>{{evenements|length}} évenements</p>
             </div>
-            <div>
+            <div class="selectFiltre">
                 <span>Categorie : </span>
                 <select class="form-select">
                     <option selected>Toutes</option>
                     {% for categorie in categories %}
                         <option value="{{ categorie.id }}">{{categorie.libelleCategorie}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="selectFiltre">
+                <span> Sport : </span>
+                <select class="form-select">
+                    <option selected>Tous</option>
+                    {% for sport in sports %}
+                          <option value="{{ sport.id }}">{{sport.nomSport}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -31,7 +34,7 @@
                 <span>Actif</span>
             </div>
             <div>
-                <button type="submit" class="btn btn-info">
+                <button type="submit" class="btn btn-primary">
                     Afficher
                 </button>
             </div>
@@ -48,20 +51,14 @@
                             <div id="dateInscrip">
                                 <i class="fas fa-calendar-alt"></i>
                                 <span>
-                                    début d'inscription le
                                     {{ evenement.dateDebut ? evenement.
-                                    dateDebut|date('d-m-Y') : '' }}
-                                </span>
-                                <span> jusqu'à la </span>
-                                <span>
-                                    fin d'inscription le
-                                    {{ evenement.dateFin ? evenement.
-                                    dateFin|date('d-m-Y H:i:s') : '' }}
+                                    dateDebut|date('d/m/Y') : '' }}
                                 </span>
                             </div>
                             <div id="place">
                                 <p>
-                                    nombre de place restant :
+                                    <i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}}
+                                    inscrit sur
                                     {{ evenement.nbPlace }}
                                 </p>
                             </div>
@@ -69,7 +66,7 @@
                         <div id="descrip">
                             <p>{{ evenement.descripEvenement }}</p>
                         </div>
-                        <div>
+                        <div id="btnShow">
                             <a href="{{ path('evenement_show',
                              {'id': evenement.id}) }}"><button class="btn btn-primary">> Voir évenement</button></a>
                         </div>

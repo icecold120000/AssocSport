@@ -3,54 +3,62 @@
 {% block title %}{{ evenement.nomEvenement }}{% endblock %}
 
 {% block body %}
-    <h1>{{ evenement.nomEvenement }}</h1>
+    <div id="showEvent">
+        <h1>{{ evenement.nomEvenement }}</h1>
 
-    <p><i class="fas fa-calendar-alt"></i>{{ evenement.dateDebut ? evenement.dateDebut|date('d-m-Y') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d-m-Y') : '' }}</p>
+        <p><i class="fas fa-calendar-alt"></i> {{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d/m/Y') : '' }}</p>
 
-    <p><i class="fas fa-exclamation-circle"></i> inscriptions sur {{ evenement.nbPlace }}</p>
+        <p><i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}} inscriptions sur {{ evenement.nbPlace }}</p>
 
-    <p>Type d'événement : </p>
+        <p>Type d'événement : {{evenement.Type.getNom}}</p>
 
-    <p>Sport : </p>
+        <p>Sport : {{evenement.Sport.getNomSport}}</p>
 
-    <p>Lieu : {{ evenement.lieuEvenement }}</p>
+        <p>Catégorie : {{evenement.categorieEleve.getLibelleCategorie}}</p>
 
-    <img href="{{ evenement.imageEvenement }}" id="imgEvent">
+        <p>Lieu : {{ evenement.lieuEvenement}}</p>
 
-    <h2>Description de l'événement</h2>
-
-    <p>{{ evenement.descripEvenement }}</p>
-
-    <h2>Condition d'inscription</h2>
-
-    <p><p>
-
-    <table class="table tableAdmin">
-        <thead>
-            <tr>
-                <th scope="col">Nom du document</th>
-                <th scope="col">Date d'ajout</th>
-                <th scope="col">Description du document</th>
-                <th scope="col">Lien de téléchargement</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
-                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
-                <td scope="row">{{evenement.getDocuments.getNomDocument}}</td>
-                <td>
-                    <a href=""
-                     download="">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <img href="{{asset('/static/Images/cross.jpg')}}" id="imgEvent">
         
+        <h2>Description de l'événement</h2>
+
+        <p>{{ evenement.descripEvenement }}</p>
+
+        <h2>Condition d'inscription</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.<p>
+
+        <h2> {{evenement.Documents|length}} documents à télécharger</h2>
+
+        <table class="table table-striped tableAdmin">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du document</th>
+                    <th scope="col">Date d'ajout</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Lien de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for docs in evenement.Documents%}
+                        <td scope="row">{{docs.nomDocument}}</td>
+                        <td scope="row">{{docs.dateAjout ? docs.
+                                    dateAjout|date('d/m/Y') : '' }}</td>
+                        <td scope="row">{{docs.categorieDocument.getLibelleCategorieDoc}}</td>
+                        <td>
+                            <a href="{{docs.lienDocument}}"
+                             download="{{docs.lienDocument}}">
+                                <button class="btn btn-primary">
+                                    Télécharger
+                                </button>
+                            </a>
+                        </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div>
         <a href="{{ path('evenement_admin') }}">

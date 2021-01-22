@@ -5,9 +5,13 @@
 {% block body %}
     <h1>Editer un événement</h1>
 
-        {{ include('evenement/_form.html.twig') }}
-                <div id="divAjout">
-                    <button type="submit" class="btn btn-success">Editer votre événement</button>
+    <div class="container-fluid">
+        <form id="formEvent" method="POST" action="{{
+         path('evenement_edit',{'id': evenement.id}) }}">
+            {{ include('evenement/_form.html.twig') }}
+                <div id="divAjout" class="form-actions">
+                    <input type="submit" value="Editer
+                     votre événement" class="btn btn-success">
                 </div>
             </div>
         </form>

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Profile{% endblock %}
+
+{% block body %}
+	<div id="profilHeader">
+	<h1>Bienvenue nom d'utilisateur</h1> 
+
+	<p>Vous êtes enregistrer en tant <span id="typeUser">qu'un élève sur cette plateforme</span></p>
+
+	<p>Ma classe : </p>
+	</div>
+
+    <div class="dropdown" id="dropdownUser">
+		<button class="btn btn-info dropdown-toggle" type="button" id="mesAcces" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Mes accès
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="mesAcces">
+		    <li><a href="{{path('document_index')}}">Liste de document</a></li>
+		    <li><a href="{{path('evenement_index')}}">Liste d'événement</a></li>
+		</ul>
+	</div>
+	<div>
+		<p>Vos événements</p>
+		<table class="table tableAdmin">
+	        <thead>
+	            <tr>
+	                <th scope="col">Nom</th>
+	                <th scope="col">Date de début</th>
+	                <th scope="col">Date de fin</th>
+	                <th scope="col">Lieu</th>
+	                <th scope="col">Description</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        {% for evenement in events %}
+	            <tr>
+	                <td scope="row">{{ evenement.nomEvenement }}</td>
+	                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y') : '' }}</td>
+	                <td>{{ evenement.dateFin ? evenement.dateFin|date('d/m/Y') : '' }}</td>
+	                <td>{{ evenement.lieuEvenement }}</td>
+	                <td>{{ evenement.descripEvenement }}</td>
+	            </tr>
+	        {% else %}
+	            <tr>
+	                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
+	            </tr>
+	        {% endfor %}
+	    	</tbody>
+	    </table>
+	</div>
+{% endblock %}
