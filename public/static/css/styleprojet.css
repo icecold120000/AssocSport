@@ -66,6 +66,11 @@ p{
 }
 
 button.btn.btn-success{
+	padding: 23px;
+	font-size: 30px;
+}
+
+input.btn.btn-success{
 	padding: 25px;
 	font-size: 30px;
 	position: relative;
@@ -93,14 +98,14 @@ button.btn.btn-success{
 .coordonnees p, .contact p, .access p{
 	
 	text-align: left;
-	font-size: 24px;
+	font-size: 20px;
 
 }
 
 .coordonnees h3, .contact h3, .access h3{
 	
 	text-align: left;
-	font-size: 34px;
+	font-size: 30px;
 
 }
 
@@ -210,8 +215,8 @@ button.btn.btn-success{
 	left: 7px;
 }
 
-#formType button.btn.btn-success, #formCategEleve button.btn.btn-success,
- #formCategDoc button.btn.btn-success, #formSport button.btn.btn-success{
+#formType input.btn.btn-success, #formCategEleve input.btn.btn-success,
+ #formCategDoc input.btn.btn-success, #formSport input.btn.btn-success{
 	left: 6px;
 }
 
@@ -229,8 +234,8 @@ button.btn.btn-success{
 	font-size: 25px;
 }
 
-#formDoc button.btn.btn-success, #formEvent
- button.btn.btn-success, #formEleve button.btn.btn-success{
+#formDoc input.btn.btn-success, #formEvent
+ input.btn.btn-success, #formEleve input.btn.btn-success{
 	left: 30%;
 }
 
@@ -251,102 +256,51 @@ button.btn.btn-success{
 }
 
 #search button{
-	margin-top: 10px;
+	margin-top: 12px;
 }
 
-/*la page liste des événements*/
-
-#vignette{
-	height: 150px;
-	width: 150px;
-	float: left;
-}
-
-#event{
-	font-size: 20px;
-}
-
-#event i{
-	font-size: 20px;
-}
-
-#event #dateInscrip{
-	float: left;
-}
-
-#event #place{
-	position: relative;
-	left: 10%;
-}
-
-#event #descrip{
-	display: inline-block;
-	position: relative;
-	right: 70px;
-}
-
-
-#evenement{
-	padding: 0;
-	margin: 35px 20px;
-	border: solid 1px black;
-}
-
-#evenement p{
-	font-size: 20px;
-}
-
-#evenement h3{
-	margin-top:0;
-}
-
-#evenement div.container-fluid{
-	padding: 0;
-	margin: 0;
-}
-
-#evenement i.fas.fa-calendar-alt{
-	padding: 5px;
-	font-size: 18px;
-	color: black;
-}
+/*Filtre des pages de gestions*/
 
 #filtre{
 	display: flex;
 }
 
 #filtre span{
-	font-size: 30px;
+	font-size: 20px;
 }
 
 #filtre select{
-	height: 40px;
+	height: 30px;
 	font-size: 20px;
 }
 
 #filtre button{
-	padding: 10px;
+	padding: 5px 10px 5px 10px;
 	font-size: 20px;
 }
 
 #filtre div{
-	margin: 20px;
+	margin: 10px;
+}
+
+#filtre .selectFiltre{
+	margin-top: 15px;
 }
 
 #filtre #switch{
-	margin-top: 28px;
+	margin-top: 18px;
 }
 
 #filtre #left{
 	margin-left: 25%;
 }
 
-/*Switch*/
+/*Le switch dans le filtre*/
 .switch{
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 52px;
+  height: 24px;
 }
 
 .switch input{ 
@@ -370,8 +324,8 @@ button.btn.btn-success{
 .slider:before{
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 18px;
+  width: 18px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -402,6 +356,100 @@ input:checked + .slider:before{
   border-radius: 50%;
 }
 
+/*la page liste des événements*/
+
+#vignette{
+	height: 160px;
+	width: 160px;
+	float: left;
+}
+
+#event{
+	font-size: 20px;
+}
+
+#event i{
+	font-size: 20px;
+}
+
+#event #dateInscrip{
+	float: left;
+	position: relative;
+	left: 5%;
+}
+
+#event #place{
+	position: relative;
+	right: 22%;
+}
+
+#event #descrip{
+	display: inline-block;
+	position: relative;
+	right: 22%;
+}
+
+#evenement{
+	padding: 0;
+	width: 75%;
+	margin-left: 15%;
+	margin-bottom: 5%;
+}
+
+#evenement p{
+	font-size: 20px;
+}
+
+#evenement h3{
+	margin-top:0;
+	position: relative;
+	left: 5%;
+	text-align: left;
+}
+
+#evenement div.container-fluid{
+	padding: 0;
+	margin: 0;
+}
+
+#evenement i.fas.fa-calendar-alt{
+	padding: 5px;
+	font-size: 18px;
+	color: black;
+}
+
+#btnShow{
+	position: relative;
+	left: 5%;
+}
+
+/*Page de détails des événements pour s'inscrire*/
+#btnShow, #showEvent p, #showEvent h1, #showEvent h2{
+	text-align: left;
+}
+
+#showEvent table.tableAdmin, #showEvent p, #showEvent h1,#showEvent h2{
+	position: relative;
+	left: 10%;
+	width: 80%;
+}
+
+#showEvent p{
+	font-size: 25px;
+}
+
+#showEvent h2{
+	font-weight: bold;
+	margin-left: 0;
+	margin-top: 40px;
+}
+
+#showEvent #imgEvent{
+	height: 300px;
+	width: 80%;
+	margin: 1% 0;
+}
+
 /*Espace d'admin*/
 
 .tableAdmin{
@@ -413,10 +461,12 @@ input:checked + .slider:before{
 	font-size: 30px;
 }
 
+
 .tableAdmin th, .tableAdmin td{
 	text-align: center;
 	font-size: 25px;
 	padding: 20px;
+	border: solid black;
 }
 
 i.far.fa-edit, i.fas.fa-trash{
@@ -474,4 +524,77 @@ table button.btn.btn-info{
 	font-size: 40px;
 	border: solid;
 	width: 65%;
+}
+
+/*Espace de statistique*/
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	background-color: whitesmoke;
+	border: solid;
+}
+
+#canvas1{
+	position: relative;
+	width: 40%;
+	float: left;
+	left: 6%;
+	margin-left: 40px;
+}
+
+#canvas3, #canvas5,#canvas7{
+	margin-right: 40px;
+}
+
+#canvas3,#canvas4, #canvas5,#canvas6, #canvas7{
+	margin-top: 40px;
+}
+
+#canvas2, #canvas3, #canvas4, #canvas5,#canvas6, #canvas7{
+	position: relative;
+	float: left;
+	left: 10%;
+	width: 40%;
+}
+
+/*Page de profile*/
+
+#profilHeader{
+	margin: 5% 0 5% 10%;	
+}
+
+#profilHeader h1{
+	font-size: 40px;
+}
+
+#profilHeader p{
+	font-size: 20px;
+}
+
+#profilHeader h1,#profilHeader p{
+	text-align: left;
+}
+
+#infoProfil p{
+	font-size: 20px;
+}
+
+#typeUser{
+	font-weight: bold;
+	font-style: italic;
+}
+
+#btnProfil{
+	margin-top: 20px;
+}
+
+#dropdownUser{
+	margin-bottom: 30px;
+}
+
+#dropdownUser button, #btnProfil{
+	padding: 20px;
+	font-size: 20px;
 }
