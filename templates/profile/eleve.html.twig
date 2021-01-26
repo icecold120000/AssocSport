@@ -4,11 +4,11 @@
 
 {% block body %}
 	<div id="profilHeader">
-	<h1>Bienvenue nom d'utilisateur</h1> 
+	<h1>Bienvenue {{app.user.getEleve.getPrenomEleve}} {{app.user.getEleve.getNomEleve}}</h1> 
 
 	<p>Vous êtes enregistrer en tant <span id="typeUser">qu'un élève sur cette plateforme</span></p>
 
-	<p>Ma classe : </p>
+	<p>Ma classe : {{app.user.getEleve.getClasse.getLibelle}}</p>
 	</div>
 
     <div class="dropdown" id="dropdownUser">

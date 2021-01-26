@@ -4,7 +4,7 @@
 
 {% block body %}
 	<div id="profilHeader">
-		<h1>Bienvenue nom d'utilisateur</h1> 
+		<h1>Bienvenue {{app.user.getPrenomUser}} {{app.user.getNomUser}}</h1> 
 
 		<p>Vous êtes enregistrer en tant <span id="typeUser">qu'un enseignant sur cette plateforme</span></p>
 	</div>
