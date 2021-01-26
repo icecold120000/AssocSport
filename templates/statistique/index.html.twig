@@ -3,7 +3,7 @@
 {% block title %}Bienvenue dans l'espace de statistique{% endblock %}
 
 {% block body %}
-
+<body id="stat">
 	<h1>Bienvenue dans l'espace de statistique</h1>
 	<div id="filtre">
 		<div id="left">
@@ -15,122 +15,93 @@
 	            <option>2022/2023</option>
 			</select>
 		</div>
-		<div>
-			<span>Classe : </span>
-            <select class="form-select">
-                <option selected>Toutes</option>
-                {% for classe in classes %}
-                    <option value="{{ classe.id }}">{{classe.Libelle}}</option>
-                {% endfor %}
-            </select>
-		</div>
-		<div>
-            <button type="submit" class="btn btn-info">
+		<div id="btnStat">
+            <button type="submit" class="btn btn-info" action="#">
                 Afficher
             </button>
         </div>
 	</div>
+	<div>
+		<table class="table tableAdmin" id="tableStat">
+			<thead>
+				<tr>
+					<th scope="col">La statistique demandé</th>
+					<th scope="col">Les données</th>
+				</tr>
+			</thead>
+		    <tbody>
+			    <tr>
+				    <td>Nombre d'élèves licenciés total</td>
+				    <td>
+				    	28
+				    </td>
+			    </tr>
+			    <tr>
+				    <td>Nombre d'événements total</td>
+				    <td>
+				    	{{events|length}}
+				    </td>
+			    </tr>
+			</tbody>
+		</table>		
+	</div>
 	<div id="canvas1">
-		<p>Nombre d'élèves licencés</p>
+		<p>Répartition des élèves licencés par sexe</p>
 		<div id="canvas-holder">
-			<canvas id="nbLicence"></canvas>
+			<canvas id="sexeLicence"></canvas> 
 		</div>
 		<script>
-			var ctx = document.getElementById('nbLicence').getContext('2d');
-			var chart1 = new Chart(ctx, {
+			var sexeData = {
+				labels: ['Homme','Femme'],
+				datasets: [{
+					backgroundColor: ['Blue','Pink'],
+					borderColor: 'White',
+					borderWidth: 1,
+					data: [40, 60]
+				}],
+			};
+
+			var ctx1 = document.getElementById('sexeLicence').getContext('2d');
+			var chart1 = new Chart(ctx1, {
 			    // The type of chart we want to create
 			    type: 'doughnut',
 
 			    // The data for our dataset
-			    data: {
-			        labels: ['25 €', '10 €', 'Pas Licence'],
-			        datasets: [{
-			            backgroundColor: ['Red','Yellow','Blue'],
-			            borderColor: 'White',
-			            data: [20, 35, 40]
-			        }]
-			    },
-
+			    data: sexeData,
 			    // Configuration options go here
 			    options: {}
 			});
 		</script>
 	</div>
 	<div id="canvas2">
-		<p>Nombre d'élèves inscrits à chaque événement</p>
+		<p>Répartition des élèves licenciés par le montant</p>
 		<div id="canvas-holder">
-			<canvas id="nbInscrit"></canvas>
+			<canvas id="montantLicence"></canvas> 
 		</div>
 		<script>
-			var ctx = document.getElementById('nbInscrit').getContext('2d');
-			var chart2 = new Chart(ctx, {
+			var licenceData ={
+				labels: ['10€','20€'],
+				datasets: [{
+					backgroundColor: ['Red','Yellow'],
+					borderColor: 'White',
+					borderWidth: 1,
+					data: [55, 45]
+				}],
+			};
+			var ctx2 = document.getElementById('montantLicence').getContext('2d');
+			var chartH = new Chart(ctx2, {
 			    // The type of chart we want to create
-			    type: 'bar',
+			    type: 'doughnut',
 
 			    // The data for our dataset
-			    data: {
-			        labels: [
-			        	{% for event in events %}
-                			'{{event.nomEvenement}}',
-            			{% endfor %}
-			        ],
-			        datasets: [{
-			        	label : 'Nombre d\'élèves',
-			            backgroundColor: ['Orange','Red','Yellow','Blue','Green'],
-			            data: [
-			            	{% for event in events %}
-                				{{event.nbPlace}},
-            				{% endfor %}
-			            ]
-			        }]
-			    },
-
+			    data: licenceData,
 			    // Configuration options go here
 			    options: {}
 			});
 		</script>
 	</div>
 	<div id="canvas3">
-		<p>Répartition par événement</p>
-		<div id="canvas-holder">
-			<canvas id="reparEvent"></canvas>
-		</div>
-		<script>
-			var barChartData = {
-		        labels: [
-		        	{% for event in events %}
-            			'{{event.nomEvenement}}',
-        			{% endfor %}
-		        ],
-				datasets: [{
-					label: 'Homme',
-					backgroundColor: 'Blue',
-					borderColor:'Blue',
-					borderWidth: 1,
-					data: [28,0]
-				}, {
-					label: 'Femme',
-					backgroundColor: 'Pink',
-					borderColor: 'Pink',
-					borderWidth: 1,
-					data: [12, 0]
-				}]
-			};
-			var ctx = document.getElementById('reparEvent').getContext('2d');
-			var chart3 = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'bar',
-
-			    // The data for our dataset
-			    data: barChartData,
-
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-	</div>
-	<div id="canvas4">
-		<p>Répartition par type d'événement</p>
+		<p>Répartition des types d'événements par sexe</p>
 		<div id="canvas-holder">
 			<canvas id="nbType"></canvas>
 		</div>
@@ -156,7 +127,7 @@
 				}]
 			};
 			var ctx = document.getElementById('nbType').getContext('2d');
-			var chart4 = new Chart(ctx, {
+			var chart2 = new Chart(ctx, {
 			    // The type of chart we want to create
 			    type: 'bar',
 
@@ -168,14 +139,26 @@
 			});
 		</script>
 	</div>
-	<div id="canvas5">
-		<p>Répartiton par genre</p>
+	<div id="canvas4">
+		<p>Répartiton des événements par sexe</p>
+		<div class="selectStat">
+			<span>Evénement: </span>
+            <select class="form-select">
+                <option selected>Toutes</option>
+                {% for event in events %}
+                    <option value="{{ event.id }}">{{event.nomEvenement}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-info" action="#canvas4">
+                Afficher
+            </button>
+		</div>		
 		<div id="canvas-holder">
 			<canvas id="nbGenre"></canvas>
 		</div>
 		<script>
 			var ctx = document.getElementById('nbGenre').getContext('2d');
-			var chart5 = new Chart(ctx, {
+			var chart3 = new Chart(ctx, {
 			    // The type of chart we want to create
 			    type: 'doughnut',
 
@@ -196,70 +179,84 @@
 			});
 		</script>
 	</div>
-	<div id="canvas6">
-		<p>Répartiton par date de naissance</p>
+	<div id="canvas5">
+		<p>Répartiton des élèves par date de naissance</p>
+		<div class="selectStat">
+			<span>Année : </span>
+			<select class="form-select">
+	            <option selected value="2001">2001</option>
+	            <option value="2002">2002</option>
+	            <option value="2003">2003</option>
+	            <option value="2004">2004</option>
+			</select>
+            <button type="submit" class="btn btn-info" action="#canvas5">
+                Afficher
+            </button>
+		</div>		
 		<div id="canvas-holder">
 			<canvas id="nbDdn"></canvas>
 		</div>
 		<script>
-			var AnneeData = {
-		        labels: [
-		        	2000,
-		        	2001,
-		        	2002,
-		        	2003,
-		        ],
-				datasets: [{
-					label: 'Homme',
-					backgroundColor: 'Blue',
-					borderColor:'Blue',
-					borderWidth: 1,
-					data: [28,15,27,21,0]
-				}, {
-					label: 'Femme',
-					backgroundColor: 'Pink',
-					borderColor: 'Pink',
-					borderWidth: 1,
-					data: [12,25,13,19,0]
-				}]
-			};
 			var ctx = document.getElementById('nbDdn').getContext('2d');
-			var chart6 = new Chart(ctx, {
+			var chart4 = new Chart(ctx, {
 			    // The type of chart we want to create
 			    type: 'line',
-			    type: 'bar',
+			    type: 'doughnut',
 
 			    // The data for our dataset
-			    data: AnneeData,
+			    data: {
+			        labels: [
+			        	'Homme',
+			        	'Femme',
+			        ],
+			        datasets: [{
+			            backgroundColor: ['Blue','Pink'],
+			            borderColor: 'White',
+			            data: [40,60]
+			        }]
+			    },
 
 			    // Configuration options go here
 			    options: {}
 			});
 		</script>
+
 	</div>
-	<div id="canvas7">
-		<p>Nombre d'événements par élève</p>
+	<div id="canvas6">
+		<p>Nombre d'événements par élèves</p>
+		<div class="selectStat">
+			<span>Elève : </span>
+			<select class="form-select">
+                <option selected>Tous</option>
+                {% for eleve in eleves %}
+                    <option value="{{ eleve.id }}">
+       				{{eleve.prenomEleve}} {{eleve.nomEleve}}</option>
+                {% endfor %}
+			</select>
+            <button type="submit" class="btn btn-info" action="#canvas6">
+                Afficher
+            </button>
+		</div>		
 		<div id="canvas-holder">
 			<canvas id="nbEvent"></canvas>
 		</div>
 		<script>
 			var ctx = document.getElementById('nbEvent').getContext('2d');
-			var chart7 = new Chart(ctx, {
+			var chart5 = new Chart(ctx, {
 			    // The type of chart we want to create
 			    type: 'line',
 
 			    // The data for our dataset
 			    data: {
-			        labels: [ 
-		            	{% for eleve in eleves %}
-            				'{{eleve.nomEleve}}',
-        				{% endfor %}
-			        ],
+			        labels: ['Septembre', 'Octobre', 'Novembre', 'Decembre',
+			          'Janvier', 'Fevrier', 'Mars', 'Avril',
+			         'Mai', 'Juin', 'Juillet', 'Août'
+			          ],
 			        datasets: [{
 			        	label: 'nombre d\'événement',
 			            backgroundColor: ['Green','Red','Cyan',
-			            'Black','Pink','Brown','Lime','Purple','Grey','Magenta'],
-			            borderColor: 'Green',
+			            'Green','Pink','Brown','Lime','Purple','Grey','Magenta'],
+			            borderColor: 'Black',
 			            fill: false,
 			            data: [5,12,8,10,30,12,7,8,3,5]
 			        }]
