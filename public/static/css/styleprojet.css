@@ -35,7 +35,6 @@ form div{
 	padding-bottom: 30px;
 }
 
-
 label{
 	font-size: 20px;
 	position: relative;
@@ -96,17 +95,13 @@ input.btn.btn-success{
 
 
 .coordonnees p, .contact p, .access p{
-	
 	text-align: left;
 	font-size: 20px;
-
 }
 
 .coordonnees h3, .contact h3, .access h3{
-	
 	text-align: left;
 	font-size: 30px;
-
 }
 
 /*formulaire de connexion*/
@@ -461,7 +456,6 @@ input:checked + .slider:before{
 	font-size: 30px;
 }
 
-
 .tableAdmin th, .tableAdmin td{
 	text-align: center;
 	font-size: 25px;
@@ -536,27 +530,47 @@ canvas {
 	border: solid;
 }
 
-#canvas1{
+#canvas1,#canvas2, #canvas3, #canvas4, #canvas5,#canvas6{
 	position: relative;
-	width: 40%;
 	float: left;
-	left: 6%;
-	margin-left: 40px;
-}
-
-#canvas3, #canvas5,#canvas7{
-	margin-right: 40px;
-}
-
-#canvas3,#canvas4, #canvas5,#canvas6, #canvas7{
+	left: 15%;
+	width: 70%;
 	margin-top: 40px;
 }
 
-#canvas2, #canvas3, #canvas4, #canvas5,#canvas6, #canvas7{
-	position: relative;
-	float: left;
-	left: 10%;
-	width: 40%;
+#tableStat{
+	width: 50%;
+	margin: 40px 25%;
+}
+
+.selectStat ,.selectStat div{
+	margin:15px 0;
+}
+
+.selectStat span{
+	font-size: 25px;
+}
+
+.selectStat select{
+	font-size: 20px;
+}
+
+.selectStat button.btn.btn-info{
+	font-size: 15px;
+	padding: 10px;
+	margin: 0 0 5px 15px;
+}
+
+#stat #filtre #left{
+	margin: 7px 10px 0 35%;
+}
+
+#stat #filtre #btnStat{
+	margin-right: 45%;
+}
+
+#stat #filtre div{
+	margin:0;
 }
 
 /*Page de profile*/
