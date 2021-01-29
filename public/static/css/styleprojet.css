@@ -38,6 +38,15 @@ form div{
 label{
 	font-size: 20px;
 	position: relative;
+	margin: 0;
+	float: left;
+}
+
+
+#divInput{
+	position: relative;
+	width: 45%;
+	right: 27%;
 }
 
 #divAjout{
@@ -65,21 +74,10 @@ p{
 }
 
 button.btn.btn-success{
-	padding: 23px;
-	font-size: 30px;
+	padding: 15px;
+	font-size: 20px;
 }
 
-input.btn.btn-success{
-	padding: 25px;
-	font-size: 30px;
-	position: relative;
-}
-
-#divInput{
-	position: relative;
-	width: 45%;
-	right: 27%;
-}
 
 .title{
 	font-weight: bold;
@@ -115,9 +113,6 @@ input.btn.btn-success{
 	padding-bottom: 30px;
 }
 
-#formConnexion label{
-	float: left;
-}
 
 #connexion a{
 	margin: 0;
@@ -154,13 +149,16 @@ input.btn.btn-success{
 .erreur{
 	color: red;
 	font-size: 30px;
+	font-weight: bold;
+}
+
+.erreur li{
+	list-style: none;
+	position: relative;
 }
 
 /*formulaire d'inscription*/
 
-#formRegister label{
-	float: left;
-}
 
 #formRegister #check{
 	height: 22px;
@@ -202,42 +200,97 @@ input.btn.btn-success{
 	right: 37%;
 }
 
-/*Formulaire des type et catégorie*/
+/*Les Formulaires d'ajout et de modification des types et des catégories*/
 
-#formType label,#formSport label, #formCategEleve label, #formCategDoc label{
-	float: left;
+.flash-success{
+	font-size: 30px;
+	color: green;
+}
+
+.formEntité div.container-fluid{
+	display: inline-block;
 	position: relative;
-	left: 7px;
+	right: 20%;
 }
 
-#formType input.btn.btn-success, #formCategEleve input.btn.btn-success,
- #formCategDoc input.btn.btn-success, #formSport input.btn.btn-success{
-	left: 6px;
-}
-
-/*Formulaire des élèves, documents, et événement*/
-
-#formDoc label, #formEvent label, #formEleve label{
+.formEntité #divInput{
+	position: relative;
+	width: 102%;
 	float: left;
 }
 
-#formDoc span, #formEvent span, #formEleve span{
-	font-size: 25px;
+.formEntité #divAjout{
+	float: left;
 }
 
-#formDoc select, #formEvent select, #formEleve select{
-	font-size: 25px;
+.formEntité input{
+	width: 25%;
+	position: relative;
+	right: 11%;
+	height: 35px;
+	font-size: 20px;
 }
 
-#formDoc input.btn.btn-success, #formEvent
- input.btn.btn-success, #formEleve input.btn.btn-success{
-	left: 30%;
+.formEntité .erreur li{
+    right: 3%;
+    text-align: left;
 }
 
-.inputFile{
-	font-size: 25px;
-	margin-left: 250px;
+
+/*Les Formulaires d'ajout et de modification des documents*/
+.formEntité2 #inputFile{
+	margin-left: 65px;
 }
+
+.formEntité2 .erreur li{
+    right: 6%;
+    text-align: left;
+}
+
+.formEntité2 button.btn.btn-success{
+	position: relative;
+	left: 15%;
+}
+
+.formEntité2 input{
+	width: 80%;
+	position: relative;
+	right: 10%;
+	height: 35px;
+	font-size: 20px;
+}
+
+#formDoc.formEntité2 select{
+	position: relative;
+    right: 30%;
+    font-size: 25px;
+}
+
+/*Les Formulaires d'ajout et de modification des élèves*/
+
+
+#formEleve.formEntité2 select{
+	position: relative;
+    right: 35%;
+    font-size: 25px;
+}
+
+#formEleve.formEntité2 #selectCategorie select{
+	right:36%;
+}
+
+#formEleve.formEntité2 #selectClasse select{
+	right:40%;
+}
+
+#formEleve.formEntité2 #selectGenre select{
+	right:42%;
+}
+
+#formEleve.formEntité2 #selectArchive select{
+	right:37%;
+}
+
 
 /*Page de gestion des documents*/
 
@@ -245,13 +298,30 @@ input.btn.btn-success{
 	text-align: center;
 }
 
+#search form{
+	padding: 30px 0 20px 0;
+}
+
+#search form div{
+	padding-bottom: 20px;
+	display: inline;
+}
+
+#search label{
+	font-size: 30px;
+	float: none;
+}
+
 #search input{
 	width: 20%;
 	display: inline-block;
+	height: 35px;
+    font-size: 25px;
+	margin-left: 20px;
 }
 
 #search button{
-	margin-top: 12px;
+	margin-top: 5px;
 }
 
 /*Filtre des pages de gestions*/
@@ -381,7 +451,7 @@ input:checked + .slider:before{
 #event #descrip{
 	display: inline-block;
 	position: relative;
-	right: 22%;
+	right: 9%;
 }
 
 #evenement{
@@ -389,6 +459,7 @@ input:checked + .slider:before{
 	width: 75%;
 	margin-left: 15%;
 	margin-bottom: 5%;
+	background-color: whitesmoke;
 }
 
 #evenement p{
@@ -396,10 +467,11 @@ input:checked + .slider:before{
 }
 
 #evenement h3{
-	margin-top:0;
+	margin-top:10px;
 	position: relative;
 	left: 5%;
 	text-align: left;
+	font-weight: bold;
 }
 
 #evenement div.container-fluid{
@@ -459,8 +531,8 @@ input:checked + .slider:before{
 .tableAdmin th, .tableAdmin td{
 	text-align: center;
 	font-size: 25px;
-	padding: 20px;
 	border: solid black;
+	vertical-align: unset!important;
 }
 
 i.far.fa-edit, i.fas.fa-trash{
