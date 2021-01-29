@@ -5,18 +5,17 @@
 {% block body %}
     <h1>Editer un document</h1>
 
-    <div class="container-fluid">
-        <form id="formDoc" method="POST" action="{{
-         path('document_edit',{'id': document.id}) }}">
+    {% for message in app.flashes('Succes') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    <div>
+        <div class="container-fluid formEntité2" id="formDoc">
             {{ include('document/_form.html.twig') }}
-                <div id="divAjout" class="form-actions">
-                    <input type="submit" value="Editer votre
-                     document" class="btn btn-success">
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
-
     <a href="{{ path('document_admin') }}">
     	<button class="btn btn-default" id="btnRetour">
             Revenir dans la liste

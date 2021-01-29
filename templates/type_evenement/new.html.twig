@@ -5,16 +5,16 @@
 {% block body %}
     <h1>Ajouter un nouveau type d'événement</h1>
 
-    <div class="container-fluid">
-        <form id="formType" method="POST" action="{{path('type_evenement_new')}}">
+    {% for message in app.flashes('Succes') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité">
             {{ include('type_evenement/_form.html.twig') }}
-            <div id="divAjout" class="form-actions">
-                <input type="submit" value="Ajouter
-                 votre type d'événement" class="btn btn-success">
-            </div>
-        </form>
+        </div>
     </div>
-
     <a href="{{ path('type_evenement_index') }}">
     	<button class="btn btn-default" id="btnRetour">
             Revenir dans la liste

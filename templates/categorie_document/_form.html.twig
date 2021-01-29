@@ -1,7 +1,18 @@
-    	<div>
-        	<label class="labels" >Libellé de la categorie de document</label>
-        </div>
+	{{form_start(form)}}
+		<div>
+			{{form_label(form.libelleCategorieDoc)}}
+		</div>
         <div id="divInput">
-            <input type="text" name="nomCateg" id="inputNom" class="form-control"
-            placeholder="Saisissez un libellé de categorie de document">
+            {{form_widget(form.libelleCategorieDoc)}}
         </div>
+        <div class="erreur">
+            {{form_errors(form.libelleCategorieDoc)}}
+        </div>
+        <div>
+            <div id="divAjout" class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    Enregistrer la catégorie d'élève
+                </button>
+            </div>
+        </div>
+    {{form_end(form)}}

@@ -5,14 +5,16 @@
 {% block body %}
     <h1>Ajouter une nouvelle catégorie de document</h1>
 
-    <div class="container-fluid">
-        <form id="formCategDoc" method="POST" action="{{path('categorie_document_new')}}">
+    {% for message in app.flashes('Succes') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité">
             {{ include('categorie_document/_form.html.twig') }}
-            <div id="divAjout" class="form-actions">
-                <input type="submit" value="Ajouter votre catégorie
-                 de document" class="btn btn-success" >
-            </div>
-        </form>
+        </div>
     </div>
 
     <a href="{{ path('categorie_document_index') }}">

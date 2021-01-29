@@ -5,21 +5,20 @@
 {% block body %}
     <h1>Ajouter un nouveau sport</h1>
 
-    <div class="container-fluid">
-        <form id="formSport" method="POST" action="{{path('sport_new')}}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce sport ?');">
+    {% for message in app.flashes('Succes') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité">
             {{ include('sport/_form.html.twig') }}
-            <div id="divAjout" class="form-actions">
-                <input type="submit" value="Ajouter
-                 votre sport" class="btn btn-success">
-            </div>
-        </form>
+        </div>
     </div>
-
-    {{dump()}}
-
     <a href="{{ path('sport_index') }}">
     	<button class="btn btn-default" id="btnRetour">
         Revenir dans la liste </button>
    </a>
+
     
 {% endblock %}

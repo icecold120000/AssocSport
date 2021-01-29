@@ -4,17 +4,18 @@
 
 {% block body %}
     <h1>Ajouter une nouvelle catégorie d'élève</h1>
-    
-    <div class="container-fluid">
-        <form id="formCategEleve" method="POST" action="{{path('categorie_eleve_new')}}">
-            {{ include('categorie_eleve/_form.html.twig') }}
-            <div id="divAjout" class="form-actions">
-                <input type="submit" value="Ajouter votre
-                 catégorie d'élève" class="btn btn-success">
-            </div>
-        </form>
-    </div>
 
+    {% for message in app.flashes('Succes') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité">
+            {{ include('categorie_eleve/_form.html.twig') }}
+        </div>
+    </div>
     <a href="{{ path('categorie_eleve_index') }}">
     	<button class="btn btn-default" id="btnRetour">
             Revenir dans la liste

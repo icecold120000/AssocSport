@@ -1,7 +1,18 @@
-    	<div>
-        	<label class="labels" >Nom du Sport</label>
-        </div>
+	{{form_start(form)}}
+		<div>
+			{{form_label(form.nomSport)}}
+		</div>
         <div id="divInput">
-            <input type="text" name="nomSport" id="nomSport" class="form-control"
-            placeholder="Saisissez un sport">
+            {{form_widget(form.nomSport)}}
         </div>
+        <div class="erreur">
+            {{form_errors(form.nomSport)}}
+        </div>
+        <div>
+            <div id="divAjout" class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    Enregistrer le sport
+                </button>
+            </div>
+        </div>
+    {{form_end(form)}}

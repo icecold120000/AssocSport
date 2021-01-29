@@ -5,17 +5,26 @@
 {% block body %}
     <h1>Liste de documents téléchargeables</h1>
 
-    <form class="d-flex" id="search">
-        <input class="form-control me-2" type="search"
-         placeholder="Rechercher un document" aria-label="Search">
-        <button class="btn btn-light"
-         type="submit">Rechercher</button>
-    </form>
+    <div id="search">
+        {{form_start(form)}}
+            <div class="form-row align-items-end">
+                <div class="col">
+                    {{form_row(form.nom)}}
+                    <button class="btn btn-light" type="submit">Rechercher</button>
+                </div>
+            </div>
+        {{form_end(form)}}
+    </div>
     <a href="{{ path('document_new') }}">
         <button class="btn btn-primary" id="btnAjout">
             Ajouter un nouveau document
         </button>
-    </a>   
+    </a>
+    <a href="{{ path('admin_index') }}">
+        <button class="btn btn-default" id="btnRetour">
+            Retourner dans la liste de fonctionnalité
+        </button>
+    </a>
     <table class="table tableAdmin">
         <thead>
             <tr>
