@@ -2,29 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\TypeEvenement;
+use App\Entity\PropertySearch;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
-class TypeEvenementType extends AbstractType
+class PropertySearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class,[
-                'label' => 'Nom du type d\'événement',
-                'required' => false,
-            ])
+            ->add('nom')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TypeEvenement::class,
+            'data_class' => PropertySearch::class,
         ]);
     }
 }
