@@ -10,7 +10,11 @@
             Ajouter un nouveau événement
         </button>
     </a>
-
+    <a href="{{ path('admin_index') }}">
+        <button class="btn btn-default" id="btnRetour">
+            Retourner dans la liste de fonctionnalité
+        </button>
+    </a>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -28,41 +32,39 @@
             </tr>
         </thead>
         <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td scope="row">{{ evenement.nomEvenement }}</td>
-                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('d-m-Y H:i:s') : '' }}</td>
-                <td>{{ evenement.dateFin ? evenement.dateFin|date('d-m-Y H:i:s') : '' }}</td>
-                <td>{{ evenement.lieuEvenement }}</td>
-                <td>{{ evenement.coutEvenement }} €</td>
-                <td>{{ evenement.descripEvenement }}</td>
-                <td>{{ evenement.nbPlace }}</td>
-                <td><img href="{{ evenement.imageEvenement }}" placeholder="image"></td>
-                <td><img href="{{ evenement.vignetteEvenement }} placeholder="vignette"></td>
-                <td>
-                    <a href="{{ path('evenement_edit',
-                    {'id': evenement.id}) }}">
-                        <button class="btn btn-primary">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ path('evenement_delete_view',
-                     {'id': evenement.id}) }}">
-                        <button class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
-            </tr>
-        {% endfor %}
+            {% for evenement in evenements %}
+                <tr>
+                    <td scope="row">{{ evenement.nomEvenement }}</td>
+                    <td>{{ evenement.dateDebut ? evenement.dateDebut|date('d-m-Y H:i:s') : '' }}</td>
+                    <td>{{ evenement.dateFin ? evenement.dateFin|date('d-m-Y H:i:s') : '' }}</td>
+                    <td>{{ evenement.lieuEvenement }}</td>
+                    <td>{{ evenement.coutEvenement }} €</td>
+                    <td>{{ evenement.descripEvenement }}</td>
+                    <td>{{ evenement.nbPlace }}</td>
+                    <td><img href="{{ evenement.imageEvenement }}" placeholder="image"></td>
+                    <td><img href="{{ evenement.vignetteEvenement }} placeholder="vignette"></td>
+                    <td>
+                        <a href="{{ path('evenement_edit',
+                        {'id': evenement.id}) }}">
+                            <button class="btn btn-primary">
+                                <i class="far fa-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('evenement_delete_view',
+                         {'id': evenement.id}) }}">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-    
 {% endblock %}

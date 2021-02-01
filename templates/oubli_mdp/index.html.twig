@@ -8,17 +8,25 @@
     <h1>Oubli de mot de passe</h1>
 
     <h2>Veuillez saisir votre email pour envoyer une demande pour réinitialiser votre mot de passe</h2>
-
-    <div class="container">
-        <form id="formOubli" method="POST">
-            <label class="labels" >Email</label>
+        <div class="container">
+                {{form_start(form)}}
             <div>
-                <input type="email" name="email" id="inputEmail" class="form-control">
+                {{form_label(form.email)}}
             </div>
-            <div id="divAjout">
-                <button type="submit" class="btn btn-success" id="btnReset" action="{{path('email_index')}}">Envoyer votre demande</button>
+            <div id="divInput">
+                {{form_widget(form.email)}}
             </div>
-        </form>
+            <div class="erreur">
+                {{form_errors(form.email)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Envoyer votre demande
+                    </button>
+                </div>
+            </div>
+        {{form_end(form)}}
     </div>
 
 

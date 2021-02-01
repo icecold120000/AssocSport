@@ -8,7 +8,7 @@
 			<h1>Bienvenue {{app.user.getPrenomUser}} {{app.user.getNomUser}}</h1>
 		{% endif %} 
 
-		<p>Vous êtes enregistrer en tant <span id="typeUser">qu'un admin sur cette plateforme</span></p>
+		<p>Vous êtes enregistrer en tant <span id="typeUser">qu'admin sur cette plateforme</span></p>
 	</div>
 
 	<div id="infoProfil">
@@ -16,7 +16,7 @@
 		<p>Vous pourrez faire la gestion de toutes les fonctionnalités du site</p>
 	</div>
 
-	<a href="{{path('admin')}}">
+	<a href="{{path('admin_index')}}">
 		<button class="btn btn-info" id="btnProfil">Accèder à l'espace administration</button>
 	</a>
 {% endblock %}

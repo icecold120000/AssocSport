@@ -29,11 +29,10 @@
                         <td scope="row">{{ document.nomDocument }}</td>
                         <td scope="row">{{ document.descriptionDocument }}</td>
                         <td>
-                            <a href="{{ document.lienDocument }}" download>
-                                <button class="btn btn-primary">
-                                    Télécharger
-                                </button>
-                            </a>
+                        <td> <a href="{{ asset('uploads/docs/' ~ document.lienDocument) }}" 
+                                download="{{ asset('uploads/docs/' ~ document.lienDocument) }}">
+                            <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
+                        </td>
                         </td>
                     </tr>
                 {% endfor %}

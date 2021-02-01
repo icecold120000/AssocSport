@@ -61,16 +61,26 @@
     </div>
 
     <div>
-        <a href="{{ path('evenement_admin') }}">
+        <a href="{{ path('evenement_index') }}">
             <button class="btn btn-default" id="btnRetour">
                 Revenir dans la liste
             </button>
         </a>
-        <a href="{{ path('evenement_admin') }}">
-            <button class="btn btn-success" >
-                S'inscrire
-            </button>
-        </a>
+        {% if is_granted('ROLE_ELEVE') and app.user.getEleve.
+        getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or
+         evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y') %}
+            <a href="{{ path('evenement_admin') }}">
+                <button class="btn btn-success" >
+                    S'inscrire
+                </button>
+            </a>
+        {% else %}
+            <a href="{{ path('evenement_admin') }}">
+                <button class="btn btn-success" disabled>
+                    S'inscrire
+                </button>
+            </a>
+        {% endif %} 
     </div>
 
     

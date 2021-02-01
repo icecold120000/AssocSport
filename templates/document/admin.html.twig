@@ -38,8 +38,8 @@
         {% for document in documents %}
             <tr>
                 <td scope="row">{{ document.nomDocument }}</td>
-                <td> <a href="{{ document.lienDocument }}" 
-                        download="{{ document.lienDocument }}">
+                <td> <a href="{{ asset('uploads/docs/' ~ document.lienDocument) }}" 
+                        download="{{ asset('uploads/docs/' ~ document.lienDocument) }}">
                     <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
                 </td>
                 <td>

@@ -1,77 +1,107 @@
+    {{form_start(form)}}
         <div id="part1">
-            <label class="labels" >Nom de l'événement</label>
             <div>
-                <input type="text" name="nomEvent" id="inputNom" class="form-control"
-                placeholder="Saisissez un nom de l'événement">
+                {{form_label(form.nomEvenement)}}
             </div>
-                <label class="labels" >Image de l'événement : </label>
-            <div>
-                <input type="file" name="imgEvent" class="inputFile">
+            <div id="divInput">
+                {{form_widget(form.nomEvenement)}}
             </div>
-                <label class="labels" >Vignette de l'événement : </label>
-            <div>
-                <input type="file" name="vigEvent" class="inputFile">
+            <div class="erreur">
+                {{form_errors(form.nomEvenement)}}
             </div>
-            <label class="labels" >Description de l'événement</label>
             <div>
-                <input type="text" name="descripEvent"
-                 id="inputDescrip" class="form-control"
-                 placeholder="Saisissez une description de l'événement">
+                {{form_label(form.dateDebut)}}
             </div>
-            <label class="labels">Lieu de l'événement</label>
-            <div>
-            	<input type="text" name="lieuEvent"
-            	 id="inputLieu" class="form-control"
-            	 placeholder="Saisissez un lieu où se situe l'événement">
+            <div id="divInput">
+                {{form_widget(form.dateDebut)}}
             </div>
-            <label class="labels">Le cout d'inscription 
-            de l'événement</label>
+            <div class="erreur">
+                {{form_errors(form.dateDebut)}}
+            </div>
             <div>
-            	<input type="number" name="coutEvent"
-            	 id="inputCout" class="form-control"
-            	 placeholder="Saisissez un cout pour l'inscription de l'événement">
+                {{form_label(form.dateFin)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.dateFin)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.dateFin)}}
+            </div>
+            <div>
+                {{form_label(form.lieuEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.lieuEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.lieuEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.coutEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.coutEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.coutEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.descripEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.descripEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.descripEvenement)}}
             </div>
         </div>
         <div id="part2">
-            <label class="labels">Le nombre de place
-             maximum de l'événement</label>
             <div>
-            	<input type="number" name="nbPlaceEvent"
-            	 id="inputNbPlace" class="form-control"
-            	 placeholder="Saisissez un nombre de place de l'événement">
+                {{form_label(form.nbPlace)}}
             </div>
-            <label class="labels">La date de début
-             de l'événement</label>
-            <div>
-            	<input type="date" name="dateDebutEvent"
-            	 id="inputDateDebut" class="form-control">
+            <div id="divInput">
+                {{form_widget(form.nbPlace)}}
             </div>
-            <label class="labels">La date de fin
-             de l'événement</label>
-            <div>
-            	<input type="date" name="dateFinEvent"
-            	 id="inputDateFin" class="form-control">
+            <div class="erreur">
+                {{form_errors(form.nbPlace)}}
             </div>
             <div>
-                <span>Le sport pratiqué</span>
-                <select class="form-select">
-                    <option selected>Aucun</option>
-            	    {% for sport in sports %}
-                        <option value="{{ sport.id }}">{{sport.nomSport}}</option>
-                    {% endfor %}
-                </select>
+                {{form_label(form.imageEvenement)}}
             </div>
-            <span>La categorie d'élève qui
-             va participer à cet événement</span>
+            <div id="divInput">
+                {{form_widget(form.imageEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.imageEvenement)}}
+            </div>
             <div>
-                <select class="form-select">
-                    <option selected>Aucune</option>
-                    {% for categ in categories %}
-                        <option value="{{ categ.id }}">
-                            {{categ.libelleCategorie}}
-                        </option>
-                    {% endfor %}
-                </select>
+                {{form_label(form.vignetteEvenement)}}
             </div>
+            <div id="divInput">
+                {{form_widget(form.vignetteEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.vignetteEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.Type)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.Type)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Type)}}
+            </div>
+            <div>
+                {{form_label(form.Sport)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.Sport)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Sport)}}
+            </div>
+        </div>
+    {{form_end(form)}}
             
 

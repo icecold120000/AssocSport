@@ -5,16 +5,18 @@
 {% block body %}
     <h1>Ajouter un nouveau élève</h1>
 
-    <div class="container-fluid">
-        <form id="formEleve" method="POST" action="{{path('eleve_new')}}">
+    {% for message in app.flashes('SuccessEleve') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité2" id="formEleve">
             {{ include('eleve/_form.html.twig') }}
-                <div id="divAjout" class="form-actions">
-                    <input type="submit" value="Ajouter
-                     votre eleve" class="btn btn-success">
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+
 
     <a href="{{ path('eleve_index') }}">
     	<button class="btn btn-default" id="btnRetour">
@@ -22,4 +24,5 @@
         </button>
    </a>
     
+    {{dump()}}
 {% endblock %}

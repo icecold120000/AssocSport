@@ -1,67 +1,75 @@
+    {{form_start(form)}}
         <div id="part1">
-            <label class="labels" >Nom de l'élève</label>
             <div>
-                <input type="text" name="nomEleve" id="inputNom" class="form-control"
-                placeholder="Saisissez un nom de l'élève">
-            </div>
-            <label class="labels">Prénom de l'élève</label>
-            <div>
-                <input type="text" name="prenomEleve"
-                 id="inputPrenom" class="form-control"
-                 placeholder="Saisissez le prénom de l'élève">
-            </div>
-            <label class="labels" >Photo de l'élève</label>
-            <div>
-                <input type="file" name="imgEleve" class="inputFile">
-            </div>
-            <label class="labels">La date de naissance
-             de l'élève</label>
-            <div>
-                <input type="date" name="dateNaissance"
-                id="inputDateNaissance" class="form-control">
+                {{form_label(form.nomEleve)}}
             </div>
             <div>
-            	<span>Genre : </span>
-                <select class="form-select">
-                    <option selected>Aucun</option>
-                    <option value="H">Homme</option>
-                    <option value="F">Femme</option>
-                </select>
+                {{form_widget(form.nomEleve)}}
+            </div>
+            <div>
+                {{form_label(form.prenomEleve)}}
+            </div>
+            <div>
+                {{form_widget(form.prenomEleve)}}
+            </div>
+            <div>
+                {{form_label(form.imgFile)}}
+            </div>
+            <div id="inputFile">
+                {{form_widget(form.imgFile)}}
+            </div>
+            <div>
+                {{form_label(form.dateNaissance)}}
+            </div>
+            <div>
+                {{form_widget(form.dateNaissance)}}
+            </div>
+            <div>
+                {{form_label(form.genreEleve)}}
+            </div>
+            <div id="selectGenre">
+                {{form_widget(form.genreEleve)}}
             </div>
         </div>
         <div id="part2">
-            <label class="labels">Le numéro de téléphone 
-            de l'élève</label>
             <div>
-            	<input type="text" name="numTelEleve"
-            	 id="inputNumTel" class="form-control"
-            	 placeholder="Saisissez le numéro de téléphone de l'élève">
-            </div>
-            <label class="labels">Le numéro de téléphone d'un parent de l'élève</label>
-            <div>
-            	<input type="text" name="numParentEleve"
-            	 id="inputNumParent" class="form-control"
-            	 placeholder="Saisissez un nombre de place de l'élève">
+                {{form_label(form.numTelEleve)}}
             </div>
             <div>
-                <span>La classe de l'élève : </span>
-                <select class="form-select">
-                    <option selected>Aucune</option>
-            	   {% for classe in classes %}
-                        <option value="{{ classe.id }}">{{classe.libelle}}</option>
-                    {% endfor %}
-                </select>
+                {{form_widget(form.numTelEleve)}}
             </div>
             <div>
-                <span class="labels" >La categorie 
-                auquel l'élève appartient : </span>
-                <select class="form-select">
-                    <option selected>Aucune</option>
-                    {% for categ in categories %}
-                        <option value="{{ categ.id }}">
-                        {{categ.libelleCategorie}}</option>
-                    {% endfor %}
-                </select>
+                {{form_label(form.numTelParent)}}
             </div>
+            <div>
+                {{form_widget(form.numTelParent)}}
+            </div>
+            <div>
+                {{form_label(form.Classe)}}
+            </div>
+            <div id="selectClasse">
+                {{form_widget(form.Classe)}}
+            </div>
+            <div>
+                {{form_label(form.Categorie)}}
+            </div>
+            <div id="selectCategorie">
+                {{form_widget(form.Categorie)}}
+            </div>
+            <div>
+                {{form_label(form.archiveEleve)}}
+            </div>
+            <div id="selectArchive">
+                {{form_widget(form.archiveEleve)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer le document
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}
 
 

@@ -4,75 +4,73 @@
 
 {% block body %}
     <h1>Liste des événements</h1>
-        <div id="filtre">
-            <div id="left">
-                <p>{{evenements|length}} évenements</p>
-            </div>
-            <div class="selectFiltre">
-                <span>Categorie : </span>
-                <select class="form-select">
-                    <option selected>Toutes</option>
-                    {% for categorie in categories %}
-                        <option value="{{ categorie.id }}">{{categorie.libelleCategorie}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="selectFiltre">
-                <span> Sport : </span>
-                <select class="form-select">
-                    <option selected>Tous</option>
-                    {% for sport in sports %}
-                          <option value="{{ sport.id }}">{{sport.nomSport}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div id="switch">
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-                <span>Actif</span>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary">
-                    Afficher
-                </button>
-            </div>
+    <div id="filtre">
+        <div id="left">
+            <p>{{evenements|length}} évenements</p>
         </div>
-        {% for evenement in evenements %}
-            <section id="evenement">
-                <div class="container-fluid">
-                    <img src="{{ evenement.vignetteEvenement }}" id="vignette">
-                    <div id="event">
-                        <div>
-                            <h3>{{ evenement.nomEvenement }}</h3>
+        <div class="selectFiltre">
+            <span>Categorie : </span>
+            <select class="form-select">
+                {% for categorie in categories %}
+                    <option value="{{ categorie.id }}">{{categorie.libelleCategorie}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="selectFiltre">
+            <span> Sport : </span>
+            <select class="form-select">
+                <option selected>Tous</option>
+                {% for sport in sports %}
+                      <option value="{{ sport.id }}">{{sport.nomSport}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="switch">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <span>Actif</span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">
+                Afficher
+            </button>
+        </div>
+    </div>
+    {% for evenement in evenements %}
+        <section id="evenement">
+            <div class="container-fluid">
+                <img src="{{ evenement.vignetteEvenement }}" id="vignette">
+                <div id="event">
+                    <div>
+                        <h3>{{ evenement.nomEvenement }}</h3>
+                    </div>
+                    <div>
+                        <div id="dateInscrip">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>
+                                {{ evenement.dateDebut ? evenement.
+                                dateDebut|date('d/m/Y') : '' }}
+                            </span>
                         </div>
-                        <div>
-                            <div id="dateInscrip">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>
-                                    {{ evenement.dateDebut ? evenement.
-                                    dateDebut|date('d/m/Y') : '' }}
-                                </span>
-                            </div>
-                            <div id="place">
-                                <p>
-                                    <i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}}
-                                    inscrit sur
-                                    {{ evenement.nbPlace }}
-                                </p>
-                            </div>
-                        </div>
-                        <div id="descrip">
-                            <p>{{ evenement.descripEvenement }}</p>
-                        </div>
-                        <div id="btnShow">
-                            <a href="{{ path('evenement_show',
-                             {'id': evenement.id}) }}"><button class="btn btn-primary">> Voir évenement</button></a>
+                        <div id="place">
+                            <p>
+                                <i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}}
+                                inscrit sur
+                                {{ evenement.nbPlace }}
+                            </p>
                         </div>
                     </div>
+                    <div id="descrip">
+                        <p>{{ evenement.descripEvenement }}</p>
+                    </div>
+                    <div id="btnShow">
+                        <a href="{{ path('evenement_show',
+                         {'id': evenement.id}) }}"><button class="btn btn-primary">> Voir évenement</button></a>
+                    </div>
                 </div>
-            </section>
-        {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
 {% endblock %}
-

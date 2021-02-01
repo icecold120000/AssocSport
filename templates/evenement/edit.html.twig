@@ -5,17 +5,17 @@
 {% block body %}
     <h1>Editer un événement</h1>
 
-    <div class="container-fluid">
-        <form id="formEvent" method="POST" action="{{
-         path('evenement_edit',{'id': evenement.id}) }}">
+    {% for message in app.flashes('SuccessEvent') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité2" id="formEvent">
             {{ include('evenement/_form.html.twig') }}
-                <div id="divAjout" class="form-actions">
-                    <input type="submit" value="Editer
-                     votre événement" class="btn btn-success">
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+
 
     <a href="{{ path('evenement_admin') }}">
         <button class="btn btn-default" id="btnRetour">

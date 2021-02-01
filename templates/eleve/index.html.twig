@@ -49,7 +49,11 @@
             </button>
         </a>
     </div>
- 
+    <a href="{{ path('admin_index') }}">
+        <button class="btn btn-default" id="btnRetour">
+            Retourner dans la liste de fonctionnalité
+        </button>
+    </a>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -71,7 +75,7 @@
                 <td><img href="{{ eleve.photoEleve }}"></td>
                 <td>{{ eleve.nomEleve }}</td>
                 <td>{{ eleve.prenomEleve }}</td>
-                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d-m-Y') : '' }}</td>
+                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ eleve.genreEleve }}</td>
                 <td>+33 (0){{ eleve.numTelEleve }}</td>
                 <td>+33 (0){{ eleve.numTelParent }}</td>
