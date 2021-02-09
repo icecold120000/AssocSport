@@ -21,6 +21,10 @@ a{
 	color: white;
 }
 
+li{
+	list-style: none;
+}
+
 #links{
 	color: black;
 }
@@ -32,7 +36,7 @@ form{
 }
 
 form div{
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 }
 
 label{
@@ -160,25 +164,22 @@ button.btn.btn-success{
 /*formulaire d'inscription*/
 
 
-#formRegister #check{
+#formRegister #check input{
 	height: 22px;
 	position: relative;
-	width: 3%;
+	right: 33%;
 }
 
-#formRegister #divAjout{
-	right: 0;
+#formRegister #divInput{
+	font-size: 20px;
+	margin-top: 20px;
+	right: 17%;
+	width: 80%;
 }
 
-#formRegister #divAjout p{
-	margin: 0 0 0 20px;
-	padding-top:40px; 
+#formRegister input{
+	width: 80%;
 }
-
-#formRegister button.btn.btn-success{
-	padding: 15px;
-	font-size: 20px;	
-} 
 
 /*formulaire d'oubli de mot de passe*/
 
@@ -276,21 +277,82 @@ button.btn.btn-success{
 }
 
 #formEleve.formEntité2 #selectCategorie select{
-	right:36%;
+	right:52%;
 }
 
 #formEleve.formEntité2 #selectClasse select{
-	right:40%;
+	right:33%;
 }
 
 #formEleve.formEntité2 #selectGenre select{
-	right:42%;
+	right:54%;
 }
 
 #formEleve.formEntité2 #selectArchive select{
-	right:37%;
+	right:53%;
 }
 
+/*Les Formulaires d'ajout et de modification des utilisateurs*/
+
+#formUser.formEntité2 select{
+	position: relative;
+    font-size: 25px;
+}
+
+#formUser.formEntité2 #selectRole select{
+	right: 54%;
+}
+
+#formUser.formEntité2 #selectRole label, 
+#formUser.formEntité2 #selectRole select#user_roles_1{
+	display: none;
+}
+
+#formUser.formEntité2 #selectRole div{
+	padding-bottom: 0;
+}
+
+#formUser.formEntité2 #selectEleve select{
+	right: 56%;
+}
+
+/*Les Formulaires d'ajout et de modification des événements*/
+
+#formEvent.formEntité2 form{
+	padding-bottom: 15px;
+}
+
+#formEvent.formEntité2 input{
+	right: 0;
+}
+
+#formEvent.formEntité2 #divInput{
+	width: 85%;
+    right: 15%;
+}
+#formEvent.formEntité2 select{
+	position: relative;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+#formEvent.formEntité2 .fileEvent input{
+	left: 9%;
+}
+
+#formEvent.formEntité2 #selectType select{
+	right:67%;
+}
+
+#formEvent.formEntité2 #selectSport select{
+	right: 61%;
+}
+
+/*Formulaire de fichier CSV ou XLSX des utilisateurs*/
+
+#fileInputUser input{
+	margin-top: 20px;
+}
 
 /*Page de gestion des documents*/
 
@@ -569,6 +631,10 @@ table button.btn.btn-info{
 
 #btninfo5{
 	padding: 25px 90px;
+}
+
+#btninfo6{
+	padding: 25px 110px;
 }
 
 #btnAjout, #btnRetour{
