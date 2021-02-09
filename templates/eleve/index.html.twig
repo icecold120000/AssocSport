@@ -43,7 +43,7 @@
                 Ajouter un nouveau élève
             </button>
         </a>
-        <a href="{{ path('eleve_new') }}">
+        <a href="{{ path('eleve_file') }}">
             <button class="btn btn-primary" id="btnAjout">
                 Ajouter une liste d'élève
             </button>
@@ -58,8 +58,8 @@
         <thead>
             <tr>
                 <th>Photo de l'élève</th>
-                <th>Nom de l'élève</th>
                 <th>Prénom de l'élève</th>
+                <th>Nom de l'élève</th>
                 <th>Date de naissance</th>
                 <th>Genre de l'élève</th>
                 <th>Numéro de téléphone</th>
@@ -72,9 +72,9 @@
         <tbody>
         {% for eleve in eleves %}
             <tr>
-                <td><img href="{{ eleve.photoEleve }}"></td>
-                <td>{{ eleve.nomEleve }}</td>
+                <td><img src="{{ asset('uploads/imgProfil/' ~ eleve.photoEleve) }}"></td>
                 <td>{{ eleve.prenomEleve }}</td>
+                <td>{{ eleve.nomEleve }}</td>
                 <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>{{ eleve.genreEleve }}</td>
                 <td>+33 (0){{ eleve.numTelEleve }}</td>

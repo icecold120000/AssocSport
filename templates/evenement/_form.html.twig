@@ -66,27 +66,27 @@
                 {{form_errors(form.nbPlace)}}
             </div>
             <div>
-                {{form_label(form.imageEvenement)}}
+                {{form_label(form.imgEvent)}}
             </div>
-            <div id="divInput">
-                {{form_widget(form.imageEvenement)}}
+            <div id="divInput" class="fileEvent">
+                {{form_widget(form.imgEvent)}}
             </div>
             <div class="erreur">
-                {{form_errors(form.imageEvenement)}}
+                {{form_errors(form.imgEvent)}}
             </div>
             <div>
-                {{form_label(form.vignetteEvenement)}}
+                {{form_label(form.vigEvent)}}
             </div>
-            <div id="divInput">
-                {{form_widget(form.vignetteEvenement)}}
+            <div id="divInput" class="fileEvent">
+                {{form_widget(form.vigEvent)}}
             </div>
             <div class="erreur">
-                {{form_errors(form.vignetteEvenement)}}
+                {{form_errors(form.vigEvent)}}
             </div>
             <div>
                 {{form_label(form.Type)}}
             </div>
-            <div id="divInput">
+            <div id="selectType">
                 {{form_widget(form.Type)}}
             </div>
             <div class="erreur">
@@ -95,11 +95,18 @@
             <div>
                 {{form_label(form.Sport)}}
             </div>
-            <div id="divInput">
+            <div id="selectSport">
                 {{form_widget(form.Sport)}}
             </div>
             <div class="erreur">
                 {{form_errors(form.Sport)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer l'événement
+                    </button>
+                </div>
             </div>
         </div>
     {{form_end(form)}}
