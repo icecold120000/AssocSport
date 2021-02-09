@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\CategorieDocument;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,7 @@ class CategorieDocumentType extends AbstractType
     {
         $builder
             ->add('libelleCategorieDoc', TextType::class,[
-                'label' => 'Le libelle de la categorie d\'élève',
+                'label' => 'Le libellé de la catégorie d\'élève',
                 'required' => false,
             ])
         ;

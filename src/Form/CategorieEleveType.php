@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CategorieEleveType extends AbstractType
 {
@@ -15,7 +14,7 @@ class CategorieEleveType extends AbstractType
     {
         $builder
             ->add('libelleCategorie', TextType::class,[
-                'label' => 'Le libelle de la categorie d\'élève',
+                'label' => 'Le libellé de la catégorie d\'élève',
                 'required' => false,
             ])
         ;
