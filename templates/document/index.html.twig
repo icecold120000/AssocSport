@@ -7,8 +7,12 @@
     <div id="search">
         {{form_start(form)}}
             <div class="form-row align-items-end">
+                <div class="erreur">
+                    {{form_errors(form.mots)}}
+                </div>
                 <div class="col">
-                    {{form_row(form.nom)}}
+                    {{form_label(form.mots)}}
+                    {{form_widget(form.mots)}}
                     <button class="btn btn-light" type="submit">Rechercher</button>
                 </div>
             </div>
