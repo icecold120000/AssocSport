@@ -117,7 +117,6 @@ button.btn.btn-success{
 	padding-bottom: 30px;
 }
 
-
 #connexion a{
 	margin: 0;
 	padding: 0;
@@ -237,7 +236,6 @@ button.btn.btn-success{
     text-align: left;
 }
 
-
 /*Les Formulaires d'ajout et de modification des documents*/
 .formEntité2 #inputFile{
 	margin-left: 65px;
@@ -262,9 +260,17 @@ button.btn.btn-success{
 }
 
 #formDoc.formEntité2 select{
-	position: relative;
-    right: 30%;
     font-size: 25px;
+}
+
+#formDoc.formEntité2 #eventDoc{
+	position: relative;
+    right: 53%;
+}
+
+#formDoc.formEntité2 #categDoc{
+	position: relative;
+    right: 55%;
 }
 
 /*Les Formulaires d'ajout et de modification des élèves*/
