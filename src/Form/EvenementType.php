@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Evenement;
 use App\Entity\TypeEvenement;
+use App\Entity\CategorieEleve;
 use App\Entity\Sport;
 use App\Repository\TypeEvenementRepository;
 use App\Repository\SportRepository;
+use App\Repository\CategorieEleveRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -93,7 +95,7 @@ class EvenementType extends AbstractType
                 'class' => TypeEvenement::class,
                 'query_builder' => function (TypeEvenementRepository $er) {
                     return $er->createQueryBuilder('te')
-                        ->orderBy('te.nom', 'ASC');
+                        ->orderBy('te.id', 'ASC');
                 },
                 'choice_label' => 'nom',
                 'required' => false,
@@ -103,9 +105,19 @@ class EvenementType extends AbstractType
                 'class' => Sport::class,
                 'query_builder' => function (SportRepository $er) {
                     return $er->createQueryBuilder('sp')
-                        ->orderBy('sp.nomSport', 'ASC');
+                        ->orderBy('sp.id', 'ASC');
                 },
                 'choice_label' => 'nomSport',
+                'required' => false,
+            ])
+            ->add('CategorieEleve', EntityType::class,[
+                'label' => 'La catégorie d\'élève qui peut participer',
+                'class' => CategorieEleve::class,
+                'query_builder' => function (CategorieEleveRepository $er) {
+                    return $er->createQueryBuilder('ce')
+                        ->orderBy('ce.id');
+                },
+                'choice_label' => 'libelleCategorie',
                 'required' => false,
             ])
         ;
