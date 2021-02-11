@@ -4,56 +4,46 @@
 
 {% block body %}
     <h1>Liste des élèves</h1>
-    <div id="filtre">
-            <div id="left">
-                <span>Classe : </span>
-                <select class="form-select">
-                    <option selected>Toutes</option>
-                    {% for classe in classes %}
-                        <option value="{{ classe.id }}">{{classe.Libelle}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div>
-                <span>Genre : </span>
-                <select class="form-select">
-                    <option selected>Tous</option>
-                    <option value="H">Homme</option>
-                    <option value="F">Femme</option>
-                </select>
-            </div>
-            <div>
-                <span>Archive : </span>
-                <select class="form-select">
-                    <option selected>Tous</option>
-                    <option value="0">Non Archivé</option>
-                    <option value="1">Archivé</option>
-                </select>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-info">
-                    Afficher
-                </button>
-            </div>
+    <div id="filtreEleve" class="filtre form-row align-items-end">
+        {{form_start(form)}}
+        <div id="left" class="col">
+            <span>{{ form_label(form.classe)}}</span>
+            {{form_widget(form.classe)}}
         </div>
+        <div class="col">
+            <span>{{ form_label(form.genre)}}</span>
+            {{form_widget(form.genre)}}
+        </div>
+        <div class="col">
+            <span>{{ form_label(form.archive)}}</span>
+            {{form_widget(form.archive)}}
+        </div>
+        <div>
+            <button type="submit" class="btn btn-info">
+                Afficher
+            </button>
+        </div>
+        {{form_end(form)}}
     </div>
     <div>
-        <a href="{{ path('eleve_new') }}">
-            <button class="btn btn-primary" id="btnAjout">
-                Ajouter un nouveau élève
-            </button>
-        </a>
-        <a href="{{ path('eleve_file') }}">
-            <button class="btn btn-primary" id="btnAjout">
-                Ajouter une liste d'élève
+        <div>
+            <a href="{{ path('eleve_new') }}">
+                <button class="btn btn-primary" id="btnAjout">
+                    Ajouter un nouveau élève
+                </button>
+            </a>
+            <a href="{{ path('eleve_file') }}">
+                <button class="btn btn-primary" id="btnAjout">
+                    Ajouter une liste d'élève
+                </button>
+            </a>
+        </div>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-default" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
             </button>
         </a>
     </div>
-    <a href="{{ path('admin_index') }}">
-        <button class="btn btn-default" id="btnRetour">
-            Retourner dans la liste de fonctionnalité
-        </button>
-    </a>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -62,8 +52,8 @@
                 <th>Nom de l'élève</th>
                 <th>Date de naissance</th>
                 <th>Genre de l'élève</th>
-                <th>Numéro de téléphone</th>
-                <th>Numéro de téléphone d'un parent</th>
+                <th>N° de téléphone</th>
+                <th>N° de téléphone d'un parent</th>
                 <th>Archivage de l'élève</th>
                 <th>Editer</th>
                 <th>Supprimer</th>

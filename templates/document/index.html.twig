@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th scope="col">Nom du Document</th>
-                    <th scope="col">Description du document</th>
+                    <th scope="col">Description du Document</th>
                     <th scope="col">Lien de téléchargement</th>
                 </tr>
             </thead>
@@ -32,11 +32,9 @@
                     <tr>
                         <td scope="row">{{ document.nomDocument }}</td>
                         <td scope="row">{{ document.descriptionDocument }}</td>
-                        <td>
                         <td> <a href="{{ asset('uploads/docs/' ~ document.lienDocument) }}" 
                                 download="{{ asset('uploads/docs/' ~ document.lienDocument) }}">
                             <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
-                        </td>
                         </td>
                     </tr>
                 {% endfor %}

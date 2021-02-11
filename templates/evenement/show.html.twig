@@ -18,7 +18,7 @@
 
         <p>Lieu : {{ evenement.lieuEvenement}}</p>
 
-        <img href="{{asset('/static/Images/cross.jpg')}}" id="imgEvent">
+        <img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}" id="imgEvent" placeholder="image de l'événement">
         
         <h2>Description de l'événement</h2>
 
@@ -59,7 +59,6 @@
             </tbody>
         </table>
     </div>
-
     <div>
         <a href="{{ path('evenement_index') }}">
             <button class="btn btn-default" id="btnRetour">

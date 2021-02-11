@@ -102,6 +102,15 @@
                 {{form_errors(form.Sport)}}
             </div>
             <div>
+                {{form_label(form.CategorieEleve)}}
+            </div>
+            <div id="selectCategEleve">
+                {{form_widget(form.CategorieEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.CategorieEleve)}}
+            </div>
+            <div>
                 <div id="divAjout" class="form-actions">
                     <button type="submit" class="btn btn-success">
                         Enregistrer l'événement
