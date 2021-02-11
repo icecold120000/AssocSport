@@ -354,6 +354,10 @@ button.btn.btn-success{
 	right: 61%;
 }
 
+#formEvent.formEntité2 #selectCategEleve select{
+	right: 63%;
+}
+
 /*Formulaire de fichier CSV ou XLSX des utilisateurs*/
 
 #fileInputUser input{
@@ -394,38 +398,59 @@ button.btn.btn-success{
 
 /*Filtre des pages de gestions*/
 
-#filtre{
-	display: flex;
+.filtre{
+	display: inline-block;
 }
 
-#filtre span{
+.filtre span{
 	font-size: 20px;
 }
 
-#filtre select{
+.filtre select{
 	height: 30px;
 	font-size: 20px;
 }
 
-#filtre button{
+.filtre button{
 	padding: 5px 10px 5px 10px;
 	font-size: 20px;
 }
 
-#filtre div{
+.filtre div{
 	margin: 10px;
+	float: left;
 }
 
-#filtre .selectFiltre{
+.filtre .selectFiltre{
 	margin-top: 15px;
 }
 
-#filtre #switch{
-	margin-top: 18px;
+.filtre #switch{
+	margin-top: 15px;
 }
 
-#filtre #left{
-	margin-left: 25%;
+.filtre #left{
+	float: left;
+}
+
+/*Filtre des élèves*/
+div#filtreEleve.filtre label{
+	margin: 20px;
+}
+
+/*Filtre des événements*/
+
+div#formFilter .filtre{
+	width: 79%;
+}
+
+#formFilter label{
+	margin: 3px 20px 0 0;
+}
+
+#formFilter form{
+	font-size: 22px;
+	padding: 0;
 }
 
 /*Le switch dans le filtre*/
@@ -517,15 +542,13 @@ input:checked + .slider:before{
 }
 
 #event #descrip{
-	display: inline-block;
-	position: relative;
-	right: 9%;
+	width: 70%
 }
 
 #evenement{
 	padding: 0;
-	width: 75%;
-	margin-left: 15%;
+	width: 80%;
+	margin-left: 10%;
 	margin-bottom: 5%;
 	background-color: whitesmoke;
 }
