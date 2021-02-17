@@ -12,7 +12,7 @@ h6{
 	font-size: 20px;
 }
 
-nav{
+nav#mainNav {
 	padding: 8px;
 	background-color: #0F1B2C;
 }
@@ -82,7 +82,6 @@ button.btn.btn-success{
 	font-size: 20px;
 }
 
-
 .title{
 	font-weight: bold;
 	font-size: 40px;
@@ -94,7 +93,6 @@ button.btn.btn-success{
 	display: inline-block;
 	padding: 55px;
 }
-
 
 .coordonnees p, .contact p, .access p{
 	text-align: left;
@@ -275,7 +273,6 @@ button.btn.btn-success{
 
 /*Les Formulaires d'ajout et de modification des élèves*/
 
-
 #formEleve.formEntité2 select{
 	position: relative;
     right: 35%;
@@ -406,7 +403,7 @@ button.btn.btn-success{
 	font-size: 20px;
 }
 
-.filtre select{
+.filtre select, .filtre input{
 	height: 30px;
 	font-size: 20px;
 }
@@ -436,6 +433,17 @@ button.btn.btn-success{
 /*Filtre des élèves*/
 div#filtreEleve.filtre label{
 	margin: 20px;
+}
+
+/*Recherche d'un élève*/
+
+div#searchEleveBtn{
+	float: none;
+	padding: 30px;
+}
+
+#searchEleveBtn button{
+	padding: 20px;
 }
 
 /*Filtre des événements*/
@@ -514,7 +522,7 @@ input:checked + .slider:before{
   border-radius: 50%;
 }
 
-/*la page liste des événements*/
+/*la page liste des événements vue élève et enseignant*/
 
 #vignette{
 	height: 160px;
@@ -608,10 +616,10 @@ input:checked + .slider:before{
 	margin: 1% 0;
 }
 
-/*Espace d'admin*/
+/*Espace d'administration*/
 
 .tableAdmin{
-	margin: 40px 0; 
+	margin: 30px 0; 
 	border: solid black;
 }
 
@@ -624,6 +632,10 @@ input:checked + .slider:before{
 	font-size: 25px;
 	border: solid black;
 	vertical-align: unset!important;
+}
+
+.tableAdmin p{
+	font-size: 25px;
 }
 
 i.far.fa-edit, i.fas.fa-trash{
