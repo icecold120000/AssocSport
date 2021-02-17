@@ -1,0 +1,27 @@
+	{{form_start(form)}}
+		<div>
+			{{form_label(form.libelleBudget)}}
+		</div>
+        <div id="divInput">
+            {{form_widget(form.libelleBudget)}}
+        </div>
+        <div class="erreur">
+            {{form_errors(form.libelleBudget)}}
+        </div>
+		<div>
+			{{form_label(form.montantInitialBudget)}}
+		</div>
+        <div id="divInput">
+            {{form_widget(form.montantInitialBudget)}}
+        </div>
+        <div class="erreur">
+            {{form_errors(form.montantInitialBudget)}}
+        </div>
+        <div>
+            <div id="divAjout" class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    Enregistrer le budget
+                </button>
+            </div>
+        </div>
+    {{form_end(form)}}

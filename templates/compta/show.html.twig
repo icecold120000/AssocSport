@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail {{ eleve.prenomEleve}} {{ eleve.nomEleve}}{% endblock %}
+
+{% block body %}
+	
+	<h1>{{ eleve.prenomEleve}} {{ eleve.nomEleve}}</h1>
+
+	<h2>Classe de l'élève: {{eleve.Classe.libelle}}</h2>
+
+	<p>Le montant du prélèvement : 
+		{% for flux in eleve.fluxes %}
+			{% if flux.typeFlux.libelleTypeFlux == 'Prélèvement' %}
+				{{ flux.montantFlux }} €
+			{% endif %}
+		{% else %}
+			Aucun prélèvement a été effectué
+		{% endfor %}
+	</p>
+
+	<p>Si la facturation du prélèvement a été effectué ou non : 
+		{% for flux in eleve.fluxes %}
+			{% if flux.typeFlux.libelleTypeFlux == 'Prélèvement' %}
+				{% if flux.facturationFlux == 1 %}
+					Oui
+				{% else %}
+					Non
+				{% endif %}
+			{% endif %}
+		{% else %}
+			Aucun prélèvement a été effectué
+		{% endfor %}				
+	</p>
+{% endblock %}

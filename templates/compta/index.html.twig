@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de la comptabilité{% endblock %}
+
+{% block body %}
+    <h1>Page de comptabilité</h1>
+    <div id="filtreEleve" class="filtre">
+        {{form_start(form)}}
+	        <div class="col">
+	            <span>{{ form_label(form.nomEleve)}}</span>
+	            {{form_widget(form.nomEleve)}}
+	        </div>
+	        <div class="col">
+	            <span>{{ form_label(form.Classe)}}</span>
+	            {{form_widget(form.Classe)}}
+	        </div>
+	        <div class="col">
+	            <span>{{ form_label(form.genreEleve)}}</span>
+	            {{form_widget(form.genreEleve)}}
+	        </div>
+	        <div id="searchEleveBtn">
+	            <button type="submit" class="btn btn-info">
+	                Afficher
+	            </button>
+	        </div>
+        {{form_end(form)}}
+    </div>
+    <div>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-default" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(eleves) }}
+    </div>
+    <h2>Listes des élèves</h2>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th>Le prénom de l'élève</th>
+                <th>Le nom de l'élève</th>
+                <th>Voir l'élève</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eleve in eleves %}
+                <tr>
+                    <td>{{ eleve.prenomEleve }}</td>
+                    <td>{{ eleve.nomEleve }}</td>
+                    <td>
+                        <a href="{{ path('compta_show',
+                         {'id': eleve.id}) }}">
+                            <button class="btn btn-primary">
+                                Voir l'élève
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="erreur">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(eleves) }}
+    </div>
+{% endblock %}

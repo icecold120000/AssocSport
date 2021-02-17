@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des budgets et des flux{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Liste des budgets et des flux</h1>
+
+        <a href="{{ path('budget_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Créer un nouveau budget
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-default" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a
+        <table class="table tableAdmin">
+            <thead>
+                <tr>
+                    <th>Le libellé du budget</th>
+                    <th>Le montant actuel du budget</th>
+                    <th>Editer</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for budget in budgets %}
+                <tr>
+                    <td>{{ budget.libelleBudget }}</td>
+                    <td>{{ budget.montantInitialBudget }} €</td>
+                    <td>
+                        <a href="{{ path('budget_edit',
+                        {'id': budget.id}) }}">
+                            <button class="btn btn-primary">
+                                <i class="far fa-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('budget_delete',
+                         {'id': budget.id}) }}">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h1>Tableau des crédits</h1>
+        <table class="table tableAdmin">
+            <thead>
+                <tr>
+                    <th>La date du flux</th>
+                    <th>Le montant du flux</th>
+                    <th>Le libellé du flux</th>
+                    <th>Le budget impacté</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for flux in fluxes %}
+                {% if flux.typeFlux.libelleTypeFlux == 'Crédit' %}
+                    <tr>
+                        <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
+                        <td>{{ flux.montantflux }} €</td>
+                        <td>
+                            {{flux.libelleFlux}}
+                        </td>
+                        <td>
+                            <p>{{flux.budget.libelleBudget}}</p>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h1>Tableau des débits</h1>
+        <table class="table tableAdmin">
+            <thead>
+                <tr>
+                    <th>La date du flux</th>
+                    <th>Le montant du flux</th>
+                    <th>Le libellé du flux</th>
+                    <th>Le budget impacté</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for flux in fluxes %}
+                {% if flux.typeFlux.libelleTypeFlux == 'Débit' %}
+                    <tr>
+                        <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
+                        <td>{{ flux.montantflux }} €</td>
+                        <td>
+                            {{flux.libelleFlux}}
+                        </td>
+                        <td>
+                            <p>{{flux.budget.libelleBudget}}</p>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
