@@ -14,7 +14,6 @@ class SearchDocType extends AbstractType
     {
         $builder
             ->add('mots', TextType::class,[
-
             	'label' => 'Rechercher un document',
             	'required' => false,
             	'constraints' => [

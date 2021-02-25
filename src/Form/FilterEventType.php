@@ -35,7 +35,7 @@ class FilterEventType extends AbstractType
                 'required' => false,
             ])
             ->add('CategorieEleve', EntityType::class,[
-                'label' => 'Categorie',
+                'label' => 'Catégorie',
                 'class' => CategorieEleve::class,
                 'query_builder' => function (CategorieEleveRepository $er) {
                     return $er->createQueryBuilder('ce')

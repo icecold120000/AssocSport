@@ -16,7 +16,7 @@ class FilterEleveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('classe', EntityType::class,[
+            ->add('Classe', EntityType::class,[
                 'label' => 'Classe',
                 'class' => Classe::class,
                 'query_builder' => function (ClasseRepository $er) {
@@ -29,7 +29,7 @@ class FilterEleveType extends AbstractType
                 },
                 'required' => false,
             ])
-            ->add('genre', ChoiceType::class, [
+            ->add('genreEleve', ChoiceType::class, [
                 'label' => 'Genre',
                 'choices' => [
                     'Homme' => 'H',
@@ -37,7 +37,7 @@ class FilterEleveType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('archive', ChoiceType::class, [
+            ->add('archiveEleve', ChoiceType::class, [
                 'label' => 'Archive',
                 'choices' => [
                     'Non Archivé' => '0',

@@ -98,6 +98,14 @@ class EleveType extends AbstractType
                 'choice_label' => 'libelleCategorie',
                 'required' => false,
             ])
+            ->add('autoPrelev', ChoiceType::class, [
+                'label' => 'Autorisation de prélèvement',
+                'choices' => [
+                    'Non' => '0',
+                    'Oui' => '1',
+                ],
+                'required' => false,
+            ])
         ;
     }
 
