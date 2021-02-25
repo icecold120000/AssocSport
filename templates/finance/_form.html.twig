@@ -1,0 +1,67 @@
+    {{form_start(form)}}
+        <div id="part1">
+            <div>
+                {{form_label(form.montantFlux)}}
+            </div>
+            <div>
+                {{form_widget(form.montantFlux)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.montantFlux)}}
+            </div>
+            <div>
+                {{form_label(form.libelleFlux)}}
+            </div>
+            <div>
+                {{form_widget(form.libelleFlux)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.libelleFlux)}}
+            </div>
+            <div>
+                {{form_label(form.facturationFlux)}}
+            </div>
+            <div id="fluxFacture">
+                {{form_widget(form.facturationFlux)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.facturationFlux)}}
+            </div>
+        </div>
+        <div id="part2">
+            <div>
+                {{form_label(form.typeFlux)}}
+            </div>
+            <div id="fluxType">
+                {{form_widget(form.typeFlux)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.typeFlux)}}
+            </div>
+            <div>
+                {{form_label(form.evenement)}}
+            </div>
+            <div id="fluxEvent">
+                {{form_widget(form.evenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.evenement)}}
+            </div>
+            <div>
+                {{form_label(form.budget)}}
+            </div>
+            <div id="fluxBudget">
+                {{form_widget(form.budget)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.budget)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer le flux
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}

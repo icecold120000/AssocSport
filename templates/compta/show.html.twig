@@ -8,27 +8,61 @@
 
 	<h2>Classe de l'élève: {{eleve.Classe.libelle}}</h2>
 
-	<p>Le montant du prélèvement : 
-		{% for flux in eleve.fluxes %}
-			{% if flux.typeFlux.libelleTypeFlux == 'Prélèvement' %}
-				{{ flux.montantFlux }} €
-			{% endif %}
-		{% else %}
-			Aucun prélèvement a été effectué
-		{% endfor %}
-	</p>
-
-	<p>Si la facturation du prélèvement a été effectué ou non : 
-		{% for flux in eleve.fluxes %}
-			{% if flux.typeFlux.libelleTypeFlux == 'Prélèvement' %}
-				{% if flux.facturationFlux == 1 %}
-					Oui
-				{% else %}
-					Non
-				{% endif %}
-			{% endif %}
-		{% else %}
-			Aucun prélèvement a été effectué
-		{% endfor %}				
-	</p>
+    <a href="{{ path('compta_index') }}">
+    	<button class="btn btn-secondary" id="btnRetour">
+            Revenir dans la liste
+        </button> 
+    </a>
+    <div>
+        {{ knp_pagination_render(eleveFlux) }}
+    </div>
+	<table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th>Montant du flux</th>
+                <th>Date du flux</th>
+                <th>Libelle du flux</th>
+                <th>Si la facturation effectuée ou non</th>
+                <th>Editer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for flux in eleve.fluxes %}
+            <tr>
+                <td>{{ flux.montantFlux }} €</td>
+                <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
+                <td>{{ flux.libelleFlux }}</td>
+                <td>				
+	                {% if flux.facturationFlux == 1 %}
+						Oui
+					{% else %}
+						Non
+					{% endif %}
+				</td>
+                <td>
+                    <a href="{{ path('compta_edit',
+                    {'id': flux.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(eleveFlux) }}
+    </div>
+    <div>
+        <a href="{{ path('compta_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
 {% endblock %}

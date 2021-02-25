@@ -6,19 +6,19 @@
     <h1>Liste des élèves</h1>
     <div id="filtreEleve" class="filtre form-row align-items-end">
         {{form_start(form)}}
-        <div id="left" class="col">
-            <span>{{ form_label(form.classe)}}</span>
-            {{form_widget(form.classe)}}
-        </div>
-        <div class="col">
-            <span>{{ form_label(form.genre)}}</span>
-            {{form_widget(form.genre)}}
-        </div>
-        <div class="col">
-            <span>{{ form_label(form.archive)}}</span>
-            {{form_widget(form.archive)}}
+        <div id="left">
+            <span>{{ form_label(form.Classe)}}</span>
+            {{form_widget(form.Classe)}}
         </div>
         <div>
+            <span>{{ form_label(form.genreEleve)}}</span>
+            {{form_widget(form.genreEleve)}}
+        </div>
+        <div>
+            <span>{{ form_label(form.archiveEleve)}}</span>
+            {{form_widget(form.archiveEleve)}}
+        </div>
+        <div id="submitFiltre">
             <button type="submit" class="btn btn-info">
                 Afficher
             </button>
@@ -33,16 +33,21 @@
                 </button>
             </a>
             <a href="{{ path('eleve_file') }}">
-                <button class="btn btn-primary" id="btnAjout">
+                <button class="btn btn-info" id="btnAjout">
                     Ajouter une liste d'élève
                 </button>
             </a>
         </div>
-        <a href="{{ path('admin_index') }}">
-            <button class="btn btn-default" id="btnRetour">
-                Retourner dans la liste de fonctionnalité
-            </button>
-        </a>
+        <div id="divRetour">
+            <a href="{{ path('admin_index') }}">
+                <button class="btn btn-secondary" id="btnRetour">
+                    Retourner dans la liste de fonctionnalité
+                </button>
+            </a>
+        <div>
+    </div>
+    <div>
+        {{ knp_pagination_render(eleves) }}
     </div>
     <table class="table tableAdmin">
         <thead>
@@ -54,7 +59,7 @@
                 <th>Genre de l'élève</th>
                 <th>N° de téléphone</th>
                 <th>N° de téléphone d'un parent</th>
-                <th>Archivage de l'élève</th>
+                <th>Si l'élève est archivé</th>
                 <th>Editer</th>
                 <th>Supprimer</th>
             </tr>
@@ -66,10 +71,22 @@
                 <td>{{ eleve.prenomEleve }}</td>
                 <td>{{ eleve.nomEleve }}</td>
                 <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
-                <td>{{ eleve.genreEleve }}</td>
+                <td>
+                    {% if eleve.genreEleve == 'M' %}
+                        <p>Homme</p>
+                    {% else %}
+                        <p>Femme</p>
+                    {% endif %}
+                </td>
                 <td>+33 (0){{ eleve.numTelEleve }}</td>
                 <td>+33 (0){{ eleve.numTelParent }}</td>
-                <td>{{ eleve.archiveEleve }}</td>
+                <td>
+                    {% if eleve.archiveEleve == 0 %}
+                        Non
+                    {% else %}
+                        Oui
+                    {% endif %}
+                </td>
                 <td>
                     <a href="{{ path('eleve_edit',
                     {'id': eleve.id}) }}">
@@ -94,5 +111,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div>
+        {{ knp_pagination_render(eleves) }}
+    </div>
 {% endblock %}

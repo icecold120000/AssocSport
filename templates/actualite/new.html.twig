@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une nouvelle actualité{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle actualité</h1>
+
+    {% for message in app.flashes('SuccessActu') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité2" id="formActu">
+            {{ include('actualite/_form.html.twig') }}
+        </div>
+    </div>
+
+    <div>
+        <a href="{{ path('actualite_index') }}">
+        	<button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button> 
+        </a>
+    </div>
+    
+{% endblock %}

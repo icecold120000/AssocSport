@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualité{% endblock %}
+
+{% block body %}
+    <h1>Suppression d'un budget</h1>
+
+	<p>Cliquez sur le bouton Supprimer pour supprimer le budget choisi : {{budget.libelleBudget}}</p>
+
+
+    {{ include('budget/_delete_form.html.twig') }}
+
+    <div>
+        <a href="{{ path('budget_index') }}">
+        	<button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button> 
+        </a>
+    <div>
+
+{% endblock %}

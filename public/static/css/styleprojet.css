@@ -12,10 +12,36 @@ h6{
 	font-size: 20px;
 }
 
+/*Navbar Main*/
 nav#mainNav {
 	padding: 8px;
 	background-color: #0F1B2C;
 }
+
+ul.navbar-nav{
+	display: contents;
+}
+
+li.nav-item:first-child {
+	margin: 0 30px;
+}
+
+li.nav-item{
+	margin: 0;
+}
+
+div.navbar-brand {
+	margin-left: 0;
+}
+
+a.nav-link{
+	color: white!important;
+}
+
+ul#connexion{
+	display: flex;
+}
+
 
 a{
 	color: white;
@@ -58,23 +84,12 @@ label{
 	display: flex;
 }
 
-footer{
-    background-color: #0F1B2C;
-    color: white;
-    list-style: none;
-}
-
-footer i{
-	color: #fff;
-	font-size: 26px;
-}
-
 button a:hover{
 	text-decoration: none;
 }
 
 p{
-	font-size: 30px;
+	font-size: 20px;
 }
 
 button.btn.btn-success{
@@ -89,9 +104,20 @@ button.btn.btn-success{
 
 /** Footer  **/
 
+footer{
+    background-color: #0F1B2C;
+    color: white;
+    list-style: none;
+}
+
+footer i{
+	color: #fff;
+	font-size: 26px;
+}
+
 .coordonnees, .contact, .access, .networks {
 	display: inline-block;
-	padding: 55px;
+	padding: 45px;
 }
 
 .coordonnees p, .contact p, .access p{
@@ -101,7 +127,7 @@ button.btn.btn-success{
 
 .coordonnees h3, .contact h3, .access h3{
 	text-align: left;
-	font-size: 30px;
+	font-size: 25px;
 }
 
 /*formulaire de connexion*/
@@ -122,6 +148,10 @@ button.btn.btn-success{
 
 #connexion i{
 	font-size: 30px;
+}
+
+#connexion li{
+	display: contents;
 }
 
 #btnConnexion{
@@ -151,6 +181,7 @@ button.btn.btn-success{
 	color: red;
 	font-size: 30px;
 	font-weight: bold;
+	padding: 5px;
 }
 
 .erreur li{
@@ -159,7 +190,6 @@ button.btn.btn-success{
 }
 
 /*formulaire d'inscription*/
-
 
 #formRegister #check input{
 	height: 22px;
@@ -257,26 +287,23 @@ button.btn.btn-success{
 	font-size: 20px;
 }
 
-#formDoc.formEntité2 select{
-    font-size: 25px;
+.formEntité2 select{
+	font-size: 25px;
+	position: relative;
 }
 
 #formDoc.formEntité2 #eventDoc{
-	position: relative;
     right: 53%;
 }
 
 #formDoc.formEntité2 #categDoc{
-	position: relative;
     right: 55%;
 }
 
 /*Les Formulaires d'ajout et de modification des élèves*/
 
 #formEleve.formEntité2 select{
-	position: relative;
     right: 35%;
-    font-size: 25px;
 }
 
 #formEleve.formEntité2 #selectCategorie select{
@@ -295,12 +322,11 @@ button.btn.btn-success{
 	right:53%;
 }
 
-/*Les Formulaires d'ajout et de modification des utilisateurs*/
-
-#formUser.formEntité2 select{
-	position: relative;
-    font-size: 25px;
+#divRetour{
+	margin-top: 20px;
 }
+
+/*Les Formulaires d'ajout et de modification des utilisateurs*/
 
 #formUser.formEntité2 #selectRole select{
 	right: 54%;
@@ -334,13 +360,7 @@ button.btn.btn-success{
     right: 15%;
 }
 #formEvent.formEntité2 select{
-	position: relative;
-    font-size: 25px;
     margin-top: 20px;
-}
-
-#formEvent.formEntité2 .fileEvent input{
-	left: 9%;
 }
 
 #formEvent.formEntité2 #selectType select{
@@ -348,17 +368,61 @@ button.btn.btn-success{
 }
 
 #formEvent.formEntité2 #selectSport select{
-	right: 61%;
+	right: 63%;
 }
 
 #formEvent.formEntité2 #selectCategEleve select{
-	right: 63%;
+	right: 64%;
 }
 
 /*Formulaire de fichier CSV ou XLSX des utilisateurs*/
 
 #fileInputUser input{
 	margin-top: 20px;
+}
+
+/*Formulaire des flux*/
+
+#formFlux.formEntité2 #fluxFacture select,
+#formFlux.formEntité2 #fluxEvent select{
+	right: 53%;
+}
+
+#formFlux.formEntité2 #fluxType select{
+	right: 51%;
+}
+
+#formFlux.formEntité2 #fluxBudget select{
+	right: 58%;
+}
+
+/*Formulaire des actualités et photos*/
+
+#formActu.formEntité2 #selectArchiveActu select{
+	right: 55%;
+}
+
+#formActu.formEntité2 textarea{
+	font-size: 20px;
+    height: 200px;
+    width: 80%;
+    position: relative;
+    right: 10%;
+}
+
+#formPhotoActu.formEntité2 input{
+	right: 0;
+	width: inherit;
+	margin-top: 20px;
+}
+
+#formPhotoActu.formEntité2 #selectActu select{
+	right: 57%;
+}
+
+#formPhotoActu.formEntité2
+ #selectArchivePhoto select{
+	right: 54%;
 }
 
 /*Page de gestion des documents*/
@@ -414,8 +478,12 @@ button.btn.btn-success{
 }
 
 .filtre div{
-	margin: 10px;
+	margin: 0 10px 0 0;
 	float: left;
+}
+
+.filtre div#submitFiltre{
+	margin: -5px 10px 0 0;
 }
 
 .filtre .selectFiltre{
@@ -426,13 +494,25 @@ button.btn.btn-success{
 	margin-top: 15px;
 }
 
-.filtre #left{
-	float: left;
+.filtre #left p{
+	font-size: 30px;
+	margin: 8px 0 0 0;
 }
 
 /*Filtre des élèves*/
+
+#filtreEleve form{
+	font-size: small;
+	padding: 0;
+}
+
+div#filtreEleve.filtre{
+	position: relative;
+    left: 5%;
+}
+
 div#filtreEleve.filtre label{
-	margin: 20px;
+	margin: 0 20px;
 }
 
 /*Recherche d'un élève*/
@@ -549,8 +629,17 @@ input:checked + .slider:before{
 	right: 22%;
 }
 
-#event #descrip{
-	width: 70%
+#event #descripEvent{
+	width: 75%;
+	display: inline-block;
+}
+
+#event #descripActu{
+	width: 75%;
+	display: inline-block;
+	margin-top: 30px;
+	position: relative;
+	right: 7%;
 }
 
 #evenement{
@@ -587,6 +676,11 @@ input:checked + .slider:before{
 #btnShow{
 	position: relative;
 	left: 5%;
+}
+
+#btnShow button{
+	font-weight: bold;
+	font-size: 15px;
 }
 
 /*Page de détails des événements pour s'inscrire*/
@@ -631,7 +725,7 @@ input:checked + .slider:before{
 	text-align: center;
 	font-size: 25px;
 	border: solid black;
-	vertical-align: unset!important;
+	vertical-align: inherit!important;
 }
 
 .tableAdmin p{
@@ -683,10 +777,6 @@ table button.btn.btn-info{
     font-size: 20px;
 }
 
-#btnRetour{
-	background-color: grey;
-}
-
 #btnSuppr{
 	padding: 40px;
 	font-size: 30px;
@@ -698,6 +788,23 @@ table button.btn.btn-info{
 	border: solid;
 	width: 65%;
 }
+
+/* formulaire de comptabilité*/
+table form{
+	font-size: smaller;
+	padding: 0px;
+}
+
+table select{
+	position: relative;
+	left: 30%;
+}
+
+table .btn.btn-success{
+	font-size: small;
+	padding: 6px 12px;
+}
+
 
 /*Espace de statistique*/
 

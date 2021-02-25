@@ -4,16 +4,21 @@
 
 {% block body %}
     <h1>Liste des catégories de document</h1>
-    <a href="{{ path('categorie_document_new') }}">
-        <button class="btn btn-primary" id="btnAjout">
-            Ajouter une nouvelle catégorie de document
-        </button>
-    </a>
-    <a href="{{ path('admin_index') }}">
-        <button class="btn btn-default" id="btnRetour">
-            Retourner dans la liste de fonctionnalité
-        </button>
-    </a>
+    <div>
+        <a href="{{ path('categorie_document_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter une nouvelle catégorie de document
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(categorie_documents) }}
+    </div>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -50,7 +55,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    
+    <div>
+        {{ knp_pagination_render(categorie_documents) }}
+    </div>    
 {% endblock %}
 

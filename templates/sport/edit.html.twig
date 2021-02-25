@@ -15,10 +15,11 @@
             {{ include('sport/_form.html.twig') }}
         </div>
     </div>
-    <a href="{{ path('sport_index') }}">
-    	<button class="btn btn-default" id="btnRetour">
-            Revenir dans la liste
-        </button>
-    </a>
-    
+    <div>
+        <a href="{{ path('sport_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+    </div>
 {% endblock %}

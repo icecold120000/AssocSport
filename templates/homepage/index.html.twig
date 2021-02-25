@@ -9,9 +9,33 @@
 
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
 
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
 	<div>
-
-		<h2>les dernières événements</h2>
-
+		<h2>les dernières actualités</h2>
+		{%for actu in actualite %}
+	        <section id="evenement">
+	            <div class="container-fluid">
+	                <img src="{{ asset('uploads/actuVig/' ~ actu.vignetteActu) }}" id="vignette">
+	                <div id="event">
+	                    <div>
+	                        <h3>{{ actu.nomActu }}</h3>
+	                    </div>
+                        <div id="dateInscrip">
+                            <span>
+                                {{ actu.dateActu ? actu.
+                                dateActu|date('d/m/Y H:i') : '' }}
+                            </span>
+                        </div>
+	                    <div id="descripActu">
+	                        <p>{{ actu.descripActu|u.truncate(105,'...',true) }}</p>
+	                    </div>
+	                    <div id="btnShow">
+	                        <a href="{{ path('actualite_show',
+	                         {'id': actu.id}) }}"><button class="btn btn-primary">>>> Lire la suite</button></a>
+	                    </div>
+	                </div>
+	            </div>
+	        </section>
+		{% endfor %}
 	</div>
 {% endblock %}

@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des utilisateurs{% endblock %}
-
 {% block body %}
     <h1>Liste des utilisateurs</h1>
-
     <div>
         <a href="{{ path('user_new') }}">
             <button class="btn btn-primary" id="btnAjout">
@@ -12,24 +10,28 @@
             </button>
         </a>
         <a href="{{ path('user_file') }}">
-            <button class="btn btn-primary" id="btnAjout">
+            <button class="btn btn-info" id="btnAjout">
                 Ajouter une liste d'utilisateur
             </button>
         </a>
     </div>
-    <a href="{{ path('admin_index') }}">
-        <button class="btn btn-default" id="btnRetour">
-            Retourner dans la liste de fonctionnalité
-        </button>
-    </a>
-
+    <div id="divRetour">
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(users) }}
+    </div>
     <table class="table tableAdmin">
         <thead>
             <tr>
-                <th>Le nom d'un utilisateur</th>
-                <th>Le prénom d'un utilisateur</th>
-                <th>L'email d'un utilisateur</th>
-                <th>Les rôles d'un utilisateur</th>
+                <th>Le nom de l'utilisateur</th>
+                <th>Le prénom de l'utilisateur</th>
+                <th>L'email de l'utilisateur</th>
+                <th>Les rôles de l'utilisateur</th>
                 <th>Editer</th>
                 <th>Supprimer</th>
             </tr>
@@ -40,7 +42,20 @@
                 <td>{{ user.nomUser }}</td>
                 <td>{{ user.prenomUser }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    {% switch user.roles|json_encode %}
+                        {% case '["ROLE_ADMIN","ROLE_USER"]' %}
+                            <p>Admin et Utilisateur</p>
+                        {% case '["ROLE_ENSEIGNANT","ROLE_USER"]' %}
+                            <p>Enseignant et Utilisateur</p>
+                        {% case '["ROLE_ELEVE","ROLE_USER"]' %}
+                           <p>Elève et Utilisateur</p>
+                        {% case '["ROLE_COMPTABLE","ROLE_USER"]' %}
+                            <p>Comptable et Utilisateur</p>
+                        {% default %}
+                            <p>Utilisateur</p>
+                    {% endswitch %}
+                </td>
                 <td>
                     <a href="{{ path('user_edit',
                     {'id': user.id}) }}">
@@ -65,4 +80,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(users) }}
+    </div>
 {% endblock %}

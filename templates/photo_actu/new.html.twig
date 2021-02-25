@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter d'une ou plusieurs photo d'actualité{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une photo d'actualité</h1>
+
+    {% for message in app.flashes('SuccessPhotoActu') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité2" id="formPhotoActu">
+            {{ include('photo_actu/_form.html.twig') }}
+        </div>
+    </div>
+
+    <div>
+        <a href="{{ path('photo_actu_index') }}">
+        	<button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button> 
+        </a>
+    </div>
+{% endblock %}

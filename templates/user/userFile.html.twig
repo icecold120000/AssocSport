@@ -32,9 +32,11 @@
 	        </div>
         </div>
 	{{form_end(form)}}
-    <a href="{{ path('user_index') }}">
-    	<button class="btn btn-default" id="btnRetour">
-            Revenir dans la liste
-        </button>
-    </a>
+	<div>
+	    <a href="{{ path('user_index') }}">
+	    	<button class="btn btn-secondary" id="btnRetour">
+	            Revenir dans la liste
+	        </button>
+	    </a>
+    </div>
 {% endblock %}

@@ -18,6 +18,9 @@
             </div>
         {{form_end(form)}}
     </div>
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
     {% if documents %}
         <table class="tableAdmin table">
             <thead>
@@ -43,4 +46,7 @@
     {% else %}
          <p class="erreur">Aucune donnée n'a été trouvée</p>
     {% endif %}   
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
 {% endblock %}

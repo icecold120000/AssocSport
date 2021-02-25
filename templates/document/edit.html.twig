@@ -16,10 +16,12 @@
             {{ include('document/_form.html.twig') }}
         </div>
     </div>
-    <a href="{{ path('document_admin') }}">
-    	<button class="btn btn-default" id="btnRetour">
-            Revenir dans la liste
-        </button>
-    </a>
+    <div>
+        <a href="{{ path('document_admin') }}">
+            <button class="btn btn-secondary">
+                Revenir dans la liste
+            </button>
+       </a>
+    </div>
     
 {% endblock %}

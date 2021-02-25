@@ -1,0 +1,36 @@
+{{ form_start(form) }}
+	<div>
+		{{form_label(form.fileNames)}}
+	</div>
+    <div>
+        {{form_widget(form.fileNames)}}
+    </div>
+    <div class="erreur">
+        {{form_errors(form.fileNames)}}
+    </div>
+	<div>
+		{{form_label(form.actualite)}}
+	</div>
+    <div id="selectActu">
+        {{form_widget(form.actualite)}}
+    </div>
+    <div class="erreur">
+        {{form_errors(form.actualite)}}
+    </div>
+	<div>
+		{{form_label(form.archivePhoto)}}
+	</div>
+    <div id="selectArchivePhoto">
+        {{form_widget(form.archivePhoto)}}
+    </div>
+    <div class="erreur">
+        {{form_errors(form.archivePhoto)}}
+    </div>
+    <div>
+        <div id="divAjout" class="form-actions">
+            <button type="submit" class="btn btn-success">
+                Enregistrer votre actualité 
+            </button>
+        </div>
+    </div>
+{{ form_end(form) }}

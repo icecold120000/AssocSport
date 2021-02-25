@@ -7,7 +7,7 @@
     <div id="formFilter">
         <div class="filtre">
             <div id="left">
-                <p>{{evenements|length}} évenements</p>
+                <p>{{evenements|length}} événements</p>
             </div>
             {{form_start(form)}}
                 <div class="selectFiltre">
@@ -37,6 +37,9 @@
             {{form_end(form)}}
         </div>
     </div>
+    <div>
+        {{ knp_pagination_render(evenements) }}
+    </div>
     {% for evenement in evenements %}
         <section id="evenement">
             <div class="container-fluid">
@@ -61,8 +64,8 @@
                             </p>
                         </div>
                     </div>
-                    <div id="descrip">
-                        <p>{{ evenement.descripEvenement }}</p>
+                    <div id="descripEvent">
+                        <p>{{ evenement.descripEvenement|u.truncate(105,'...') }}</p>
                     </div>
                     <div id="btnShow">
                         <a href="{{ path('evenement_show',
@@ -72,4 +75,7 @@
             </div>
         </section>
     {% endfor %}
+    <div>
+        {{ knp_pagination_render(evenements) }}
+    </div>
 {% endblock %}

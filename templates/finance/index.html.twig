@@ -7,15 +7,15 @@
 
     <div id="filtreEleve" class="filtre">
         {{form_start(form)}}
-	        <div class="col">
+	        <div>
 	            <span>{{ form_label(form.nomEleve)}}</span>
 	            {{form_widget(form.nomEleve)}}
 	        </div>
-	        <div class="col">
+	        <div>
 	            <span>{{ form_label(form.Classe)}}</span>
 	            {{form_widget(form.Classe)}}
 	        </div>
-	        <div class="col">
+	        <div>
 	            <span>{{ form_label(form.genreEleve)}}</span>
 	            {{form_widget(form.genreEleve)}}
 	        </div>
@@ -28,7 +28,7 @@
     </div>
     <div>
         <a href="{{ path('admin_index') }}">
-            <button class="btn btn-default" id="btnRetour">
+            <button class="btn btn-secondary" id="btnRetour">
                 Retourner dans la liste de fonctionnalité
             </button>
         </a>

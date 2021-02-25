@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des actualités{% endblock %}
+
+{% block body %}
+    <h1>Liste des actualités</h1>
+
+    <div>
+        <a href="{{ path('actualite_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter une nouvelle actualité
+            </button>
+        </a>
+        <a href="{{ path('photo_actu_index') }}">
+            <button class="btn btn-info" id="btnAjout">
+                Galerie de photo d'actualité
+            </button>
+        </a>
+    </div>
+    <div id="divRetour">
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(actus) }}
+    </div>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th>Vignette de l'actualité</th>
+                <th>Le nom de l'actualité</th>
+                <th>La description de l'actualité</th>
+                <th>La date de l'actualité</th>
+                <th>Si l'actualité est archivé</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actualite in actus %}
+                <tr>
+                    <td><img src="{{ asset('uploads/actuVig/' ~ actualite.vignetteActu) }}"></td>
+                    <td>{{ actualite.nomActu }}</td>
+                    <td>{{ actualite.descripActu|u.truncate(200,'...',true) }}</td>
+                    <td>{{ actualite.dateActu ? actualite.dateActu|date('d/m/Y H:i') : '' }}</td>
+                    <td>
+                        {% if actualite.archiveActu == 0 %}
+                            Non
+                        {% else %}
+                            Oui
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('actualite_edit',
+                        {'id': actualite.id}) }}">
+                            <button class="btn btn-primary">
+                                <i class="far fa-edit"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('actualite_delete_view',
+                         {'id': actualite.id}) }}">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="erreur">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(actus) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie de photo{% endblock %}
+
+{% block body %}
+    <h1>Galerie de photo</h1>
+    <div>
+        <a href="{{ path('photo_actu_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter une photo d'actualité
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(photo_actus) }}
+    </div>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th>La photo</th>
+                <th>Le nom du fichier </th>
+                <th>L'événement auqel il est liée</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for photoActu in photo_actus %}
+            <tr>
+                <td><img src="{{ asset('uploads/actuPhotos/' ~ photoActu.imgPhotoActu) }}"></td>
+                <td>{{ photoActu.imgPhotoActu }}</td>
+                <td>{{ photoActu.actualite.nomActu }}</td>
+                <td>
+                    <a href="{{ path('photo_actu_edit',
+                    {'id':  photoActu.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('photo_actu_delete_view',
+                     {'id':  photoActu.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(photo_actus) }}
+    </div>
+{% endblock %}

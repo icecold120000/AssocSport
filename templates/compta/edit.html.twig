@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un Flux{% endblock %}
+
+{% block body %}
+    <h1>Editer un Flux</h1>
+
+    {% for message in app.flashes('SuccessCompta') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+    	<div>
+    		<h2>Vous êtes entrain de changer la facturation du flux : {{flux.libelleFlux}}</h2>
+    	</div>
+        <div class="container-fluid formEntité">
+			{{form_start(form)}}
+		        <div>
+		            {{form_widget(form.facturationFlux)}}
+		        </div>
+		        <div>
+		            <div class="form-actions">
+		                <button type="submit" class="btn btn-success">
+		                    Modifier la facturation
+		                </button>
+		            </div>
+		        </div>
+		    {{form_end(form)}}
+        </div>
+    </div>
+    <a href="{{ path('compta_show', {'id': flux.eleve.id}) }}">
+    	<button class="btn btn-secondary" id="btnRetour">
+            Revenir dans la liste
+        </button> 
+    </a>
+    
+{% endblock %}

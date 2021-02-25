@@ -4,16 +4,18 @@
 
 {% block body %}
     <h1>Liste des catégories d'élèves</h1>
-    <a href="{{ path('categorie_eleve_new') }}">
-        <button class="btn btn-info" id="btnAjout">
-            Ajouter une nouvelle catégorie d'élève
-        </button>
-    </a>
-    <a href="{{ path('admin_index') }}">
-        <button class="btn btn-default" id="btnRetour">
-            Retourner dans la liste de fonctionnalité
-        </button>
-    </a>
+    <div>
+        <a href="{{ path('categorie_eleve_new') }}">
+            <button class="btn btn-info" id="btnAjout">
+                Ajouter une nouvelle catégorie d'élève
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
     <table class="table tableAdmin">
         <thead>
             <tr>
@@ -50,5 +52,4 @@
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

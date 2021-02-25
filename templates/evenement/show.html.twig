@@ -6,7 +6,7 @@
     <div id="showEvent">
         <h1>{{ evenement.nomEvenement }}</h1>
 
-        <p><i class="fas fa-calendar-alt"></i> {{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d/m/Y') : '' }}</p>
+        <p><i class="fas fa-calendar-alt"></i> {{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y  H:i') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d/m/Y H:i') : '' }}</p>
 
         <p><i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}} inscriptions sur {{ evenement.nbPlace }}</p>
 
@@ -31,20 +31,20 @@
         <h2> {{evenement.Documents|length}} documents à télécharger</h2>
 
         <table class="table table-striped tableAdmin">
-            <thead>
-                <tr>
-                    <th scope="col">Nom du document</th>
-                    <th scope="col">Date d'ajout</th>
-                    <th scope="col">Catégorie</th>
-                    <th scope="col">Lien de téléchargement</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {% for docs in evenement.Documents%}
+            {% for docs in evenement.Documents %}
+                <thead>
+                    <tr>
+                        <th scope="col">Nom du document</th>
+                        <th scope="col">Date d'ajout</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Lien de téléchargement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
                         <td scope="row">{{docs.nomDocument}}</td>
                         <td scope="row">{{docs.dateAjout ? docs.
-                                    dateAjout|date('d/m/Y') : '' }}</td>
+                        dateAjout|date('d/m/Y') : '' }}</td>
                         <td scope="row">{{docs.categorieDocument.getLibelleCategorieDoc}}</td>
                         <td>
                             <a href="{{docs.lienDocument}}"
@@ -54,14 +54,14 @@
                                 </button>
                             </a>
                         </td>
-                    {% endfor %}
-                </tr>
-            </tbody>
+                    </tr>
+                </tbody>
+            {% endfor %}
         </table>
     </div>
     <div>
         <a href="{{ path('evenement_index') }}">
-            <button class="btn btn-default" id="btnRetour">
+            <button class="btn btn-secondary" id="btnRetour">
                 Revenir dans la liste
             </button>
         </a>

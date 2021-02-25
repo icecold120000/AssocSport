@@ -6,16 +6,18 @@
     <div>
         <h1>Liste des budgets et des flux</h1>
 
-        <a href="{{ path('budget_new') }}">
-            <button class="btn btn-primary" id="btnAjout">
-                Créer un nouveau budget
-            </button>
-        </a>
-        <a href="{{ path('admin_index') }}">
-            <button class="btn btn-default" id="btnRetour">
-                Retourner dans la liste de fonctionnalité
-            </button>
-        </a
+        <div>
+            <a href="{{ path('budget_new') }}">
+                <button class="btn btn-primary" id="btnAjout">
+                    Ajouter une nouvelle actualité
+                </button>
+            </a>
+            <a href="{{ path('admin_index') }}">
+                <button class="btn btn-secondary" id="btnRetour">
+                    Retourner dans la liste de fonctionnalité
+                </button>
+            </a>
+        </div>
         <table class="table tableAdmin">
             <thead>
                 <tr>
@@ -29,7 +31,40 @@
             {% for budget in budgets %}
                 <tr>
                     <td>{{ budget.libelleBudget }}</td>
-                    <td>{{ budget.montantInitialBudget }} €</td>
+                    <td>
+                        {{ budget.montantInitialBudget }} € /
+                        {% set total = 0 %}
+                        {%for flux in fluxes %}
+                            {% set facturation = flux.facturationFlux %}
+                            {% switch flux.typeFlux.libelleTypeFlux %}
+                                {% case 'Crédit' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total + flux.montantFlux %}
+                                    {% endif %}
+                                {% case 'Débit' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total - flux.montantFlux %}
+                                    {% endif %}
+                                {% case 'Licence' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total + flux.montantFlux %}
+                                    {% endif %}
+                                {% case 'Prélèvement' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total + flux.montantFlux %}
+                                    {% endif %}
+                                {% case 'Administratif' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total - flux.montantFlux %}
+                                    {% endif %}
+                                {% case 'Remboursement' %}
+                                    {%if budget.libelleBudget  == flux.budget.libelleBudget %}
+                                        {% set total = total - flux.montantFlux %}
+                                    {% endif %}
+                            {% endswitch %}
+                        {% endfor %}
+                        {{ budget.montantInitialBudget + total }} €
+                    </td>
                     <td>
                         <a href="{{ path('budget_edit',
                         {'id': budget.id}) }}">
@@ -39,7 +74,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('budget_delete',
+                        <a href="{{ path('budget_delete_view',
                          {'id': budget.id}) }}">
                             <button class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
@@ -49,11 +84,14 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">Aucune donnée n'a été trouvée</td>
+                    <td colspan="6">Aucune donnée n'a été trouvée</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div>
+        {{ knp_pagination_render(fluxes) }}
     </div>
     <div>
         <h1>Tableau des crédits</h1>
@@ -68,7 +106,47 @@
             </thead>
             <tbody>
             {% for flux in fluxes %}
-                {% if flux.typeFlux.libelleTypeFlux == 'Crédit' %}
+                {% if flux.typeFlux.libelleTypeFlux == 'Crédit' or
+                 flux.typeFlux.libelleTypeFlux == 'Licence' or
+                  flux.typeFlux.libelleTypeFlux == 'Prélèvement' %}
+                    <tr>
+                        <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
+                        <td>{{ flux.montantflux }} €</td>
+                        <td>
+                            {{flux.libelleFlux}}
+                        </td>
+                        <td>
+                            <p>{{flux.budget.libelleBudget}}</p>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucune donnée n'a été trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        {{ knp_pagination_render(fluxes) }}
+    </div>
+    <div>
+        <h1>Tableau des débits</h1>
+        <table class="table tableAdmin">
+            <thead>
+                <tr>
+                    <th>La date du flux</th>
+                    <th>Le montant du flux</th>
+                    <th>Le libellé du flux</th>
+                    <th>Le budget impacté</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for flux in fluxes %}
+                {% if flux.typeFlux.libelleTypeFlux == 'Débit' or
+                 flux.typeFlux.libelleTypeFlux == 'Remboursement' or
+                 flux.typeFlux.libelleTypeFlux == 'Administratif '%}
                     <tr>
                         <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
                         <td>{{ flux.montantflux }} €</td>
@@ -89,37 +167,6 @@
         </table>
     </div>
     <div>
-        <h1>Tableau des débits</h1>
-        <table class="table tableAdmin">
-            <thead>
-                <tr>
-                    <th>La date du flux</th>
-                    <th>Le montant du flux</th>
-                    <th>Le libellé du flux</th>
-                    <th>Le budget impacté</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for flux in fluxes %}
-                {% if flux.typeFlux.libelleTypeFlux == 'Débit' %}
-                    <tr>
-                        <td>{{ flux.dateFlux ? flux.dateFlux|date('d/m/Y') : '' }}</td>
-                        <td>{{ flux.montantflux }} €</td>
-                        <td>
-                            {{flux.libelleFlux}}
-                        </td>
-                        <td>
-                            <p>{{flux.budget.libelleBudget}}</p>
-                        </td>
-                    </tr>
-                {% endif %}
-            {% else %}
-                <tr>
-                    <td colspan="4">Aucune donnée n'a été trouvée</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        {{ knp_pagination_render(fluxes) }}
     </div>
-
 {% endblock %}
