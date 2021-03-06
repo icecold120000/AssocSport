@@ -26,7 +26,7 @@ li.nav-item:first-child {
 	margin: 0 30px;
 }
 
-li.nav-item{
+li.nav-item, li.page-item{
 	margin: 0;
 }
 
@@ -41,7 +41,6 @@ a.nav-link{
 ul#connexion{
 	display: flex;
 }
-
 
 a{
 	color: white;
@@ -71,7 +70,6 @@ label{
 	margin: 0;
 	float: left;
 }
-
 
 #divInput{
 	position: relative;
@@ -265,9 +263,6 @@ footer i{
 }
 
 /*Les Formulaires d'ajout et de modification des documents*/
-.formEntité2 #inputFile{
-	margin-left: 65px;
-}
 
 .formEntité2 .erreur li{
     right: 6%;
@@ -292,19 +287,15 @@ footer i{
 	position: relative;
 }
 
-#formDoc.formEntité2 #eventDoc{
-    right: 53%;
+#formDoc.formEntité2 #eventDoc select{
+    right: 52%;
 }
 
-#formDoc.formEntité2 #categDoc{
-    right: 55%;
+#formDoc.formEntité2 #categDoc select{
+    right: 54%;
 }
 
 /*Les Formulaires d'ajout et de modification des élèves*/
-
-#formEleve.formEntité2 select{
-    right: 35%;
-}
 
 #formEleve.formEntité2 #selectCategorie select{
 	right:52%;
@@ -320,6 +311,10 @@ footer i{
 
 #formEleve.formEntité2 #selectArchive select{
 	right:53%;
+}
+
+#formEleve.formEntité2 #selectAutoPrelev select{
+	right:63%;
 }
 
 #divRetour{
@@ -399,7 +394,7 @@ footer i{
 /*Formulaire des actualités et photos*/
 
 #formActu.formEntité2 #selectArchiveActu select{
-	right: 55%;
+	right: 59%;
 }
 
 #formActu.formEntité2 textarea{
@@ -515,6 +510,12 @@ div#filtreEleve.filtre label{
 	margin: 0 20px;
 }
 
+ul.pagination{
+	margin-top: 20px;
+	position: relative;
+	left: 35%;
+}
+
 /*Recherche d'un élève*/
 
 div#searchEleveBtn{
@@ -612,13 +613,19 @@ input:checked + .slider:before{
 
 #event{
 	font-size: 20px;
+	padding-bottom: 20px
+}
+
+#actu{
+	font-size: 20px;
+	padding-bottom: 23px
 }
 
 #event i{
 	font-size: 20px;
 }
 
-#event #dateInscrip{
+#event #dateInscrip, #actu #dateInscrip{
 	float: left;
 	position: relative;
 	left: 5%;
@@ -627,6 +634,7 @@ input:checked + .slider:before{
 #event #place{
 	position: relative;
 	right: 22%;
+	padding-top: 4px;
 }
 
 #event #descripEvent{
@@ -634,7 +642,7 @@ input:checked + .slider:before{
 	display: inline-block;
 }
 
-#event #descripActu{
+#actu #descripActu{
 	width: 75%;
 	display: inline-block;
 	margin-top: 30px;
@@ -651,7 +659,8 @@ input:checked + .slider:before{
 }
 
 #evenement p{
-	font-size: 20px;
+	font-size: 15px;
+	margin: 0;
 }
 
 #evenement h3{
@@ -684,11 +693,15 @@ input:checked + .slider:before{
 }
 
 /*Page de détails des événements pour s'inscrire*/
-#btnShow, #showEvent p, #showEvent h1, #showEvent h2{
+#btnShow, #showEvent p, #showEvent h2{
 	text-align: left;
 }
 
-#showEvent table.tableAdmin, #showEvent p, #showEvent h1,#showEvent h2{
+ #showEvent h1{
+ 	text-align: center;
+ }
+
+#showEvent table.tableAdmin, #showEvent p,#showEvent h2{
 	position: relative;
 	left: 10%;
 	width: 80%;
@@ -696,6 +709,8 @@ input:checked + .slider:before{
 
 #showEvent p{
 	font-size: 25px;
+	margin-left: 0;
+
 }
 
 #showEvent h2{
@@ -848,21 +863,31 @@ canvas {
 }
 
 #stat #filtre #left{
-	margin: 7px 10px 0 35%;
+	margin: 25px 0;
 }
 
-#stat #filtre #btnStat{
-	margin-right: 45%;
+#stat label{
+	float: none;
+}
+
+#stat form{
+	font-size: 20px;
+	padding:0;
 }
 
 #stat #filtre div{
 	margin:0;
 }
 
+#stat ul.pagination{
+	position: relative;
+	left: 23%;
+}
+
 /*Page de profile*/
 
 #profilHeader{
-	margin: 5% 0 5% 10%;	
+	margin: 5% 0 5% 10%;
 }
 
 #profilHeader h1{
