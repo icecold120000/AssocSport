@@ -45,11 +45,26 @@ class ActualiteType extends AbstractType
                     ])
                 ]
             ])
-            ->add('photoActu', FileType::class, [
-                'label' => '(Les)L\'image(s) d\'actualité',
+            ->add('photoActu_0', FileType::class, [
+                'label' => 'La première photo d\'actualité',
                 'mapped' => false,
                 'required' => false,
-                'multiple' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '4096k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez selectionner un fichier png/jpeg/jpg',
+                        'maxSizeMessage' => 'Veuillez transferer un fichier ayant pour taille maximum de {{limit}}',
+                    ])
+                ],
+            ])
+            ->add('photoActu_1', FileType::class, [
+                'label' => 'La deuxième photo d\'actualité',
+                'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '4096k',
@@ -63,7 +78,7 @@ class ActualiteType extends AbstractType
                 ],
             ])
             ->add('archiveActu', ChoiceType::class, [
-                'label' => 'L\'Archivage de l\'actualité',
+                'label' => 'Si l\'actualité est archivé ou non',
                 'choices' => [
                     'Non Archivé' => 0,
                     'Archivé' => 1,

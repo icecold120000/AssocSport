@@ -17,7 +17,7 @@ class SearchEleveFormType extends AbstractType
     {
         $builder
             ->add('nomEleve', TextType::class,[
-                'label' => 'Rechercher un éléve',
+                'label' => 'Rechercher un élève',
                 'required' => false,
             ])
             ->add('Classe', EntityType::class,[

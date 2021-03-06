@@ -50,7 +50,7 @@ class UserType extends AbstractType
                 'required' => false,
             ])
             ->add('eleve', EntityType::class,[
-                'label' => 'La catégorie de l\'élève',
+                'label' => 'L\'élève auquel l\'utilisateur appartient',
                 'class' => Eleve::class,
                 'query_builder' => function (EleveRepository $er) {
                     return $er->createQueryBuilder('el');
