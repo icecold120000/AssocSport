@@ -26,28 +26,26 @@
 		<table class="table tableAdmin">
 	        <thead>
 	            <tr>
-	                <th scope="col">Nom</th>
+	                <th scope="col">Nom de l'événement</th>
 	                <th scope="col">Date de début</th>
 	                <th scope="col">Date de fin</th>
 	                <th scope="col">Lieu</th>
-	                <th scope="col">Description</th>
 	            </tr>
 	        </thead>
 	        <tbody>
-	        {% for evenement in events %}
-	            <tr>
-	                <td scope="row">{{ evenement.nomEvenement }}</td>
-	                <td>{{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y') : '' }}</td>
-	                <td>{{ evenement.dateFin ? evenement.dateFin|date('d/m/Y') : '' }}</td>
-	                <td>{{ evenement.lieuEvenement }}</td>
-	                <td>{{ evenement.descripEvenement }}</td>
-	            </tr>
+	        {% for inscription in app.user.GetEleve.inscriptions %}
+	        	<tr> 
+	        		<td>{{inscription.Evenement.nomEvenement}}</td>
+	        		<td>{{inscription.Evenement.dateDebut ? inscription.Evenement.dateDebut|date('d/m/Y H:i') : '' }}</td>
+	        		<td>{{inscription.Evenement.dateFin  ? inscription.Evenement.dateFin|date('d/m/Y H:i') : '' }}</td>
+	        		<td>{{inscription.Evenement.lieuEvenement}}</td>
+	        	</tr>
 	        {% else %}
 	            <tr>
-	                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
+	                <td colspan="4" class="erreur">Aucune inscription n'a été effectuée</td>
 	            </tr>
 	        {% endfor %}
-	    	</tbody>
+	     	</tbody>
 	    </table>
 	</div>
 {% endblock %}

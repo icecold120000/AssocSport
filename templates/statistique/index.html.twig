@@ -5,270 +5,238 @@
 {% block body %}
 <body id="stat">
 	<h1>Bienvenue dans l'espace de statistique</h1>
-	<div id="filtre">
-		<div id="left">
-			<span>Année : </span>
-			<select class="form-select">
-	            <option selected>Tous</option>
-	            <option>2020/2021</option>
-	            <option>2021/2022</option>
-	            <option>2022/2023</option>
-			</select>
+	{{form_start(form)}}
+		<div id="filtre">
+			<div id="left">
+				<span>{{form_label(form.Annee_scolaire)}}</span>
+				{{form_widget(form.Annee_scolaire)}}
+			</div>
+			<div>
+	            <button type="submit" class="btn btn-info" action="#">
+	                Afficher
+	            </button>
+	        </div>
 		</div>
-		<div id="btnStat">
-            <button type="submit" class="btn btn-info" action="#">
-                Afficher
-            </button>
-        </div>
-	</div>
-	<div>
-		<table class="table tableAdmin" id="tableStat">
-			<thead>
-				<tr>
-					<th scope="col">La statistique demandé</th>
-					<th scope="col">Les données</th>
-				</tr>
-			</thead>
-		    <tbody>
-			    <tr>
-				    <td>Nombre d'élèves licenciés total</td>
-				    <td>
-				    	28
-				    </td>
-			    </tr>
-			    <tr>
-				    <td>Nombre d'événements total</td>
-				    <td>
-				    	{{events|length}}
-				    </td>
-			    </tr>
-			</tbody>
-		</table>		
-	</div>
-	<div id="canvas1">
-		<p>Répartition des élèves licencés par sexe</p>
-		<div id="canvas-holder">
-			<canvas id="sexeLicence"></canvas> 
+		<div>
+			<table class="table tableAdmin" id="tableStat">
+				<thead>
+					<tr>
+						<th scope="col">La statistique demandé</th>
+						<th scope="col">Les données</th>
+					</tr>
+				</thead>
+			    <tbody>
+				    <tr>
+					    <td>Nombre d'élèves licenciés total</td>
+					    <td>
+					    	{% set totalEleveLicence = 0 %}
+					    	{% for flux in fluxes|filter(flux => flux.typeflux.libelleTypeFlux == 'Licence') %}
+					    		{% set totalEleveLicence = totalEleveLicence + 1 %}
+					    	{% endfor %}
+					    	{{totalEleveLicence}}
+					    </td>
+				    </tr>
+				    <tr>
+					    <td>Nombre d'événements total</td>
+					    <td>
+					    	{{events|length}}
+					    </td>
+				    </tr>
+				</tbody>
+			</table>
 		</div>
-		<script>
-			var sexeData = {
-				labels: ['Homme','Femme'],
-				datasets: [{
-					backgroundColor: ['Blue','Pink'],
-					borderColor: 'White',
-					borderWidth: 1,
-					data: [40, 60]
-				}],
-			};
-
-			var ctx1 = document.getElementById('sexeLicence').getContext('2d');
-			var chart1 = new Chart(ctx1, {
-			    // The type of chart we want to create
-			    type: 'doughnut',
-
-			    // The data for our dataset
-			    data: sexeData,
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-	</div>
-	<div id="canvas2">
-		<p>Répartition des élèves licenciés par le montant</p>
-		<div id="canvas-holder">
-			<canvas id="montantLicence"></canvas> 
+		<div id="canvas5">
+			<p>Répartiton des élèves par date de naissance</p>
+				<div class="selectStat">
+					<span>{{form_label(form.Annee_de_Naissance)}}</span>
+					{{form_widget(form.Annee_de_Naissance)}}
+		            <button type="submit" class="btn btn-info" action="#canvas5">
+		                Afficher
+		            </button>
+				</div>
+		    <div>
+		        {{ knp_pagination_render(eleves) }}
+		    </div>
+			<table class="table tableAdmin">
+				<thead>
+					<tr>
+						<th>Nom de l'élève</th>
+						<th>Prénom de l'élève</th>
+						<th>Classe de l'élève</th>
+					</tr>
+				</thead>
+			    <tbody>
+			    	{% for eleve in eleves %}
+				    	<tr>
+						    <td class="cols-lg-6">{{eleve.nomEleve}}</td>
+						    <td class="cols-lg-6">{{eleve.prenomEleve}}</td>
+						    <td class="cols-lg-6">{{eleve.Classe.libelle}}</td>
+				    	</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		    <div>
+		        {{ knp_pagination_render(eleves) }}
+		    </div>
 		</div>
-		<script>
-			var licenceData ={
-				labels: ['10€','25€'],
-				datasets: [{
-					backgroundColor: ['Red','Yellow'],
-					borderColor: 'White',
-					borderWidth: 1,
-					data: [55, 45]
-				}],
-			};
-			var ctx2 = document.getElementById('montantLicence').getContext('2d');
-			var chartH = new Chart(ctx2, {
-			    // The type of chart we want to create
-			    type: 'doughnut',
+		<div id="canvas1">
+			<p>Répartition des élèves licencés par sexe</p>
+			<div id="canvas-holder">
+				<canvas id="sexeLicence"></canvas> 
+			</div>
+			<script>
+				{% set totalFilleLicence = 0 %}
+				{% set totalGarçonLicence = 0 %}
+		    	{% for flux in fluxes|filter(flux => flux.typeflux.libelleTypeFlux == 'Licence') %}
+		    		{% if flux.eleve.genreEleve == 'F' %}
+		    			{% set totalFilleLicence = totalFilleLicence + 1 %}
+		    		{% else%}
+		    			{% set totalGarçonLicence = totalGarçonLicence + 1 %}
+		    		{% endif %}
+		    	{% endfor %}
+				{% set totalGarçonLicence = totalGarçonLicence/totalEleveLicence*100 %}
+				{% set totalFilleLicence = totalFilleLicence/totalEleveLicence*100 %}
+				var sexeData = {
+					labels: ['Garçon','Fille'],
+					datasets: [{
+						backgroundColor: ['Blue','Pink'],
+						borderColor: 'White',
+						borderWidth: 1,
+						data: [
+							{{totalGarçonLicence|round(1,'ceil')}},
+							{{totalFilleLicence|round(1,'ceil')}}
+						]
+					}],
+				};
+				var ctx1 = document.getElementById('sexeLicence').getContext('2d');
+				var chart1 = new Chart(ctx1, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
 
-			    // The data for our dataset
-			    data: licenceData,
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-	</div>
-	<div id="canvas3">
-		<p>Répartition des types d'événements par sexe</p>
-		<div id="canvas-holder">
-			<canvas id="nbType"></canvas>
+				    // The data for our dataset
+				    data: sexeData,
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
 		</div>
-		<script>
-			var TypeData = {
-		        labels: [
-		        	{% for typeEvent in types %}
-            			'{{typeEvent.nom}}',
-        			{% endfor %}
-		        ],
-				datasets: [{
-					label: 'Homme',
-					backgroundColor: 'Blue',
-					borderColor:'Blue',
-					borderWidth: 1,
-					data: [18,0]
-				}, {
-					label: 'Femme',
-					backgroundColor: 'Pink',
-					borderColor: 'Pink',
-					borderWidth: 1,
-					data: [22, 0]
-				}]
-			};
-			var ctx = document.getElementById('nbType').getContext('2d');
-			var chart2 = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'bar',
+		<div id="canvas2">
+			<p>Répartition des élèves licenciés par le montant</p>
+			<div id="canvas-holder">
+				<canvas id="montantLicence"></canvas> 
+			</div>
+			<script>
+				{% set montantLicenceSans = 0 %}
+				{% set montantLicenceAvec = 0 %}
+		    	{% for flux in fluxes|filter(flux => flux.typeflux.libelleTypeFlux == 'Licence') %}
+		    		{% if flux.montantFlux == 10 %}
+		    			{% set montantLicenceSans = montantLicenceSans + 1 %}
+		    		{% elseif flux.montantFlux == 25 %}
+		    			{% set montantLicenceAvec = montantLicenceAvec + 1 %}
+		    		{% endif %}
+		    	{% endfor %}
+				{% set montantLicenceAvec = montantLicenceAvec/totalEleveLicence*100 %}
+				{% set montantLicenceSans = montantLicenceSans/totalEleveLicence*100 %}
+				var licenceData ={
+					labels: ['10€','25€'],
+					datasets: [{
+						backgroundColor: ['Red','Yellow'],
+						borderColor: 'White',
+						borderWidth: 1,
+						data: [
+							{{montantLicenceSans|round(1,'ceil')}},
+							{{montantLicenceAvec|round(1,'ceil')}}
+						]
+					}],
+				};
+				var ctx2 = document.getElementById('montantLicence').getContext('2d');
+				var chartH = new Chart(ctx2, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
 
-			    // The data for our dataset
-			    data: TypeData,
-
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-	</div>
-	<div id="canvas4">
-		<p>Répartiton des événements par sexe</p>
-		<div class="selectStat">
-			<span>Evénement: </span>
-            <select class="form-select">
-                <option selected>Toutes</option>
-                {% for event in events %}
-                    <option value="{{ event.id }}">{{event.nomEvenement}}</option>
-                {% endfor %}
-            </select>
-            <button type="submit" class="btn btn-info" action="#canvas4">
-                Afficher
-            </button>
-		</div>		
-		<div id="canvas-holder">
-			<canvas id="nbGenre"></canvas>
+				    // The data for our dataset
+				    data: licenceData,
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
 		</div>
-		<script>
-			var ctx = document.getElementById('nbGenre').getContext('2d');
-			var chart3 = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'doughnut',
+		<div id="canvas4">
+			<p>Répartiton des événements par sexe</p>
+				<div class="selectStat">
+					<span>{{form_label(form.EvenementFilter)}} </span>
+					{{form_widget(form.EvenementFilter)}}
+		            <button type="submit" class="btn btn-info" action="#canvas4">
+		                Afficher
+		            </button>
+				</div>
+			<div id="canvas-holder">
+				<canvas id="nbGenre"></canvas>
+			</div>
+			<script>
+				var ctx = document.getElementById('nbGenre').getContext('2d');
+				var chart3 = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
 
-			    // The data for our dataset
-			    data: {
-			        labels: [
-			        	'Homme',
-			        	'Femme',
-			        ],
-			        datasets: [{
-			            backgroundColor: ['Blue','Pink'],
-			            borderColor: 'White',
-			            data: [40,60]
-			        }]
-			    },
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-	</div>
-	<div id="canvas5">
-		<p>Répartiton des élèves par date de naissance</p>
-		<div class="selectStat">
-			<span>Année : </span>
-			<select class="form-select">
-	            <option selected value="2001">2001</option>
-	            <option value="2002">2002</option>
-	            <option value="2003">2003</option>
-	            <option value="2004">2004</option>
-			</select>
-            <button type="submit" class="btn btn-info" action="#canvas5">
-                Afficher
-            </button>
-		</div>		
-		<div id="canvas-holder">
-			<canvas id="nbDdn"></canvas>
+				    // The data for our dataset
+				    data: {
+				        labels: [
+				        	'Homme',
+				        	'Femme',
+				        ],
+				        datasets: [{
+				            backgroundColor: ['Blue','Pink'],
+				            borderColor: 'White',
+				            data: [40,60]
+				        }]
+				    },
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
 		</div>
-		<script>
-			var ctx = document.getElementById('nbDdn').getContext('2d');
-			var chart4 = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'line',
-			    type: 'doughnut',
+		<div id="canvas6">
+			<p>Nombre d'événements par élèves</p>
+				<div class="selectStat">
+					<span>{{form_label(form.EleveFiltre)}}</span>
+					{{form_widget(form.EleveFiltre)}}
+		            <button type="submit" class="btn btn-info" action="#canvas6">
+		                Afficher
+		            </button>
+				</div>
+			<div id="canvas-holder">
+				<canvas id="nbEvent"></canvas>
+			</div>
+			<script>
+				var ctx = document.getElementById('nbEvent').getContext('2d');
+				var chart5 = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'line',
 
-			    // The data for our dataset
-			    data: {
-			        labels: [
-			        	'Homme',
-			        	'Femme',
-			        ],
-			        datasets: [{
-			            backgroundColor: ['Blue','Pink'],
-			            borderColor: 'White',
-			            data: [40,60]
-			        }]
-			    },
+				    // The data for our dataset
+				    data: {
+				        labels: ['Septembre', 'Octobre', 'Novembre', 'Decembre',
+				          'Janvier', 'Fevrier', 'Mars', 'Avril',
+				         'Mai', 'Juin', 'Juillet', 'Août'
+				          ],
+				        datasets: [{
+				        	label: 'nombre d\'événement',
+				            backgroundColor: ['Green','Red','Cyan',
+				            'Green','Pink','Brown','Lime','Purple','Grey','Magenta'],
+				            borderColor: 'Black',
+				            fill: false,
+				            data: [5,12,8,10,30,12,7,8,3,5]
+				        }]
+				    },
 
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
-
-	</div>
-	<div id="canvas6">
-		<p>Nombre d'événements par élèves</p>
-		<div class="selectStat">
-			<span>Elève : </span>
-			<select class="form-select">
-                <option selected>Tous</option>
-                {% for eleve in eleves %}
-                    <option value="{{ eleve.id }}">
-       				{{eleve.prenomEleve}} {{eleve.nomEleve}}</option>
-                {% endfor %}
-			</select>
-            <button type="submit" class="btn btn-info" action="#canvas6">
-                Afficher
-            </button>
-		</div>		
-		<div id="canvas-holder">
-			<canvas id="nbEvent"></canvas>
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
 		</div>
-		<script>
-			var ctx = document.getElementById('nbEvent').getContext('2d');
-			var chart5 = new Chart(ctx, {
-			    // The type of chart we want to create
-			    type: 'line',
-
-			    // The data for our dataset
-			    data: {
-			        labels: ['Septembre', 'Octobre', 'Novembre', 'Decembre',
-			          'Janvier', 'Fevrier', 'Mars', 'Avril',
-			         'Mai', 'Juin', 'Juillet', 'Août'
-			          ],
-			        datasets: [{
-			        	label: 'nombre d\'événement',
-			            backgroundColor: ['Green','Red','Cyan',
-			            'Green','Pink','Brown','Lime','Purple','Grey','Magenta'],
-			            borderColor: 'Black',
-			            fill: false,
-			            data: [5,12,8,10,30,12,7,8,3,5]
-			        }]
-			    },
-
-			    // Configuration options go here
-			    options: {}
-			});
-		</script>
 	</div>
-</div>
-
+	{{form_end(form)}}
 {% endblock %}
 
 

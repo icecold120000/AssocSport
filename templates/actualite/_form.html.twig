@@ -19,16 +19,25 @@
                 {{form_errors(form.descripActu)}}
             </div>
             <div>
-                {{form_label(form.photoActu)}}
+               {{form_label(form.photoActu_0)}}
             </div>
             <div id="inputFile">
-                {{form_widget(form.photoActu)}}
+                {{form_widget(form.photoActu_0)}}
             </div>
             <div class="erreur">
-                {{form_errors(form.photoActu)}}
+                {{form_errors(form.photoActu_0)}}
             </div>
         </div>
         <div id="part2">
+            <div>
+               {{form_label(form.photoActu_1)}}
+            </div>
+            <div id="inputFile">
+                {{form_widget(form.photoActu_1)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.photoActu_1)}}
+            </div>
             <div>
                 {{form_label(form.fileNameVig)}}
             </div>

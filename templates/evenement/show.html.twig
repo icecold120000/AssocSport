@@ -31,16 +31,16 @@
         <h2> {{evenement.Documents|length}} documents à télécharger</h2>
 
         <table class="table table-striped tableAdmin">
-            {% for docs in evenement.Documents %}
-                <thead>
-                    <tr>
-                        <th scope="col">Nom du document</th>
-                        <th scope="col">Date d'ajout</th>
-                        <th scope="col">Catégorie</th>
-                        <th scope="col">Lien de téléchargement</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <thead>
+                <tr>
+                    <th scope="col">Nom du document</th>
+                    <th scope="col">Date d'ajout</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Lien de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for docs in evenement.Documents %}
                     <tr>
                         <td scope="row">{{docs.nomDocument}}</td>
                         <td scope="row">{{docs.dateAjout ? docs.
@@ -55,8 +55,8 @@
                             </a>
                         </td>
                     </tr>
-                </tbody>
-            {% endfor %}
+                {% endfor %}
+            </tbody>
         </table>
     </div>
     <div>
@@ -68,14 +68,22 @@
         {% if is_granted('ROLE_ELEVE') and app.user.getEleve.
         getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or
          evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y') %}
-            <a href="{{ path('evenement_admin') }}">
-                <button class="btn btn-success" >
-                    S'inscrire
-                </button>
-            </a>
+            {% for inscription in evenement.inscriptions|filter(inscription => inscription.Eleve.id == app.user.getEleve.id ) %}
+                <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
+                    <button class="btn btn-success" id="btnAjout">
+                        Aller dans la page de confirmation d'inscription
+                    </button>
+                </a>
+            {% else%}
+                <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
+                    <button class="btn btn-success" id="btnAjout">
+                        S'inscrire
+                    </button>
+                </a>
+            {% endfor %}
         {% else %}
-            <a href="{{ path('evenement_admin') }}">
-                <button class="btn btn-success" disabled>
+            <a href="{{ path('evenement_inscrire') }}">
+                <button class="btn btn-success" disabled id="btnAjout">
                     S'inscrire
                 </button>
             </a>
